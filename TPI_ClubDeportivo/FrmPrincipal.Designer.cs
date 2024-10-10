@@ -34,6 +34,8 @@
             btnAsignarCurso = new Button();
             btnPagarCurso = new Button();
             btnEmitirCompCurso = new Button();
+            button1 = new Button();
+            button3 = new Button();
             SuspendLayout();
             // 
             // lblIngreso
@@ -102,12 +104,36 @@
             btnEmitirCompCurso.Text = "Emitir datos Cliente";
             btnEmitirCompCurso.UseVisualStyleBackColor = false;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.Khaki;
+            button1.Font = new Font("Futura Md BT", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            button1.Location = new Point(42, 494);
+            button1.Name = "button1";
+            button1.Size = new Size(372, 118);
+            button1.TabIndex = 6;
+            button1.Text = "Asociar Cliente";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.LemonChiffon;
+            button3.Font = new Font("Futura Md BT", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            button3.Location = new Point(452, 494);
+            button3.Name = "button3";
+            button3.Size = new Size(372, 118);
+            button3.TabIndex = 7;
+            button3.Text = "Cuotas que Vencen Hoy";
+            button3.UseVisualStyleBackColor = false;
+            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(876, 482);
+            ClientSize = new Size(876, 640);
+            Controls.Add(button3);
+            Controls.Add(button1);
             Controls.Add(btnEmitirCompCurso);
             Controls.Add(btnPagarCurso);
             Controls.Add(btnAsignarCurso);
@@ -130,5 +156,7 @@
         private Button btnAsignarCurso;
         private Button btnPagarCurso;
         private Button btnEmitirCompCurso;
+        private Button button1;
+        private Button button3;
     }
 }

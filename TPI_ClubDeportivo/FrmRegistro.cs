@@ -76,7 +76,7 @@ namespace TPI_ClubDeportivo
             txtApellido.Text = "";
             txtDocumento.Text = "";
             cboTipo.Text = "";
-            //dtpFechaNacimiento.Value = DateTime.Today;
+            dtpFechaNacimiento.Value = DateTime.Today;
             txtTelefono.Text = "";
             txtDomicilio.Text = "";
             txtEmail.Text = "";

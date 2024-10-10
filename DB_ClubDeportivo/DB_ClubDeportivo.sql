@@ -95,10 +95,10 @@ CREATE PROCEDURE NuevoCliente(
     IN Ape VARCHAR(40),
     IN Tip VARCHAR(20),
     IN Doc INT,
-    IN FechaNac DATE,  -- Agregado para la fecha de nacimiento
-    IN Tel VARCHAR(20),  -- Agregado para el teléfono
-    IN Domicilio VARCHAR(50),  -- Agregado para el domicilio
-    IN Email VARCHAR(30),  -- Agregado para el email
+    IN FechaNac DATE,  
+    IN Tel VARCHAR(20),  
+    IN Domicilio VARCHAR(50),  
+    IN Email VARCHAR(30),  
     OUT rta INT
 )
 BEGIN
@@ -110,14 +110,14 @@ BEGIN
     IF filas = 0 THEN
         SET filas = 0; 
     ELSE
-        SET filas = (SELECT MAX(NCliente) + 1 FROM cliente);  -- Asegúrate de que NCliente esté en la tabla
+        SET filas = (SELECT MAX(idCliente) + 1 FROM cliente);  
     END IF;
 
     SET existe = (SELECT COUNT(*) FROM cliente WHERE TDocC = Tip AND DocC = Doc);
 
     IF existe = 0 THEN
         -- Insertar el nuevo cliente con todos los campos
-        INSERT INTO cliente (NCliente, NombreC, ApellidoC, TDocC, DocC, FechaNacimiento, Tel, Domicilio, Email) 
+        INSERT INTO cliente (idCliente, NombreC, ApellidoC, TDocC, DocC, FechaNacC, TelC, DomicilioC, EmailC) 
         VALUES (filas, Nom, Ape, Tip, Doc, FechaNac, Tel, Domicilio, Email);
 
         -- Retornar el nuevo conteo de clientes
