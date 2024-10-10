@@ -13,5 +13,9 @@ namespace TPI_ClubDeportivo.Datos.Entidades
         public String? ApellidoC { get; set; }
         public String? TDocC { get; set; }
         public int DocC { get; set; }
+        public DateTime? FechaNacimientoC { get; set; }
+        public String? TelC { get; set; }
+        public String? DomicilioC { get; set; }
+        public String? EmailC { get; set; }
     }
 }

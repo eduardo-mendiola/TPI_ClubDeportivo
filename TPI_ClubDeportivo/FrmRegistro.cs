@@ -39,6 +39,10 @@ namespace TPI_ClubDeportivo
                 cliente.ApellidoC = txtApellido.Text;
                 cliente.DocC = Convert.ToInt32(txtDocumento.Text);
                 cliente.TDocC = cboTipo.Text;
+                cliente.FechaNacimientoC = dtpFechaNacimiento.Value;
+                cliente.TelC = txtTelefono.Text;
+                cliente.DomicilioC = txtDomicilio.Text;
+                cliente.EmailC = txtEmail.Text;
 
                 // Instaciamos para usar el método dentro de postulantes
                 Datos.Clientes clientes = new Datos.Clientes();
@@ -72,6 +76,10 @@ namespace TPI_ClubDeportivo
             txtApellido.Text = "";
             txtDocumento.Text = "";
             cboTipo.Text = "";
+            //dtpFechaNacimiento.Value = DateTime.Today;
+            txtTelefono.Text = "";
+            txtDomicilio.Text = "";
+            txtEmail.Text = "";
             txtNombre.Focus();
         }
     }

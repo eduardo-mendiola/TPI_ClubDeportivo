@@ -28,18 +28,107 @@ INSERT INTO usuario(NombreUsu,PassUsu,RolUsu) VALUES
 ('Joa', '1234', 120),
 ('Jose', '1234', '121');
 
+CREATE TABLE cliente(
+idCliente INT,
+NombreC VARCHAR(30),
+ApellidoC VARCHAR(40),
+TDocC VARCHAR(20),
+DocC INT,
+FechaNacC DATE,
+TelC VARCHAR(20),
+DomicilioC VARCHAR(50),
+EmailC VARCHAR(30),
 
 
-/*  a partir de la semana 9  */
-
-
-create table cliente(
-NCliente int,
-NombreC varchar(30),
-ApellidoC varchar(40),
-TDocC varchar(20),
-DocC int,
-constraint pk_postulante primary key(NCliente)
+CONSTRAINT pk_idCliente PRIMARY KEY(idCliente)
 );
+
+CREATE TABLE Actividad(
+idActividad INT AUTO_INCREMENT,
+NombreActividad VARCHAR(20),
+HorarioActividad DATETIME,
+DiasActividad DATETIME,
+DuracionMinutos INT,
+MaxParticipantes INT,
+CantInscriptos INT,
+CuposLibres INT,
+CostoDiario float,
+
+CONSTRAINT pk_idActividad PRIMARY KEY(idActividad)
+);
+
+CREATE TABLE Inscripcion (
+    idInscripcion INT AUTO_INCREMENT,
+    idCliente INT,
+    idActividad INT,
+    FechaInscripcion DATE,
+    CONSTRAINT pk_idInscripcion PRIMARY KEY(idInscripcion),
+    CONSTRAINT fk_idCliente FOREIGN KEY(idCliente) REFERENCES cliente(idCliente),
+    CONSTRAINT fk_idActividad FOREIGN KEY(idActividad) REFERENCES Actividad(idActividad)
+);
+
+/*Procedimiento para verificar si un usuario existe, es correcta la contraseña y si esta activo*/
+
+DELIMITER //  
+CREATE PROCEDURE IngresoLogin(IN Usu VARCHAR(20),IN Pass VARCHAR(15))
+ BEGIN
+ 
+	SELECT NomRol
+	  FROM usuario AS u 
+	 INNER JOIN roles AS r ON u.RolUsu = r.RolUsu
+	 WHERE NombreUsu = Usu 
+       AND PassUsu = Pass 
+	   AND Activo = 1; 
+END 
+//
+DELIMITER ;
+
+# call IngresoLogin('dato1', 'dato2');
+
+
+/*Procedimiento para crear un nuevo cliente*/
+DROP PROCEDURE IF EXISTS NuevoCliente;
+
+DELIMITER //
+CREATE PROCEDURE NuevoCliente(
+    IN Nom VARCHAR(30),
+    IN Ape VARCHAR(40),
+    IN Tip VARCHAR(20),
+    IN Doc INT,
+    IN FechaNac DATE,  -- Agregado para la fecha de nacimiento
+    IN Tel VARCHAR(20),  -- Agregado para el teléfono
+    IN Domicilio VARCHAR(50),  -- Agregado para el domicilio
+    IN Email VARCHAR(30),  -- Agregado para el email
+    OUT rta INT
+)
+BEGIN
+    DECLARE filas INT DEFAULT 0;
+    DECLARE existe INT DEFAULT 0;
+
+    SET filas = (SELECT COUNT(*) FROM cliente);
+
+    IF filas = 0 THEN
+        SET filas = 0; 
+    ELSE
+        SET filas = (SELECT MAX(NCliente) + 1 FROM cliente);  -- Asegúrate de que NCliente esté en la tabla
+    END IF;
+
+    SET existe = (SELECT COUNT(*) FROM cliente WHERE TDocC = Tip AND DocC = Doc);
+
+    IF existe = 0 THEN
+        -- Insertar el nuevo cliente con todos los campos
+        INSERT INTO cliente (NCliente, NombreC, ApellidoC, TDocC, DocC, FechaNacimiento, Tel, Domicilio, Email) 
+        VALUES (filas, Nom, Ape, Tip, Doc, FechaNac, Tel, Domicilio, Email);
+
+        -- Retornar el nuevo conteo de clientes
+        SET rta = filas; 
+    ELSE
+        -- Retornar el conteo de clientes existentes
+        SET rta = existe;  
+    END IF;		 
+END //
+DELIMITER ;
+
+
 
 
