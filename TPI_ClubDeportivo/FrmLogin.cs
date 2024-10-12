@@ -93,7 +93,6 @@ namespace TPI_ClubDeportivo
                 MessageBox.Show("Usuario y/o password incorrecto");
             }
         }
-
     }
 }
 

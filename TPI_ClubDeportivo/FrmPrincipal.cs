@@ -39,9 +39,18 @@ namespace TPI_ClubDeportivo
         //    }
         //}
 
+        private void CenterLabelInForm(Label label)
+        {
+            label.Left = (this.ClientSize.Width - label.Width) / 2;
+
+        }
+
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            lblIngreso.Text = $"USUARIO: {usuario} ({rol})";
+            lblRol.Text = $"* {rol} *";
+            CenterLabelInForm(lblRol);
+            lblUsuario.Text = usuario;
+            CenterLabelInForm(lblUsuario);
         }
 
 

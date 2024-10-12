@@ -28,135 +28,205 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblIngreso = new Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
+            lblUsuario = new Label();
             btnSalir = new Button();
             button2 = new Button();
             btnAsignarCurso = new Button();
-            btnPagarCurso = new Button();
-            btnEmitirCompCurso = new Button();
-            button1 = new Button();
+            btnVerActividades = new Button();
+            btnEmitirCarnet = new Button();
+            btnPagar = new Button();
             button3 = new Button();
+            panel1 = new Panel();
+            lblIFTS29 = new Label();
+            picLogo = new PictureBox();
+            lblRol = new Label();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             SuspendLayout();
             // 
-            // lblIngreso
+            // lblUsuario
             // 
-            lblIngreso.AutoSize = true;
-            lblIngreso.Font = new Font("Futura Md BT", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            lblIngreso.Location = new Point(27, 39);
-            lblIngreso.Name = "lblIngreso";
-            lblIngreso.Size = new Size(339, 26);
-            lblIngreso.TabIndex = 0;
-            lblIngreso.Text = "Usuario: Prueba (Administrador)";
+            lblUsuario.AutoSize = true;
+            lblUsuario.Font = new Font("Futura Md BT", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            lblUsuario.Location = new Point(385, 166);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(151, 41);
+            lblUsuario.TabIndex = 0;
+            lblUsuario.Text = "Usuario";
+            lblUsuario.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnSalir
             // 
-            btnSalir.Font = new Font("Futura Md BT", 12F, FontStyle.Italic, GraphicsUnit.Point);
-            btnSalir.Location = new Point(702, 30);
+            btnSalir.BackColor = Color.Gainsboro;
+            btnSalir.Font = new Font("Futura Md BT", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSalir.ForeColor = Color.DimGray;
+            btnSalir.Location = new Point(732, 29);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(131, 47);
-            btnSalir.TabIndex = 1;
+            btnSalir.Size = new Size(140, 50);
+            btnSalir.TabIndex = 6;
             btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
             // 
             // button2
             // 
-            button2.BackColor = Color.Khaki;
-            button2.Font = new Font("Futura Md BT", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            button2.Location = new Point(42, 130);
+            button2.BackColor = Color.DarkGoldenrod;
+            button2.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(56, 247);
             button2.Name = "button2";
-            button2.Size = new Size(372, 118);
-            button2.TabIndex = 2;
+            button2.Size = new Size(350, 100);
+            button2.TabIndex = 0;
             button2.Text = "Registrar Cliente";
             button2.UseVisualStyleBackColor = false;
             button2.Click += btnInscribir_Click;
             // 
             // btnAsignarCurso
             // 
-            btnAsignarCurso.BackColor = Color.LemonChiffon;
-            btnAsignarCurso.Font = new Font("Futura Md BT", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            btnAsignarCurso.Location = new Point(461, 130);
+            btnAsignarCurso.BackColor = Color.DarkGoldenrod;
+            btnAsignarCurso.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAsignarCurso.ForeColor = Color.White;
+            btnAsignarCurso.Location = new Point(483, 247);
             btnAsignarCurso.Name = "btnAsignarCurso";
-            btnAsignarCurso.Size = new Size(372, 118);
-            btnAsignarCurso.TabIndex = 3;
+            btnAsignarCurso.Size = new Size(350, 100);
+            btnAsignarCurso.TabIndex = 1;
             btnAsignarCurso.Text = "Inscribir en Actividad";
             btnAsignarCurso.UseVisualStyleBackColor = false;
             // 
-            // btnPagarCurso
+            // btnVerActividades
             // 
-            btnPagarCurso.BackColor = Color.LemonChiffon;
-            btnPagarCurso.Font = new Font("Futura Md BT", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            btnPagarCurso.Location = new Point(42, 320);
-            btnPagarCurso.Name = "btnPagarCurso";
-            btnPagarCurso.Size = new Size(372, 118);
-            btnPagarCurso.TabIndex = 4;
-            btnPagarCurso.Text = "Pagar Cuota";
-            btnPagarCurso.UseVisualStyleBackColor = false;
+            btnVerActividades.BackColor = Color.DarkGoldenrod;
+            btnVerActividades.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            btnVerActividades.ForeColor = Color.White;
+            btnVerActividades.Location = new Point(56, 389);
+            btnVerActividades.Name = "btnVerActividades";
+            btnVerActividades.Size = new Size(350, 100);
+            btnVerActividades.TabIndex = 2;
+            btnVerActividades.Text = "Ver Actividades";
+            btnVerActividades.UseVisualStyleBackColor = false;
             // 
-            // btnEmitirCompCurso
+            // btnEmitirCarnet
             // 
-            btnEmitirCompCurso.BackColor = Color.Khaki;
-            btnEmitirCompCurso.Font = new Font("Futura Md BT", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            btnEmitirCompCurso.Location = new Point(461, 320);
-            btnEmitirCompCurso.Name = "btnEmitirCompCurso";
-            btnEmitirCompCurso.Size = new Size(372, 118);
-            btnEmitirCompCurso.TabIndex = 5;
-            btnEmitirCompCurso.Text = "Emitir datos Cliente";
-            btnEmitirCompCurso.UseVisualStyleBackColor = false;
+            btnEmitirCarnet.BackColor = Color.DarkGoldenrod;
+            btnEmitirCarnet.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEmitirCarnet.ForeColor = Color.White;
+            btnEmitirCarnet.Location = new Point(483, 389);
+            btnEmitirCarnet.Name = "btnEmitirCarnet";
+            btnEmitirCarnet.Size = new Size(350, 100);
+            btnEmitirCarnet.TabIndex = 3;
+            btnEmitirCarnet.Text = "Emitir Carnet";
+            btnEmitirCarnet.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnPagar
             // 
-            button1.BackColor = Color.Khaki;
-            button1.Font = new Font("Futura Md BT", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            button1.Location = new Point(42, 494);
-            button1.Name = "button1";
-            button1.Size = new Size(372, 118);
-            button1.TabIndex = 6;
-            button1.Text = "Asociar Cliente";
-            button1.UseVisualStyleBackColor = false;
+            btnPagar.BackColor = Color.DarkGoldenrod;
+            btnPagar.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPagar.ForeColor = Color.White;
+            btnPagar.Location = new Point(56, 529);
+            btnPagar.Name = "btnPagar";
+            btnPagar.Size = new Size(350, 100);
+            btnPagar.TabIndex = 4;
+            btnPagar.Text = "Pagar";
+            btnPagar.UseVisualStyleBackColor = false;
             // 
             // button3
             // 
-            button3.BackColor = Color.LemonChiffon;
-            button3.Font = new Font("Futura Md BT", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            button3.Location = new Point(452, 494);
+            button3.BackColor = Color.DarkGoldenrod;
+            button3.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(483, 529);
             button3.Name = "button3";
-            button3.Size = new Size(372, 118);
-            button3.TabIndex = 7;
+            button3.Size = new Size(350, 100);
+            button3.TabIndex = 5;
             button3.Text = "Cuotas que Vencen Hoy";
             button3.UseVisualStyleBackColor = false;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.LightSkyBlue;
+            panel1.Controls.Add(lblIFTS29);
+            panel1.Controls.Add(btnSalir);
+            panel1.Location = new Point(-4, -1);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(900, 110);
+            panel1.TabIndex = 8;
+            // 
+            // lblIFTS29
+            // 
+            lblIFTS29.AutoSize = true;
+            lblIFTS29.Font = new Font("Century", 26F, FontStyle.Bold, GraphicsUnit.Point);
+            lblIFTS29.ForeColor = Color.FromArgb(64, 64, 64);
+            lblIFTS29.Location = new Point(284, 25);
+            lblIFTS29.Name = "lblIFTS29";
+            lblIFTS29.Size = new Size(354, 54);
+            lblIFTS29.TabIndex = 11;
+            lblIFTS29.Text = "Menú Principal";
+            // 
+            // picLogo
+            // 
+            picLogo.BackColor = Color.Transparent;
+            picLogo.Image = (Image)resources.GetObject("picLogo.Image");
+            picLogo.InitialImage = null;
+            picLogo.Location = new Point(32, 33);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(150, 150);
+            picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            picLogo.TabIndex = 9;
+            picLogo.TabStop = false;
+            picLogo.WaitOnLoad = true;
+            // 
+            // lblRol
+            // 
+            lblRol.AutoSize = true;
+            lblRol.Font = new Font("Futura Md BT", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            lblRol.Location = new Point(294, 122);
+            lblRol.Name = "lblRol";
+            lblRol.Size = new Size(322, 41);
+            lblRol.TabIndex = 10;
+            lblRol.Text = "* Administrador *";
+            lblRol.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(876, 640);
+            ClientSize = new Size(892, 673);
+            Controls.Add(lblRol);
+            Controls.Add(picLogo);
+            Controls.Add(panel1);
+            Controls.Add(lblUsuario);
             Controls.Add(button3);
-            Controls.Add(button1);
-            Controls.Add(btnEmitirCompCurso);
-            Controls.Add(btnPagarCurso);
+            Controls.Add(btnPagar);
+            Controls.Add(btnEmitirCarnet);
+            Controls.Add(btnVerActividades);
             Controls.Add(btnAsignarCurso);
             Controls.Add(button2);
-            Controls.Add(btnSalir);
-            Controls.Add(lblIngreso);
             Name = "FrmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "VENTANA PRINCIPAL";
             Load += FrmPrincipal_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label lblIngreso;
+        private Label lblUsuario;
         private Button btnSalir;
         private Button button2;
         private Button btnAsignarCurso;
-        private Button btnPagarCurso;
-        private Button btnEmitirCompCurso;
-        private Button button1;
+        private Button btnVerActividades;
+        private Button btnEmitirCarnet;
+        private Button btnPagar;
         private Button button3;
+        private Panel panel1;
+        private PictureBox picLogo;
+        private Label lblRol;
+        private Label lblIFTS29;
     }
 }

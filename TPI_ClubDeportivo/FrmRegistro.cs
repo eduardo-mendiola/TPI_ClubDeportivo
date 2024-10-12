@@ -26,7 +26,7 @@ namespace TPI_ClubDeportivo
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text == "" || txtApellido.Text == "" || txtDocumento.Text == "" || cboTipo.Text == "")
+            if (txtNombre.Text == "" || txtApellido.Text == "" || cboTipo.Text == "" || txtDocumento.Text == "" || txtTelefono.Text == "" || txtEmail.Text == "")
             {
                 MessageBox.Show("Debe completar datos requeridos (*) ", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -34,15 +34,16 @@ namespace TPI_ClubDeportivo
             {
                 String respuesta;
                 E_Cliente cliente = new E_Cliente();
-
+ 
                 cliente.NombreC = txtNombre.Text;
                 cliente.ApellidoC = txtApellido.Text;
-                cliente.DocC = Convert.ToInt32(txtDocumento.Text);
                 cliente.TDocC = cboTipo.Text;
+                cliente.DocC = Convert.ToInt32(txtDocumento.Text);
                 cliente.FechaNacimientoC = dtpFechaNacimiento.Value;
                 cliente.TelC = txtTelefono.Text;
                 cliente.DomicilioC = txtDomicilio.Text;
                 cliente.EmailC = txtEmail.Text;
+                cliente.EsSocio = radSocio.Checked;
 
                 // Instaciamos para usar el método dentro de postulantes
                 Datos.Clientes clientes = new Datos.Clientes();
@@ -72,6 +73,7 @@ namespace TPI_ClubDeportivo
          */
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
+            radSocio.Checked = true;
             txtNombre.Text = "";
             txtApellido.Text = "";
             txtDocumento.Text = "";

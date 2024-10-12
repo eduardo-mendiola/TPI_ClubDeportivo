@@ -36,93 +36,107 @@
             txtPass = new TextBox();
             lblPass = new Label();
             lblIFTS29 = new Label();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             SuspendLayout();
             // 
             // picLogo
             // 
+            picLogo.BackColor = Color.Transparent;
             picLogo.Image = (Image)resources.GetObject("picLogo.Image");
-            picLogo.Location = new Point(34, 49);
+            picLogo.InitialImage = null;
+            picLogo.Location = new Point(122, 30);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(280, 280);
+            picLogo.Size = new Size(130, 130);
             picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
             picLogo.TabIndex = 0;
             picLogo.TabStop = false;
+            picLogo.WaitOnLoad = true;
             // 
             // lblUser
             // 
             lblUser.AutoSize = true;
-            lblUser.Font = new Font("Futura Md BT", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            lblUser.ForeColor = Color.DimGray;
-            lblUser.Location = new Point(404, 111);
+            lblUser.Font = new Font("Futura Md BT", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblUser.ForeColor = Color.FromArgb(64, 64, 64);
+            lblUser.Location = new Point(46, 255);
             lblUser.Name = "lblUser";
-            lblUser.Size = new Size(121, 27);
+            lblUser.Size = new Size(94, 27);
             lblUser.TabIndex = 1;
-            lblUser.Text = "USUARIO";
+            lblUser.Text = "Usuario";
             // 
             // txtUser
             // 
-            txtUser.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            txtUser.Location = new Point(531, 105);
+            txtUser.Font = new Font("Futura Md BT", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            txtUser.Location = new Point(46, 287);
             txtUser.Name = "txtUser";
-            txtUser.Size = new Size(226, 39);
+            txtUser.Size = new Size(300, 37);
             txtUser.TabIndex = 0;
             // 
             // btnIngresar
             // 
-            btnIngresar.Font = new Font("Futura Md BT", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
-            btnIngresar.ForeColor = Color.Gray;
-            btnIngresar.Location = new Point(451, 242);
+            btnIngresar.BackColor = SystemColors.Highlight;
+            btnIngresar.Font = new Font("Futura Md BT", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            btnIngresar.ForeColor = Color.White;
+            btnIngresar.Location = new Point(46, 473);
             btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(249, 96);
+            btnIngresar.Size = new Size(300, 62);
             btnIngresar.TabIndex = 2;
-            btnIngresar.Text = "Ingresar";
-            btnIngresar.UseVisualStyleBackColor = true;
+            btnIngresar.Text = "Iniciar sesión";
+            btnIngresar.UseVisualStyleBackColor = false;
             btnIngresar.Click += btnIngresar_Click;
             // 
             // txtPass
             // 
-            txtPass.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPass.Location = new Point(531, 171);
+            txtPass.Font = new Font("Futura Md BT", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPass.Location = new Point(46, 395);
             txtPass.Name = "txtPass";
             txtPass.PasswordChar = '*';
-            txtPass.Size = new Size(226, 39);
+            txtPass.Size = new Size(300, 37);
             txtPass.TabIndex = 1;
             // 
             // lblPass
             // 
             lblPass.AutoSize = true;
-            lblPass.Font = new Font("Futura Md BT", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPass.ForeColor = Color.DimGray;
-            lblPass.Location = new Point(351, 177);
+            lblPass.Font = new Font("Futura Md BT", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPass.ForeColor = Color.FromArgb(64, 64, 64);
+            lblPass.Location = new Point(46, 359);
             lblPass.Name = "lblPass";
-            lblPass.Size = new Size(174, 27);
+            lblPass.Size = new Size(135, 27);
             lblPass.TabIndex = 5;
-            lblPass.Text = "CONTRASEÑA";
+            lblPass.Text = "Contraseña";
             // 
             // lblIFTS29
             // 
             lblIFTS29.AutoSize = true;
-            lblIFTS29.Font = new Font("Futura Md BT", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            lblIFTS29.ForeColor = SystemColors.HotTrack;
-            lblIFTS29.Location = new Point(414, 33);
+            lblIFTS29.Font = new Font("Century", 25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblIFTS29.ForeColor = Color.FromArgb(64, 64, 64);
+            lblIFTS29.Location = new Point(63, 169);
             lblIFTS29.Name = "lblIFTS29";
-            lblIFTS29.Size = new Size(272, 41);
+            lblIFTS29.Size = new Size(250, 50);
             lblIFTS29.TabIndex = 6;
-            lblIFTS29.Text = "Club Deportivo";
+            lblIFTS29.Text = "Bienvenido";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.LightSkyBlue;
+            panel1.Location = new Point(0, -1);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(395, 90);
+            panel1.TabIndex = 8;
             // 
             // FrmLogin
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 377);
+            ClientSize = new Size(392, 573);
+            Controls.Add(picLogo);
+            Controls.Add(panel1);
             Controls.Add(lblIFTS29);
             Controls.Add(lblPass);
             Controls.Add(txtPass);
             Controls.Add(btnIngresar);
             Controls.Add(txtUser);
             Controls.Add(lblUser);
-            Controls.Add(picLogo);
             Name = "FrmLogin";
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
@@ -139,5 +153,6 @@
         private TextBox txtPass;
         private Label lblPass;
         private Label lblIFTS29;
+        private Panel panel1;
     }
 }
