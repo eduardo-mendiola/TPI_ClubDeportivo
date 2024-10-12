@@ -38,7 +38,7 @@ FechaNacC DATE,
 TelC VARCHAR(20),
 DomicilioC VARCHAR(50),
 EmailC VARCHAR(30),
-
+EsSocio TINYINT,
 
 CONSTRAINT pk_idCliente PRIMARY KEY(idCliente)
 );
@@ -99,6 +99,7 @@ CREATE PROCEDURE NuevoCliente(
     IN Tel VARCHAR(20),  
     IN Domicilio VARCHAR(50),  
     IN Email VARCHAR(30),  
+    IN EsSocio TINYINT,
     OUT rta INT
 )
 BEGIN
@@ -117,8 +118,8 @@ BEGIN
 
     IF existe = 0 THEN
         -- Insertar el nuevo cliente con todos los campos
-        INSERT INTO cliente (idCliente, NombreC, ApellidoC, TDocC, DocC, FechaNacC, TelC, DomicilioC, EmailC) 
-        VALUES (filas, Nom, Ape, Tip, Doc, FechaNac, Tel, Domicilio, Email);
+        INSERT INTO cliente (idCliente, NombreC, ApellidoC, TDocC, DocC, FechaNacC, TelC, DomicilioC, EmailC, EsSocio) 
+        VALUES (filas, Nom, Ape, Tip, Doc, FechaNac, Tel, Domicilio, Email, EsSocio);
 
         -- Retornar el nuevo conteo de clientes
         SET rta = filas; 
