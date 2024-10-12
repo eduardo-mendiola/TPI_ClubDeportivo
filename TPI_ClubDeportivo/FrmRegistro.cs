@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TPI_ClubDeportivo.Datos;
 using TPI_ClubDeportivo.Datos.Entidades;
 
 namespace TPI_ClubDeportivo
@@ -38,17 +39,17 @@ namespace TPI_ClubDeportivo
                 cliente.NombreC = txtNombre.Text;
                 cliente.ApellidoC = txtApellido.Text;
                 cliente.TDocC = cboTipo.Text;
-                cliente.DocC = Convert.ToInt32(txtDocumento.Text);
+                cliente.DocC = txtDocumento.Text;
                 cliente.FechaNacimientoC = dtpFechaNacimiento.Value;
                 cliente.TelC = txtTelefono.Text;
                 cliente.DomicilioC = txtDomicilio.Text;
                 cliente.EmailC = txtEmail.Text;
                 cliente.EsSocio = radSocio.Checked;
 
-                // Instaciamos para usar el método dentro de postulantes
-                Datos.Clientes clientes = new Datos.Clientes();
+                // Instaciamos para usar el método dentro de clientes
+                Clientes clienteReg = new Clientes();
 
-                respuesta = clientes.Nuevo_Cliente(cliente);
+                respuesta = clienteReg.Nuevo_Cliente(cliente);
 
                 bool esnumero = int.TryParse(respuesta, out int codigo);
 
@@ -61,7 +62,7 @@ namespace TPI_ClubDeportivo
                     }
                     else
                     {
-                        MessageBox.Show("Se almaceno con exito con el codigo Nro " + respuesta, "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        MessageBox.Show("Se almacenó con éxito con el código Nro " + respuesta, "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Question);
                     }
                 }
             }

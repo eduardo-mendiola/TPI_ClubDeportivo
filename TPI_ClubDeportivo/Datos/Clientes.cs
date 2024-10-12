@@ -27,7 +27,7 @@ namespace TPI_ClubDeportivo.Datos
                 comando.Parameters.Add("Nom", MySqlDbType.VarChar).Value = cliente.NombreC;
                 comando.Parameters.Add("Ape", MySqlDbType.VarChar).Value = cliente.ApellidoC;
                 comando.Parameters.Add("Tip", MySqlDbType.VarChar).Value = cliente.TDocC;
-                comando.Parameters.Add("Doc", MySqlDbType.Int32).Value = cliente.DocC;
+                comando.Parameters.Add("Doc", MySqlDbType.VarChar).Value = cliente.DocC;
                 comando.Parameters.Add("FechaNac", MySqlDbType.DateTime).Value = cliente.FechaNacimientoC;
                 comando.Parameters.Add("Tel", MySqlDbType.VarChar).Value = cliente.TelC;
                 comando.Parameters.Add("Domicilio", MySqlDbType.VarChar).Value = cliente.DomicilioC;
