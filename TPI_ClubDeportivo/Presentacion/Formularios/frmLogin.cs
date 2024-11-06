@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TPI_ClubDeportivo.Datos;
+using TPI_ClubDeportivo.Datos.Repositories;
 
 
 namespace TPI_ClubDeportivo
@@ -61,8 +62,8 @@ namespace TPI_ClubDeportivo
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             DataTable tablaLogin = new DataTable(); // es la que recibe los datos desde el formulario.
-            D_Usuarios dato = new D_Usuarios(); // variable que contiene todas las caracteristicas de la clase.
-            tablaLogin = dato.Log_Usu(txtUser.Text, txtPass.Text);
+            UsuarioRepository dato = new UsuarioRepository(); // variable que contiene todas las caracteristicas de la clase.
+            tablaLogin = dato.ObtenerUsuarioPorCredenciales(txtUser.Text, txtPass.Text);
             if (tablaLogin.Rows.Count > 0)
             {
                 // ____ Quiere decir que el resultado tiene 1 fila por lo que el usuario EXISTE ___

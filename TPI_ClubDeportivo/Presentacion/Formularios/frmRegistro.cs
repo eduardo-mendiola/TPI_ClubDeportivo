@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TPI_ClubDeportivo.Datos;
-using TPI_ClubDeportivo.Datos.Entidades;
+using TPI_ClubDeportivo.Entidades;
 
 namespace TPI_ClubDeportivo
 {

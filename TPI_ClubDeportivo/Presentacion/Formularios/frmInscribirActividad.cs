@@ -9,7 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TPI_ClubDeportivo.Datos;
-using TPI_ClubDeportivo.Datos.Entidades;
+using TPI_ClubDeportivo.Datos.Infrastructure;
+using TPI_ClubDeportivo.Entidades;
 
 namespace TPI_ClubDeportivo
 {
@@ -33,7 +34,7 @@ namespace TPI_ClubDeportivo
             try
             {
                 string query;
-                sqlCon = D_Conexion.getInstancia().CrearConexion();
+                sqlCon = ConexionDB.getInstancia().CrearConexion();
                 query = "SELECT e.IdEdicion, a.NombreActividad, e.DiasActividad, e.HorarioActividad, CONCAT(i.NombreInst, ' ', i.ApellidoInst) AS Instructor, a.CostoDiario " +
                         "FROM Actividad a " +
                         "INNER JOIN Edicion e ON a.NActividad = e.NActividad " +

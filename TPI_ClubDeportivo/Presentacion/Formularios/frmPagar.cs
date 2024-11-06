@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TPI_ClubDeportivo.Datos;
+using TPI_ClubDeportivo.Datos.Infrastructure;
 
 namespace TPI_ClubDeportivo
 {
@@ -59,7 +59,7 @@ namespace TPI_ClubDeportivo
             {
                 String query;
                 int Pagado_f;
-                sqlCon = D_Conexion.getInstancia().CrearConexion();
+                sqlCon = ConexionDB.getInstancia().CrearConexion();
 
                 /*
                  ------------------------------------------------------------------
@@ -156,7 +156,7 @@ namespace TPI_ClubDeportivo
             try
             {
                 string query;
-                sqlCon = D_Conexion.getInstancia().CrearConexion();
+                sqlCon = ConexionDB.getInstancia().CrearConexion();
                 query = "UPDATE Inscripcion SET Pagado = 1 WHERE IdInscripcion = @IdInscripcion";
 
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
@@ -266,7 +266,7 @@ namespace TPI_ClubDeportivo
                 string query;
                 int EsSocio;
 
-                sqlCon = D_Conexion.getInstancia().CrearConexion();
+                sqlCon = ConexionDB.getInstancia().CrearConexion();
                 query = "SELECT i.IdInscripcion, a.NombreActividad, i.FechaInscripcion, a.CostoDiario, c.EsSocio " +
                         "FROM Inscripcion i " +
                         "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +

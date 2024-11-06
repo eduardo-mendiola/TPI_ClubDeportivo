@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TPI_ClubDeportivo.Datos.Entidades
+namespace TPI_ClubDeportivo.Entidades
 {
-    internal class E_Cuota
+    internal class E_Socio
     {
     }
 }

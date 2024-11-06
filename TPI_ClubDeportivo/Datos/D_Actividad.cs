@@ -5,7 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TPI_ClubDeportivo.Datos.Entidades;
+using TPI_ClubDeportivo.Datos.Infrastructure;
+using TPI_ClubDeportivo.Entidades;
 
 namespace TPI_ClubDeportivo.Datos
 {
@@ -19,7 +20,7 @@ namespace TPI_ClubDeportivo.Datos
 
             try
             {
-                sqlCon = D_Conexion.getInstancia().CrearConexion();
+                sqlCon = ConexionDB.getInstancia().CrearConexion();
                 MySqlCommand comando = new MySqlCommand("InsActividad", sqlCon);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
 

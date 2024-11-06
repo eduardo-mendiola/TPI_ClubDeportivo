@@ -1,33 +1,33 @@
 ﻿// Referencia a MySQL (se agrega como librería)
 using MySql.Data.MySqlClient; // Importa la biblioteca necesaria para trabajar con MySQL
 //---------------------------------------------
-using System; 
-using System.Collections.Generic; 
-using System.Linq; 
-using System.Text; 
-using System.Threading.Tasks; 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace TPI_ClubDeportivo.Datos 
+namespace TPI_ClubDeportivo.Datos.Infrastructure
 {
-    public class D_Conexion 
+    public class ConexionDB
     {
         // Definición de variables privadas para almacenar la configuración de conexión
-        private string baseDatos; 
-        private string servidor; 
-        private string puerto; 
-        private string usuario; 
-        private string clave; 
-        private static D_Conexion? con = null; // Variable estática para la instancia de conexión
+        private string baseDatos;
+        private string servidor;
+        private string puerto;
+        private string usuario;
+        private string clave;
+        private static ConexionDB? con = null; // Variable estática para la instancia de conexión
 
         // Constructor de la clase Conexion
-        public D_Conexion()
+        public ConexionDB()
         {
-            this.baseDatos = "ClubDeportivo"; // Nombre de la base de datos asignado.
+            baseDatos = "ClubDeportivo"; // Nombre de la base de datos asignado.
             // Obtiene las variables de entorno para la configuración de conexión.
-            this.servidor = Environment.GetEnvironmentVariable("DB_HOST_MYSQL");
-            this.puerto = Environment.GetEnvironmentVariable("DB_PORT_MYSQL");
-            this.usuario = Environment.GetEnvironmentVariable("DB_USER_MYSQL");
-            this.clave = Environment.GetEnvironmentVariable("DB_PASSWORD_MYSQL");
+            servidor = Environment.GetEnvironmentVariable("DB_HOST_MYSQL");
+            puerto = Environment.GetEnvironmentVariable("DB_PORT_MYSQL");
+            usuario = Environment.GetEnvironmentVariable("DB_USER_MYSQL");
+            clave = Environment.GetEnvironmentVariable("DB_PASSWORD_MYSQL");
         }
 
         // Método para crear una conexión a la base de datos
@@ -40,11 +40,11 @@ namespace TPI_ClubDeportivo.Datos
             try
             {
                 // Construir la cadena de conexión utilizando las propiedades definidas
-                cadena.ConnectionString = "datasource=" + this.servidor +
-                                          ";port=" + this.puerto +
-                                          ";username=" + this.usuario +
-                                          ";password=" + this.clave +
-                                          ";Database=" + this.baseDatos;
+                cadena.ConnectionString = "datasource=" + servidor +
+                                          ";port=" + puerto +
+                                          ";username=" + usuario +
+                                          ";password=" + clave +
+                                          ";Database=" + baseDatos;
             }
             catch (Exception ex) // Captura cualquier excepción que ocurra
             {
@@ -55,11 +55,11 @@ namespace TPI_ClubDeportivo.Datos
         }
 
         // Método para obtener la instancia única de la clase Conexion
-        public static D_Conexion getInstancia()
+        public static ConexionDB getInstancia()
         {
             if (con == null) // Verifica si la conexión no ha sido creada
             {
-                con = new D_Conexion(); // Si no existe, se crea una nueva instancia
+                con = new ConexionDB(); // Si no existe, se crea una nueva instancia
             }
             return con; // Retorna la instancia de conexión (puede ser nueva o existente)
         }
