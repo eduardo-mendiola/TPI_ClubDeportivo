@@ -8,16 +8,17 @@ namespace TPI_ClubDeportivo.Datos.Entidades
 {
     internal class E_Cliente
     {
-        public int NCliente { get; set; }
-        public String? NombreC { get; set; }
-        public String? ApellidoC { get; set; }
-        public String? TDocC { get; set; }
-        public String DocC { get; set; }
-        public DateTime? FechaNacimientoC { get; set; }
-        public String? TelC { get; set; }
-        public String? DomicilioC { get; set; }
-        public String? EmailC { get; set; }
+        public int IdCliente { get; set; }
+        public String? Nombre { get; set; }
+        public String? Apellido { get; set; }
+        public String? TipoDoc { get; set; }
+        public String Doc { get; set; }
+        public DateTime? FechaNacimiento { get; set; }
+        public String? Tel { get; set; }
+        public String? Email { get; set; }
+        public String? Domicilio { get; set; }
         public bool EsSocio { get; set; }
         public bool AptoFisico { get; set; }
+        public List<E_Actividad> ActividadesInscriptas { get; set; }
     }
 }

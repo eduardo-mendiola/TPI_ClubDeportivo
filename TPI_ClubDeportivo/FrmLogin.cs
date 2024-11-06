@@ -61,7 +61,7 @@ namespace TPI_ClubDeportivo
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             DataTable tablaLogin = new DataTable(); // es la que recibe los datos desde el formulario.
-            Usuarios dato = new Usuarios(); // variable que contiene todas las caracteristicas de la clase.
+            D_Usuarios dato = new D_Usuarios(); // variable que contiene todas las caracteristicas de la clase.
             tablaLogin = dato.Log_Usu(txtUser.Text, txtPass.Text);
             if (tablaLogin.Rows.Count > 0)
             {

@@ -9,9 +9,9 @@ using TPI_ClubDeportivo.Datos.Entidades;
 
 namespace TPI_ClubDeportivo.Datos
 {
-    internal class InscripcionActividad
+    internal class D_Actividad
     {
-        public String Nueva_Inscripcion(E_InscribirEnActividad inscripcion)
+        public String Nueva_Inscripcion(E_Actividad inscripcion)
         {
             String? salida;
 
@@ -19,7 +19,7 @@ namespace TPI_ClubDeportivo.Datos
 
             try
             {
-                sqlCon = Conexion.getInstancia().CrearConexion();
+                sqlCon = D_Conexion.getInstancia().CrearConexion();
                 MySqlCommand comando = new MySqlCommand("InsActividad", sqlCon);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
 

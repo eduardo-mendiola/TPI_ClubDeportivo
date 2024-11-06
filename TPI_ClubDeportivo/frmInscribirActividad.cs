@@ -15,6 +15,8 @@ namespace TPI_ClubDeportivo
 {
     public partial class frmInscribirActividad : Form
     {
+        // TODO: Cambiar IDCliente por Documento del cliente para la inscripción.
+        // TODO: Mostar solo lista de actividades disponibles, aquellas que tengan cupo libre.
         public frmInscribirActividad()
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace TPI_ClubDeportivo
             try
             {
                 string query;
-                sqlCon = Conexion.getInstancia().CrearConexion();
+                sqlCon = D_Conexion.getInstancia().CrearConexion();
                 query = "SELECT e.IdEdicion, a.NombreActividad, e.DiasActividad, e.HorarioActividad, CONCAT(i.NombreInst, ' ', i.ApellidoInst) AS Instructor, a.CostoDiario " +
                         "FROM Actividad a " +
                         "INNER JOIN Edicion e ON a.NActividad = e.NActividad " +
@@ -92,13 +94,13 @@ namespace TPI_ClubDeportivo
             else
             {
                 String respuesta;
-                E_InscribirEnActividad inscripcion = new E_InscribirEnActividad();
+                E_Actividad inscripcion = new E_Actividad();
 
                 inscripcion.IdCliente = Convert.ToInt32(txtIdCliente.Text);
                 inscripcion.IdActividad = Convert.ToInt32(txtIdActividad.Text);
 
                 // Instaciamos para usar el método dentro de postulantes
-                InscripcionActividad inscribir = new InscripcionActividad();
+                D_Actividad inscribir = new D_Actividad();
 
                 respuesta = inscribir.Nueva_Inscripcion(inscripcion);
 

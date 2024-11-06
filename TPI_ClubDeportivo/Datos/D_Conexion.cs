@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TPI_ClubDeportivo.Datos 
 {
-    public class Conexion 
+    public class D_Conexion 
     {
         // Definición de variables privadas para almacenar la configuración de conexión
         private string baseDatos; 
@@ -17,10 +17,10 @@ namespace TPI_ClubDeportivo.Datos
         private string puerto; 
         private string usuario; 
         private string clave; 
-        private static Conexion? con = null; // Variable estática para la instancia de conexión
+        private static D_Conexion? con = null; // Variable estática para la instancia de conexión
 
         // Constructor de la clase Conexion
-        public Conexion()
+        public D_Conexion()
         {
             this.baseDatos = "ClubDeportivo"; // Nombre de la base de datos asignado.
             // Obtiene las variables de entorno para la configuración de conexión.
@@ -55,11 +55,11 @@ namespace TPI_ClubDeportivo.Datos
         }
 
         // Método para obtener la instancia única de la clase Conexion
-        public static Conexion getInstancia()
+        public static D_Conexion getInstancia()
         {
             if (con == null) // Verifica si la conexión no ha sido creada
             {
-                con = new Conexion(); // Si no existe, se crea una nueva instancia
+                con = new D_Conexion(); // Si no existe, se crea una nueva instancia
             }
             return con; // Retorna la instancia de conexión (puede ser nueva o existente)
         }

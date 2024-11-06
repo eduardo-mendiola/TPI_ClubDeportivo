@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TPI_ClubDeportivo.Datos 
 {
-    internal class Usuarios 
+    internal class D_Usuarios 
     {
         // Método que retorna un DataTable con la información de usuario tras un intento de inicio de sesión
         /*
@@ -25,7 +25,7 @@ namespace TPI_ClubDeportivo.Datos
             try
             {
                 // Obtener la conexión usando el método de la clase Conexion.
-                sqlCon = Conexion.getInstancia().CrearConexion();
+                sqlCon = D_Conexion.getInstancia().CrearConexion();
 
                 // Crear un comando SQL que ejecutará el procedimiento almacenado 'ingresoLogin'.
                 MySqlCommand comando = new MySqlCommand("ingresoLogin", sqlCon)

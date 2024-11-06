@@ -59,7 +59,7 @@ namespace TPI_ClubDeportivo
             {
                 String query;
                 int Pagado_f;
-                sqlCon = Conexion.getInstancia().CrearConexion();
+                sqlCon = D_Conexion.getInstancia().CrearConexion();
 
                 /*
                  ------------------------------------------------------------------
@@ -69,7 +69,6 @@ namespace TPI_ClubDeportivo
                 -------------------------------------------------------------------
                  */
 
-                // TODO: REGISTRAR EL PAGO EN LA BASE DE DATOS Y QUE NO PERMITA VOLVER A PAGAR
 
                 query = ("SELECT IdInscripcion, NombreActividad, CONCAT(NombreC, ' ', ApellidoC), c.EsSocio, a.CostoDiario, i.Pagado " +
                          "FROM Inscripcion i " +
@@ -157,7 +156,7 @@ namespace TPI_ClubDeportivo
             try
             {
                 string query;
-                sqlCon = Conexion.getInstancia().CrearConexion();
+                sqlCon = D_Conexion.getInstancia().CrearConexion();
                 query = "UPDATE Inscripcion SET Pagado = 1 WHERE IdInscripcion = @IdInscripcion";
 
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
@@ -267,7 +266,7 @@ namespace TPI_ClubDeportivo
                 string query;
                 int EsSocio;
 
-                sqlCon = Conexion.getInstancia().CrearConexion();
+                sqlCon = D_Conexion.getInstancia().CrearConexion();
                 query = "SELECT i.IdInscripcion, a.NombreActividad, i.FechaInscripcion, a.CostoDiario, c.EsSocio " +
                         "FROM Inscripcion i " +
                         "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +

@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace TPI_ClubDeportivo.Datos.Entidades
 {
-    internal class E_InscribirEnActividad
+    internal class E_NoSocio
     {
-        public int IdCliente { get; set; }
-        public int IdActividad { get; set; }
     }
 }

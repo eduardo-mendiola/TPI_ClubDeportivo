@@ -10,7 +10,7 @@ using TPI_ClubDeportivo.Datos.Entidades;
 
 namespace TPI_ClubDeportivo.Datos
 {
-    internal class Clientes
+    internal class D_Cliente
     {
         public String Nuevo_Cliente(E_Cliente cliente)
         {
@@ -20,18 +20,18 @@ namespace TPI_ClubDeportivo.Datos
 
             try
             {
-                sqlCon = Conexion.getInstancia().CrearConexion();
+                sqlCon = D_Conexion.getInstancia().CrearConexion();
                 MySqlCommand comando = new MySqlCommand("NuevoCliente", sqlCon);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                comando.Parameters.Add("Nom", MySqlDbType.VarChar).Value = cliente.NombreC;
-                comando.Parameters.Add("Ape", MySqlDbType.VarChar).Value = cliente.ApellidoC;
-                comando.Parameters.Add("Tip", MySqlDbType.VarChar).Value = cliente.TDocC;
-                comando.Parameters.Add("Doc", MySqlDbType.VarChar).Value = cliente.DocC;
-                comando.Parameters.Add("FechaNac", MySqlDbType.DateTime).Value = cliente.FechaNacimientoC;
-                comando.Parameters.Add("Tel", MySqlDbType.VarChar).Value = cliente.TelC;
-                comando.Parameters.Add("Domicilio", MySqlDbType.VarChar).Value = cliente.DomicilioC;
-                comando.Parameters.Add("Email", MySqlDbType.VarChar).Value = cliente.EmailC;
+                comando.Parameters.Add("Nom", MySqlDbType.VarChar).Value = cliente.Nombre;
+                comando.Parameters.Add("Ape", MySqlDbType.VarChar).Value = cliente.Apellido;
+                comando.Parameters.Add("Tip", MySqlDbType.VarChar).Value = cliente.TipoDoc;
+                comando.Parameters.Add("Doc", MySqlDbType.VarChar).Value = cliente.Doc;
+                comando.Parameters.Add("FechaNac", MySqlDbType.DateTime).Value = cliente.FechaNacimiento;
+                comando.Parameters.Add("Tel", MySqlDbType.VarChar).Value = cliente.Tel;
+                comando.Parameters.Add("Domicilio", MySqlDbType.VarChar).Value = cliente.Domicilio;
+                comando.Parameters.Add("Email", MySqlDbType.VarChar).Value = cliente.Email;
                 comando.Parameters.Add("EsSocio", MySqlDbType.Int32).Value = cliente.EsSocio ? 1 : 0;
                 comando.Parameters.Add("AptoFisico", MySqlDbType.Int32).Value = cliente.AptoFisico ? 1 : 0;
 
