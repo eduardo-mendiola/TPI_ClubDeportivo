@@ -18,24 +18,24 @@ namespace TPI_ClubDeportivo.Datos
          */
         public DataTable Log_Usu(string L_Usu, string P_Usu)
         {
-            MySqlDataReader resultado; // Variable para leer los resultados de la consulta
-            DataTable tabla = new DataTable(); // DataTable para almacenar los resultados de la consulta
-            MySqlConnection sqlCon = new MySqlConnection(); // Inicialización de la conexión a la base de datos
+            MySqlDataReader resultado; // Variable para leer los resultados de la consulta.
+            DataTable tabla = new DataTable(); // DataTable para almacenar los resultados de la consulta.
+            MySqlConnection sqlCon = new MySqlConnection(); // Inicialización de la conexión a la base de datos.
 
             try
             {
-                // Obtener la conexión usando el método de la clase Conexion
+                // Obtener la conexión usando el método de la clase Conexion.
                 sqlCon = Conexion.getInstancia().CrearConexion();
 
-                // Crear un comando SQL que ejecutará el procedimiento almacenado 'ingresoLogin'
+                // Crear un comando SQL que ejecutará el procedimiento almacenado 'ingresoLogin'.
                 MySqlCommand comando = new MySqlCommand("ingresoLogin", sqlCon)
                 {
-                    CommandType = CommandType.StoredProcedure // Especificar que es un procedimiento almacenado
+                    CommandType = CommandType.StoredProcedure // Especificar que es un procedimiento almacenado.
                 };
 
-                // Definir los parámetros para el procedimiento almacenado
-                comando.Parameters.Add("Usu", MySqlDbType.VarChar).Value = L_Usu; // Agregar el parámetro de usuario
-                comando.Parameters.Add("Pass", MySqlDbType.VarChar).Value = P_Usu; // Agregar el parámetro de contraseña
+                // Definir los parámetros para el procedimiento almacenado.
+                comando.Parameters.Add("Usu", MySqlDbType.VarChar).Value = L_Usu; // Agregar el parámetro de usuario.
+                comando.Parameters.Add("Pass", MySqlDbType.VarChar).Value = P_Usu; // Agregar el parámetro de contraseña.
 
                 // Abrir la conexión a la base de datos
                 sqlCon.Open();

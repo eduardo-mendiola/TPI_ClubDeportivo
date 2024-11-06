@@ -22,8 +22,8 @@ namespace TPI_ClubDeportivo.Datos
         // Constructor de la clase Conexion
         public Conexion()
         {
-            this.baseDatos = "ClubDeportivo"; // Nombre de la base de datos asignado
-            // Obtiene las variables de entorno para la configuración de conexión
+            this.baseDatos = "ClubDeportivo"; // Nombre de la base de datos asignado.
+            // Obtiene las variables de entorno para la configuración de conexión.
             this.servidor = Environment.GetEnvironmentVariable("DB_HOST_MYSQL");
             this.puerto = Environment.GetEnvironmentVariable("DB_PORT_MYSQL");
             this.usuario = Environment.GetEnvironmentVariable("DB_USER_MYSQL");

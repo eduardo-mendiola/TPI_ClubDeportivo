@@ -22,7 +22,7 @@ namespace TPI_ClubDeportivo
 
         private void txtUsuario_Enter(object sender, EventArgs e)
         {
-            /* este evento se ejecuta cuando llega el foco */
+            /* Este evento se ejecuta cuando llega el foco. */
             if (txtUser.Text == "USUARIO")
             {
                 txtUser.Text = "";
@@ -31,7 +31,7 @@ namespace TPI_ClubDeportivo
 
         private void txtUsuario_Leave(object sender, EventArgs e)
         {
-            /* este evento se ejecuta cuando se va el foco */
+            /* Este evento se ejecuta cuando se va el foco */
             if (txtUser.Text == "")
             {
                 txtUser.Text = "USUARIO";
@@ -60,8 +60,8 @@ namespace TPI_ClubDeportivo
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            DataTable tablaLogin = new DataTable(); // es la que recibe los datos desde el formulario
-            Usuarios dato = new Usuarios(); // variable que contiene todas las caracteristicas de la clase
+            DataTable tablaLogin = new DataTable(); // es la que recibe los datos desde el formulario.
+            Usuarios dato = new Usuarios(); // variable que contiene todas las caracteristicas de la clase.
             tablaLogin = dato.Log_Usu(txtUser.Text, txtPass.Text);
             if (tablaLogin.Rows.Count > 0)
             {

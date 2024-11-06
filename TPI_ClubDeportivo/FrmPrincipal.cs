@@ -26,18 +26,7 @@ namespace TPI_ClubDeportivo
         internal String? rol;
         internal String? usuario;
 
-        //private void frmPrincipal_Load(object sender, EventArgs e)
-        //{
-        //    // Verificar si los valores de usuario y rol no son nulos antes de asignarlos al label
-        //    if (!string.IsNullOrEmpty(usuario) && !string.IsNullOrEmpty(rol))
-        //    {
-        //        lblIngreso.Text = $"USUARIO: {usuario} ({rol})";
-        //    }
-        //    else
-        //    {
-        //        lblIngreso.Text = "USUARIO: Información no disponible";
-        //    }
-        //}
+        // Función para centar un label en el formulario
 
         private void CenterLabelInForm(Label label)
         {
@@ -70,6 +59,22 @@ namespace TPI_ClubDeportivo
             FrmRegistro inscripcion = new FrmRegistro();
             inscripcion.Owner = this;  // Establecer frmPrincipal como dueño
             inscripcion.Show();
+            this.Hide();
+        }
+
+        private void btnAsignarCurso_Click(object sender, EventArgs e)
+        {
+            frmInscribirActividad asignar = new frmInscribirActividad();
+            asignar.Owner = this;
+            asignar.Show();
+            this.Hide();
+        }
+
+        private void btnPagar_Click(object sender, EventArgs e)
+        {
+            frmPagar pagar = new frmPagar();
+            pagar.Owner = this;
+            pagar.Show();
             this.Hide();
         }
     }

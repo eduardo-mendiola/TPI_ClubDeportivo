@@ -18,5 +18,6 @@ namespace TPI_ClubDeportivo.Datos.Entidades
         public String? DomicilioC { get; set; }
         public String? EmailC { get; set; }
         public bool EsSocio { get; set; }
+        public bool AptoFisico { get; set; }
     }
 }

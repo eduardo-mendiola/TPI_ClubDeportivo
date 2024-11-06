@@ -61,6 +61,8 @@
             label9 = new Label();
             radSocio = new RadioButton();
             radNoSocio = new RadioButton();
+            label5 = new Label();
+            chkAptoFisico = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -68,7 +70,7 @@
             // lblNombre
             // 
             lblNombre.Font = new Font("Futura Md BT", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNombre.Location = new Point(21, 248);
+            lblNombre.Location = new Point(21, 232);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(111, 25);
             lblNombre.TabIndex = 0;
@@ -79,7 +81,7 @@
             // 
             lblDocumento.AutoSize = true;
             lblDocumento.Font = new Font("Futura Md BT", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDocumento.Location = new Point(457, 354);
+            lblDocumento.Location = new Point(457, 332);
             lblDocumento.Name = "lblDocumento";
             lblDocumento.Size = new Size(139, 29);
             lblDocumento.TabIndex = 1;
@@ -89,7 +91,7 @@
             // lblApellido
             // 
             lblApellido.Font = new Font("Futura Md BT", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            lblApellido.Location = new Point(457, 248);
+            lblApellido.Location = new Point(457, 232);
             lblApellido.Name = "lblApellido";
             lblApellido.Size = new Size(111, 25);
             lblApellido.TabIndex = 2;
@@ -99,7 +101,7 @@
             // txtNombre
             // 
             txtNombre.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNombre.Location = new Point(21, 288);
+            txtNombre.Location = new Point(21, 272);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(400, 40);
             txtNombre.TabIndex = 2;
@@ -107,7 +109,7 @@
             // txtApellido
             // 
             txtApellido.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtApellido.Location = new Point(457, 288);
+            txtApellido.Location = new Point(457, 272);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(400, 40);
             txtApellido.TabIndex = 3;
@@ -115,7 +117,7 @@
             // txtDocumento
             // 
             txtDocumento.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDocumento.Location = new Point(457, 399);
+            txtDocumento.Location = new Point(457, 377);
             txtDocumento.Name = "txtDocumento";
             txtDocumento.Size = new Size(400, 40);
             txtDocumento.TabIndex = 5;
@@ -125,10 +127,10 @@
             btnIngresar.BackColor = Color.DodgerBlue;
             btnIngresar.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnIngresar.ForeColor = Color.White;
-            btnIngresar.Location = new Point(495, 716);
+            btnIngresar.Location = new Point(495, 741);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(320, 70);
-            btnIngresar.TabIndex = 10;
+            btnIngresar.TabIndex = 11;
             btnIngresar.Text = "INGRESAR";
             btnIngresar.UseVisualStyleBackColor = false;
             btnIngresar.Click += btnIngresar_Click;
@@ -138,10 +140,10 @@
             btnLimpiar.BackColor = Color.Gray;
             btnLimpiar.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnLimpiar.ForeColor = Color.White;
-            btnLimpiar.Location = new Point(67, 716);
+            btnLimpiar.Location = new Point(68, 741);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(320, 70);
-            btnLimpiar.TabIndex = 11;
+            btnLimpiar.TabIndex = 12;
             btnLimpiar.Text = "LIMPIAR";
             btnLimpiar.UseVisualStyleBackColor = false;
             btnLimpiar.Click += btnLimpiar_Click;
@@ -150,7 +152,7 @@
             // 
             lblTipo.AutoSize = true;
             lblTipo.Font = new Font("Futura Md BT", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTipo.Location = new Point(21, 354);
+            lblTipo.Location = new Point(21, 332);
             lblTipo.Name = "lblTipo";
             lblTipo.Size = new Size(59, 29);
             lblTipo.TabIndex = 8;
@@ -162,7 +164,7 @@
             cboTipo.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             cboTipo.FormattingEnabled = true;
             cboTipo.Items.AddRange(new object[] { "DNI", "PASAPORTE", "EXTRANJERO" });
-            cboTipo.Location = new Point(21, 392);
+            cboTipo.Location = new Point(21, 370);
             cboTipo.Name = "cboTipo";
             cboTipo.Size = new Size(200, 40);
             cboTipo.TabIndex = 4;
@@ -170,7 +172,7 @@
             // lblEmail
             // 
             lblEmail.Font = new Font("Futura Md BT", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            lblEmail.Location = new Point(457, 572);
+            lblEmail.Location = new Point(457, 538);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(111, 25);
             lblEmail.TabIndex = 13;
@@ -180,7 +182,7 @@
             // txtEmail
             // 
             txtEmail.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtEmail.Location = new Point(457, 609);
+            txtEmail.Location = new Point(457, 575);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(400, 40);
             txtEmail.TabIndex = 9;
@@ -188,7 +190,7 @@
             // lblFechaNacimiento
             // 
             lblFechaNacimiento.Font = new Font("Futura Md BT", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            lblFechaNacimiento.Location = new Point(21, 460);
+            lblFechaNacimiento.Location = new Point(21, 432);
             lblFechaNacimiento.Name = "lblFechaNacimiento";
             lblFechaNacimiento.Size = new Size(250, 25);
             lblFechaNacimiento.TabIndex = 15;
@@ -198,7 +200,7 @@
             // txtTelefono
             // 
             txtTelefono.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtTelefono.Location = new Point(457, 498);
+            txtTelefono.Location = new Point(457, 470);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(400, 40);
             txtTelefono.TabIndex = 7;
@@ -206,7 +208,7 @@
             // lblTelefono
             // 
             lblTelefono.Font = new Font("Futura Md BT", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTelefono.Location = new Point(457, 460);
+            lblTelefono.Location = new Point(457, 432);
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(111, 25);
             lblTelefono.TabIndex = 17;
@@ -216,7 +218,7 @@
             // txtDomicilio
             // 
             txtDomicilio.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDomicilio.Location = new Point(21, 609);
+            txtDomicilio.Location = new Point(21, 575);
             txtDomicilio.Name = "txtDomicilio";
             txtDomicilio.Size = new Size(400, 40);
             txtDomicilio.TabIndex = 8;
@@ -224,9 +226,9 @@
             // lblDomicilio
             // 
             lblDomicilio.Font = new Font("Futura Md BT", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDomicilio.Location = new Point(21, 572);
+            lblDomicilio.Location = new Point(21, 538);
             lblDomicilio.Name = "lblDomicilio";
-            lblDomicilio.Size = new Size(111, 25);
+            lblDomicilio.Size = new Size(128, 25);
             lblDomicilio.TabIndex = 19;
             lblDomicilio.Text = "Domicilio";
             lblDomicilio.TextAlign = ContentAlignment.MiddleLeft;
@@ -235,7 +237,7 @@
             // 
             dtpFechaNacimiento.Font = new Font("Futura Md BT", 16F, FontStyle.Regular, GraphicsUnit.Point);
             dtpFechaNacimiento.Format = DateTimePickerFormat.Short;
-            dtpFechaNacimiento.Location = new Point(21, 498);
+            dtpFechaNacimiento.Location = new Point(21, 470);
             dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             dtpFechaNacimiento.RightToLeft = RightToLeft.No;
             dtpFechaNacimiento.Size = new Size(238, 39);
@@ -247,7 +249,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Futura Md BT", 20F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.Red;
-            label1.Location = new Point(858, 293);
+            label1.Location = new Point(858, 277);
             label1.Name = "label1";
             label1.Size = new Size(33, 41);
             label1.TabIndex = 22;
@@ -258,7 +260,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Futura Md BT", 20F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.Red;
-            label2.Location = new Point(226, 395);
+            label2.Location = new Point(226, 373);
             label2.Name = "label2";
             label2.Size = new Size(33, 41);
             label2.TabIndex = 23;
@@ -269,7 +271,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Futura Md BT", 20F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.Red;
-            label3.Location = new Point(424, 291);
+            label3.Location = new Point(424, 275);
             label3.Name = "label3";
             label3.Size = new Size(33, 41);
             label3.TabIndex = 24;
@@ -280,7 +282,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Futura Md BT", 20F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.Red;
-            label4.Location = new Point(857, 399);
+            label4.Location = new Point(857, 377);
             label4.Name = "label4";
             label4.Size = new Size(33, 41);
             label4.TabIndex = 25;
@@ -291,7 +293,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Futura Md BT", 20F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(424, 609);
+            label6.Location = new Point(424, 575);
             label6.Name = "label6";
             label6.Size = new Size(33, 41);
             label6.TabIndex = 27;
@@ -302,7 +304,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Futura Md BT", 20F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = Color.Red;
-            label7.Location = new Point(860, 609);
+            label7.Location = new Point(860, 575);
             label7.Name = "label7";
             label7.Size = new Size(33, 41);
             label7.TabIndex = 28;
@@ -360,7 +362,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Futura Md BT", 20F, FontStyle.Regular, GraphicsUnit.Point);
             label8.ForeColor = Color.Red;
-            label8.Location = new Point(859, 498);
+            label8.Location = new Point(859, 470);
             label8.Name = "label8";
             label8.Size = new Size(33, 41);
             label8.TabIndex = 31;
@@ -370,7 +372,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Futura Md BT", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(333, 139);
+            label9.Location = new Point(333, 129);
             label9.Name = "label9";
             label9.Size = new Size(235, 36);
             label9.TabIndex = 34;
@@ -382,7 +384,7 @@
             radSocio.AutoSize = true;
             radSocio.Checked = true;
             radSocio.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            radSocio.Location = new Point(333, 187);
+            radSocio.Location = new Point(333, 177);
             radSocio.Name = "radSocio";
             radSocio.Size = new Size(103, 38);
             radSocio.TabIndex = 0;
@@ -394,7 +396,7 @@
             // 
             radNoSocio.AutoSize = true;
             radNoSocio.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            radNoSocio.Location = new Point(457, 187);
+            radNoSocio.Location = new Point(457, 177);
             radNoSocio.Name = "radNoSocio";
             radNoSocio.Size = new Size(149, 38);
             radNoSocio.TabIndex = 1;
@@ -402,12 +404,35 @@
             radNoSocio.Text = "No Socio";
             radNoSocio.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            label5.Font = new Font("Futura Md BT", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(21, 655);
+            label5.Name = "label5";
+            label5.Size = new Size(128, 25);
+            label5.TabIndex = 35;
+            label5.Text = "Apto físico";
+            label5.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // chkAptoFisico
+            // 
+            chkAptoFisico.AutoSize = true;
+            chkAptoFisico.Font = new Font("Futura Md BT", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            chkAptoFisico.Location = new Point(155, 660);
+            chkAptoFisico.Name = "chkAptoFisico";
+            chkAptoFisico.Size = new Size(127, 28);
+            chkAptoFisico.TabIndex = 10;
+            chkAptoFisico.Text = "Entregado";
+            chkAptoFisico.UseVisualStyleBackColor = true;
+            // 
             // FrmRegistro
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(892, 823);
+            ClientSize = new Size(892, 852);
+            Controls.Add(chkAptoFisico);
+            Controls.Add(label5);
             Controls.Add(radNoSocio);
             Controls.Add(radSocio);
             Controls.Add(label9);
@@ -441,6 +466,7 @@
             Name = "FrmRegistro";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "REGISTRO DE CLIENTES";
+            Load += FrmRegistro_Load;
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -483,5 +509,7 @@
         private Label lblIFTS29;
         private RadioButton radSocio;
         private RadioButton radNoSocio;
+        private Label label5;
+        private CheckBox chkAptoFisico;
     }
 }

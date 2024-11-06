@@ -19,10 +19,16 @@ namespace TPI_ClubDeportivo
             InitializeComponent();
         }
 
+ 
+        private void FrmRegistro_Load(object sender, EventArgs e)
+        {
+            cboTipo.SelectedIndex = 0; // Para que al iniciar el form de registro muestre DNI en el tipo por defecto.
+        }
+
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Owner.Show();  // Mostrá el formulario principal (dueño)
-            this.Close();       // Cerrá el formulario actual
+            this.Owner.Show();  // Mostrá el formulario principal (dueño).
+            this.Close();       // Cerrá el formulario actual.
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -35,7 +41,7 @@ namespace TPI_ClubDeportivo
             {
                 String respuesta;
                 E_Cliente cliente = new E_Cliente();
- 
+
                 cliente.NombreC = txtNombre.Text;
                 cliente.ApellidoC = txtApellido.Text;
                 cliente.TDocC = cboTipo.Text;
@@ -45,6 +51,7 @@ namespace TPI_ClubDeportivo
                 cliente.DomicilioC = txtDomicilio.Text;
                 cliente.EmailC = txtEmail.Text;
                 cliente.EsSocio = radSocio.Checked;
+                cliente.AptoFisico = chkAptoFisico.Checked;
 
                 // Instaciamos para usar el método dentro de clientes
                 Clientes clienteReg = new Clientes();
@@ -63,6 +70,7 @@ namespace TPI_ClubDeportivo
                     else
                     {
                         MessageBox.Show("Se almacenó con éxito con el código Nro " + respuesta, "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        LimpiarCampos();
                     }
                 }
             }
@@ -74,16 +82,24 @@ namespace TPI_ClubDeportivo
          */
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            radSocio.Checked = true;
+            LimpiarCampos();
+        }
+
+        private void LimpiarCampos()
+        {
             txtNombre.Text = "";
             txtApellido.Text = "";
             txtDocumento.Text = "";
-            cboTipo.Text = "";
+            cboTipo.SelectedIndex = 0;
             dtpFechaNacimiento.Value = DateTime.Today;
             txtTelefono.Text = "";
             txtDomicilio.Text = "";
             txtEmail.Text = "";
+            radSocio.Checked = true;
+            chkAptoFisico.Checked = false;
             txtNombre.Focus();
         }
+
+       
     }
 }

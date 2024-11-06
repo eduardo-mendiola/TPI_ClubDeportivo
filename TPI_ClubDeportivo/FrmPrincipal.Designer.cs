@@ -93,6 +93,7 @@
             btnAsignarCurso.TabIndex = 1;
             btnAsignarCurso.Text = "Inscribir en Actividad";
             btnAsignarCurso.UseVisualStyleBackColor = false;
+            btnAsignarCurso.Click += btnAsignarCurso_Click;
             // 
             // btnVerActividades
             // 
@@ -129,6 +130,7 @@
             btnPagar.TabIndex = 4;
             btnPagar.Text = "Pagar";
             btnPagar.UseVisualStyleBackColor = false;
+            btnPagar.Click += btnPagar_Click;
             // 
             // button3
             // 
