@@ -42,16 +42,16 @@ namespace TPI_ClubDeportivo
                 String respuesta;
                 E_Cliente cliente = new E_Cliente();
 
-                cliente.Nombre = txtNombre.Text;
-                cliente.Apellido = txtApellido.Text;
-                cliente.TipoDoc = cboTipo.Text;
-                cliente.Doc = txtDocumento.Text;
-                cliente.FechaNacimiento = dtpFechaNacimiento.Value;
-                cliente.Tel = txtTelefono.Text;
-                cliente.Domicilio = txtDomicilio.Text;
-                cliente.Email = txtEmail.Text;
-                cliente.EsSocio = radSocio.Checked;
-                cliente.AptoFisico = chkAptoFisico.Checked;
+                cliente.SetNombre(txtNombre.Text);
+                cliente.SetApellido(txtApellido.Text);
+                cliente.SetTipoDoc(cboTipo.Text);
+                cliente.SetDoc(txtDocumento.Text);
+                cliente.SetFechaNacimiento(dtpFechaNacimiento.Value);
+                cliente.SetTel(txtTelefono.Text);
+                cliente.SetDomicilio(txtDomicilio.Text);
+                cliente.SetEmail(txtEmail.Text);
+                cliente.SetEsSocio(radSocio.Checked);
+                cliente.SetAptoFisico(chkAptoFisico.Checked);
 
                 // Instaciamos para usar el método dentro de clientes
                 D_Cliente clienteReg = new D_Cliente();

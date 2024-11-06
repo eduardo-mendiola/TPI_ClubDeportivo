@@ -97,8 +97,8 @@ namespace TPI_ClubDeportivo
                 String respuesta;
                 E_Actividad inscripcion = new E_Actividad();
 
-                inscripcion.IdCliente = Convert.ToInt32(txtIdCliente.Text);
-                inscripcion.IdActividad = Convert.ToInt32(txtIdActividad.Text);
+                inscripcion.SetIdCliente(Convert.ToInt32(txtIdCliente.Text));
+                inscripcion.SetIdActividad(Convert.ToInt32(txtIdActividad.Text));
 
                 // Instaciamos para usar el método dentro de postulantes
                 D_Actividad inscribir = new D_Actividad();

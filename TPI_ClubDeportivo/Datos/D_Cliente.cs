@@ -32,8 +32,8 @@ namespace TPI_ClubDeportivo.Datos
                 comando.Parameters.Add("Tel", MySqlDbType.VarChar).Value = cliente.Tel;
                 comando.Parameters.Add("Domicilio", MySqlDbType.VarChar).Value = cliente.Domicilio;
                 comando.Parameters.Add("Email", MySqlDbType.VarChar).Value = cliente.Email;
-                comando.Parameters.Add("EsSocio", MySqlDbType.Int32).Value = cliente.EsSocio ? 1 : 0;
-                comando.Parameters.Add("AptoFisico", MySqlDbType.Int32).Value = cliente.AptoFisico ? 1 : 0;
+                comando.Parameters.Add("EsSocio", MySqlDbType.Int32).Value = cliente.EsSocio? 1 : 0;
+                comando.Parameters.Add("AptoFisico", MySqlDbType.Int32).Value = cliente.AptoFisico? 1 : 0;
 
 
                 MySqlParameter ParCodigo = new MySqlParameter();
