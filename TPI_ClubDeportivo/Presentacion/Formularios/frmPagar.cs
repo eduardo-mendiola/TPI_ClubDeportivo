@@ -22,6 +22,7 @@ namespace TPI_ClubDeportivo
         private void frmPagar_Load(object sender, EventArgs e)
         {
             cboCuotasTarjeta.SelectedIndex = 0;
+            cboTipoDocCPagos.SelectedIndex = 0;
         }
 
         public frmPagar()
@@ -52,41 +53,126 @@ namespace TPI_ClubDeportivo
             cboCuotasTarjeta.Enabled = false;
         }
 
+        //private void btnPagar_Click(object sender, EventArgs e)
+        //{
+        //    MySqlConnection sqlCon = new MySqlConnection();
+        //    try
+        //    {
+        //        String query;
+        //        int Pagado_f;
+        //        sqlCon = ConexionDB.getInstancia().CrearConexion();
+
+        //        /*
+        //         ------------------------------------------------------------------
+        //        Consulta simple que proyecta los datos necesarios para rellenar el 
+        //        documento.
+        //        En este caso se trata del comprobante de pago del curso.
+        //        -------------------------------------------------------------------
+        //         */
+
+
+        //        query = ("SELECT IdInscripcion, NombreActividad, CONCAT(NombreC, ' ', ApellidoC), c.EsSocio, a.CostoDiario, i.Pagado " +
+        //                 "FROM Inscripcion i " +
+        //                 "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
+        //                 "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
+        //                 "INNER JOIN Cliente c on c.Idcliente = i.Idcliente " +
+        //                 "WHERE i.IdInscripcion = " + txtIdPago.Text); // <<<----- Usamos el dato ingresado por el usuario.
+
+
+        //        MySqlCommand comando = new MySqlCommand(query, sqlCon);
+
+        //        // Usamos la consulta y la conexion. 
+
+        //        comando.CommandType = CommandType.Text;
+        //        sqlCon.Open();
+        //        MySqlDataReader reader; // El DataReader almacena TODAS las filas.-
+
+        //        reader = comando.ExecuteReader();
+        //        if (reader.HasRows)
+        //        {
+        //            reader.Read(); // En este caso sabemos que si tiene datos es UNA SOLA FILA
+
+        //            doc.Numero_f = reader.GetInt32(0);
+        //            doc.Actividad_f = reader.GetString(1);
+        //            doc.Alumno_f = reader.GetString(2);
+        //            doc.EsSocio_f = reader.GetInt16(3);
+        //            doc.CostoAct_f = reader.GetFloat(4);
+        //            doc.Monto_f = (doc.EsSocio_f == 1) ? doc.ValorCuota : reader.GetFloat(4);
+        //            doc.CantCuotas_f = int.Parse(cboCuotasTarjeta.Text);
+        //            Pagado_f = reader.GetInt16(5);
+
+        //            if (optEfvo.Checked == true) // Evaluamos que opción es la seleccionada
+        //            {
+        //                doc.Forma_f = "Efectivo";
+        //                doc.Monto_f = MathF.Round((doc.Monto_f * doc.DescuentoEfectivo), 2);
+        //            }
+        //            else
+        //            {
+        //                doc.Forma_f = "Tarjeta";
+        //            }
+        //            btnComprobante.Enabled = true;
+
+        //            if (Pagado_f == 1)
+        //            {
+        //                MessageBox.Show("La factura ya esta paga", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            }
+        //            else
+        //            {
+        //                RegistrarPago(txtIdPago.Text);
+        //                MessageBox.Show("Pago realizado exitosamente", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            }
+
+        //            txtIdPago.Text = "";
+
+
+        //            // Despues borrar, es solo para ver si se estan cargando los valores
+        //            System.Diagnostics.Debug.WriteLine(query);
+        //            System.Diagnostics.Debug.WriteLine($"{doc.Numero_f} | {doc.Actividad_f} | {doc.Alumno_f} | {doc.Monto_f} ");
+
+
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Documento de Cliente inexistente", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "MENSAJE DEL CATCH", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //    finally
+        //    {
+        //        if (sqlCon.State == ConnectionState.Open)
+        //        {
+        //            sqlCon.Close();
+        //        }
+        //    }
+        //}
+
         private void btnPagar_Click(object sender, EventArgs e)
         {
             MySqlConnection sqlCon = new MySqlConnection();
             try
             {
-                String query;
                 int Pagado_f;
                 sqlCon = ConexionDB.getInstancia().CrearConexion();
 
-                /*
-                 ------------------------------------------------------------------
-                Consulta simple que proyecta los datos necesarios para rellenar el 
-                documento.
-                En este caso se trata del comprobante de pago del curso.
-                -------------------------------------------------------------------
-                 */
-
-
-                query = ("SELECT IdInscripcion, NombreActividad, CONCAT(NombreC, ' ', ApellidoC), c.EsSocio, a.CostoDiario, i.Pagado " +
-                         "FROM Inscripcion i " +
-                         "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
-                         "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
-                         "INNER JOIN Cliente c on c.Idcliente = i.Idcliente " +
-                         "WHERE i.IdInscripcion = " + txtIdPago.Text); // <<<----- Usamos el dato ingresado por el usuario.
-
+                string query = "SELECT i.IdInscripcion, a.NombreActividad, CONCAT(c.NombreC, ' ', c.ApellidoC), c.EsSocio, " +
+                               "a.CostoDiario, i.Pagado " +
+                               "FROM Inscripcion i " +
+                               "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
+                               "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
+                               "INNER JOIN Cliente c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
+                               "WHERE i.IdInscripcion = @IdInscripcion"; // Usamos parámetro para evitar inyección SQL.
 
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
-
-                // Usamos la consulta y la conexion. 
+                comando.Parameters.AddWithValue("@IdInscripcion", txtIdPago.Text); // Definimos el parámetro.
 
                 comando.CommandType = CommandType.Text;
                 sqlCon.Open();
-                MySqlDataReader reader; // El DataReader almacena TODAS las filas.-
+                MySqlDataReader reader = comando.ExecuteReader();
 
-                reader = comando.ExecuteReader();
                 if (reader.HasRows)
                 {
                     reader.Read(); // En este caso sabemos que si tiene datos es UNA SOLA FILA
@@ -100,7 +186,8 @@ namespace TPI_ClubDeportivo
                     doc.CantCuotas_f = int.Parse(cboCuotasTarjeta.Text);
                     Pagado_f = reader.GetInt16(5);
 
-                    if (optEfvo.Checked == true) // Evaluamos que opción es la seleccionada
+                    // Evaluamos que opción es la seleccionada
+                    if (optEfvo.Checked)
                     {
                         doc.Forma_f = "Efectivo";
                         doc.Monto_f = MathF.Round((doc.Monto_f * doc.DescuentoEfectivo), 2);
@@ -109,32 +196,29 @@ namespace TPI_ClubDeportivo
                     {
                         doc.Forma_f = "Tarjeta";
                     }
+
                     btnComprobante.Enabled = true;
 
                     if (Pagado_f == 1)
                     {
-                        MessageBox.Show("La factura ya esta paga", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("La factura ya está paga", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         RegistrarPago(txtIdPago.Text);
                         MessageBox.Show("Pago realizado exitosamente", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                   
+
                     txtIdPago.Text = "";
-                    
 
-                    // Despues borrar, es solo para ver si se estan cargando los valores
+                    // Debugging
                     System.Diagnostics.Debug.WriteLine(query);
-                    System.Diagnostics.Debug.WriteLine($"{doc.Numero_f} | {doc.Actividad_f} | {doc.Alumno_f} | {doc.Monto_f} ");
-
-
+                    System.Diagnostics.Debug.WriteLine($"{doc.Numero_f} | {doc.Actividad_f} | {doc.Alumno_f} | {doc.Monto_f}");
                 }
                 else
                 {
                     MessageBox.Show("Documento de Cliente inexistente", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
             catch (Exception ex)
             {
@@ -149,7 +233,8 @@ namespace TPI_ClubDeportivo
             }
         }
 
-      
+
+
         private void RegistrarPago(string IdPago)
         {
             MySqlConnection sqlCon = new MySqlConnection();
@@ -192,22 +277,25 @@ namespace TPI_ClubDeportivo
             try
             {
                 dtgvDeudas.Rows.Clear();
-
-                string query;
                 int EsSocio;
 
                 sqlCon = ConexionDB.getInstancia().CrearConexion();
-                query = "SELECT i.IdInscripcion, a.NombreActividad, i.FechaInscripcion, a.CostoDiario, c.EsSocio " +
-                        "FROM Inscripcion i " +
-                        "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
-                        "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
-                        "INNER JOIN Cliente c ON c.Idcliente = i.Idcliente " +
-                        "WHERE c.DocC = " + txtDocumento.Text + " AND i.Pagado = 0";
+                string query = "SELECT i.IdInscripcion, a.NombreActividad, i.FechaInscripcion, a.CostoDiario, c.EsSocio " +
+                               "FROM Inscripcion i " +
+                               "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
+                               "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
+                               "INNER JOIN Cliente c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
+                               "WHERE c.TDocC = @TipoDoc AND c.DocC = @Documento AND i.Pagado = 0";
 
+                // Usar parámetros para los valores
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
                 comando.CommandType = CommandType.Text;
-                sqlCon.Open();
 
+                // Definir los parámetros con sus valores
+                comando.Parameters.AddWithValue("@TipoDoc", cboTipoDocCPagos.Text);
+                comando.Parameters.AddWithValue("@Documento", txtDocumento.Text);
+
+                sqlCon.Open();
                 MySqlDataReader reader = comando.ExecuteReader();
 
                 if (reader.HasRows)
@@ -258,4 +346,5 @@ namespace TPI_ClubDeportivo
         }
 
     }
+
 }

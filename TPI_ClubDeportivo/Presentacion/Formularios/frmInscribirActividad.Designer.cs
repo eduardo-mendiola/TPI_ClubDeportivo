@@ -30,12 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInscribirActividad));
             dtgvActividades = new DataGridView();
-            ID = new DataGridViewTextBoxColumn();
-            Actividad = new DataGridViewTextBoxColumn();
-            Dias = new DataGridViewTextBoxColumn();
-            Hora = new DataGridViewTextBoxColumn();
-            Instructor = new DataGridViewTextBoxColumn();
-            Precio = new DataGridViewTextBoxColumn();
             lblTitleListAct = new Label();
             lblIdcliente = new Label();
             txtDocCliente = new TextBox();
@@ -51,6 +45,14 @@
             panel2 = new Panel();
             label1 = new Label();
             cboTipoDocCliente = new ComboBox();
+            ID = new DataGridViewTextBoxColumn();
+            Actividad = new DataGridViewTextBoxColumn();
+            Dias = new DataGridViewTextBoxColumn();
+            Hora = new DataGridViewTextBoxColumn();
+            CuposMax = new DataGridViewTextBoxColumn();
+            Cupos_Disp = new DataGridViewTextBoxColumn();
+            Instructor = new DataGridViewTextBoxColumn();
+            Precio = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dtgvActividades).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panel1.SuspendLayout();
@@ -60,55 +62,19 @@
             // 
             dtgvActividades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvActividades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvActividades.Columns.AddRange(new DataGridViewColumn[] { ID, Actividad, Dias, Hora, Instructor, Precio });
+            dtgvActividades.Columns.AddRange(new DataGridViewColumn[] { ID, Actividad, Dias, Hora, CuposMax, Cupos_Disp, Instructor, Precio });
             dtgvActividades.Location = new Point(36, 213);
             dtgvActividades.Name = "dtgvActividades";
             dtgvActividades.RowHeadersWidth = 50;
             dtgvActividades.RowTemplate.Height = 33;
-            dtgvActividades.Size = new Size(983, 211);
+            dtgvActividades.Size = new Size(1124, 211);
             dtgvActividades.TabIndex = 0;
-            // 
-            // ID
-            // 
-            ID.HeaderText = "ID";
-            ID.MinimumWidth = 6;
-            ID.Name = "ID";
-            // 
-            // Actividad
-            // 
-            Actividad.HeaderText = "ACTIVIDAD";
-            Actividad.MinimumWidth = 6;
-            Actividad.Name = "Actividad";
-            // 
-            // Dias
-            // 
-            Dias.HeaderText = "DÍAS";
-            Dias.MinimumWidth = 6;
-            Dias.Name = "Dias";
-            // 
-            // Hora
-            // 
-            Hora.HeaderText = "HORA";
-            Hora.MinimumWidth = 6;
-            Hora.Name = "Hora";
-            // 
-            // Instructor
-            // 
-            Instructor.HeaderText = "INSTRUCTOR";
-            Instructor.MinimumWidth = 6;
-            Instructor.Name = "Instructor";
-            // 
-            // Precio
-            // 
-            Precio.HeaderText = "PRECIO ($)";
-            Precio.MinimumWidth = 6;
-            Precio.Name = "Precio";
             // 
             // lblTitleListAct
             // 
             lblTitleListAct.AutoSize = true;
             lblTitleListAct.Font = new Font("Futura Md BT", 17F, FontStyle.Bold, GraphicsUnit.Point);
-            lblTitleListAct.Location = new Point(375, 142);
+            lblTitleListAct.Location = new Point(356, 142);
             lblTitleListAct.Name = "lblTitleListAct";
             lblTitleListAct.Size = new Size(483, 35);
             lblTitleListAct.TabIndex = 1;
@@ -118,7 +84,7 @@
             // 
             lblIdcliente.AutoSize = true;
             lblIdcliente.Font = new Font("Futura Md BT", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lblIdcliente.Location = new Point(452, 539);
+            lblIdcliente.Location = new Point(525, 539);
             lblIdcliente.Name = "lblIdcliente";
             lblIdcliente.Size = new Size(155, 29);
             lblIdcliente.TabIndex = 3;
@@ -127,7 +93,7 @@
             // txtDocCliente
             // 
             txtDocCliente.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDocCliente.Location = new Point(435, 587);
+            txtDocCliente.Location = new Point(508, 587);
             txtDocCliente.Name = "txtDocCliente";
             txtDocCliente.Size = new Size(182, 40);
             txtDocCliente.TabIndex = 5;
@@ -136,7 +102,7 @@
             // 
             lblIdActividad.AutoSize = true;
             lblIdActividad.Font = new Font("Futura Md BT", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lblIdActividad.Location = new Point(655, 539);
+            lblIdActividad.Location = new Point(728, 539);
             lblIdActividad.Name = "lblIdActividad";
             lblIdActividad.Size = new Size(199, 29);
             lblIdActividad.TabIndex = 6;
@@ -145,7 +111,7 @@
             // txtIdActividad
             // 
             txtIdActividad.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtIdActividad.Location = new Point(663, 587);
+            txtIdActividad.Location = new Point(736, 587);
             txtIdActividad.Name = "txtIdActividad";
             txtIdActividad.Size = new Size(182, 40);
             txtIdActividad.TabIndex = 7;
@@ -154,7 +120,7 @@
             // 
             lblInsCliente.AutoSize = true;
             lblInsCliente.Font = new Font("Futura Md BT", 17F, FontStyle.Bold, GraphicsUnit.Point);
-            lblInsCliente.Location = new Point(405, 469);
+            lblInsCliente.Location = new Point(475, 469);
             lblInsCliente.Name = "lblInsCliente";
             lblInsCliente.Size = new Size(244, 35);
             lblInsCliente.TabIndex = 8;
@@ -180,7 +146,7 @@
             panel1.Controls.Add(btnVolverInsAct);
             panel1.Location = new Point(-1, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1056, 110);
+            panel1.Size = new Size(1196, 110);
             panel1.TabIndex = 31;
             // 
             // lblInsAct
@@ -188,7 +154,7 @@
             lblInsAct.AutoSize = true;
             lblInsAct.Font = new Font("Century", 24F, FontStyle.Bold, GraphicsUnit.Point);
             lblInsAct.ForeColor = Color.FromArgb(64, 64, 64);
-            lblInsAct.Location = new Point(270, 31);
+            lblInsAct.Location = new Point(340, 31);
             lblInsAct.Name = "lblInsAct";
             lblInsAct.Size = new Size(516, 47);
             lblInsAct.TabIndex = 11;
@@ -199,7 +165,7 @@
             btnVolverInsAct.BackColor = Color.Gainsboro;
             btnVolverInsAct.Font = new Font("Futura Md BT", 14F, FontStyle.Bold, GraphicsUnit.Point);
             btnVolverInsAct.ForeColor = Color.DimGray;
-            btnVolverInsAct.Location = new Point(876, 29);
+            btnVolverInsAct.Location = new Point(1028, 29);
             btnVolverInsAct.Name = "btnVolverInsAct";
             btnVolverInsAct.Size = new Size(140, 50);
             btnVolverInsAct.TabIndex = 1;
@@ -212,7 +178,7 @@
             btnLimpiarInscripcion.BackColor = Color.Gray;
             btnLimpiarInscripcion.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnLimpiarInscripcion.ForeColor = Color.White;
-            btnLimpiarInscripcion.Location = new Point(149, 676);
+            btnLimpiarInscripcion.Location = new Point(222, 676);
             btnLimpiarInscripcion.Name = "btnLimpiarInscripcion";
             btnLimpiarInscripcion.Size = new Size(320, 70);
             btnLimpiarInscripcion.TabIndex = 34;
@@ -225,7 +191,7 @@
             btnInscribirCliente.BackColor = Color.DodgerBlue;
             btnInscribirCliente.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnInscribirCliente.ForeColor = Color.White;
-            btnInscribirCliente.Location = new Point(576, 676);
+            btnInscribirCliente.Location = new Point(649, 676);
             btnInscribirCliente.Name = "btnInscribirCliente";
             btnInscribirCliente.Size = new Size(320, 70);
             btnInscribirCliente.TabIndex = 33;
@@ -238,14 +204,14 @@
             panel2.BackColor = Color.LightGray;
             panel2.Location = new Point(-1, 442);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1056, 10);
+            panel2.Size = new Size(1200, 10);
             panel2.TabIndex = 35;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Futura Md BT", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(236, 539);
+            label1.Location = new Point(309, 539);
             label1.Name = "label1";
             label1.Size = new Size(123, 29);
             label1.TabIndex = 36;
@@ -256,16 +222,64 @@
             cboTipoDocCliente.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             cboTipoDocCliente.FormattingEnabled = true;
             cboTipoDocCliente.Items.AddRange(new object[] { "DNI", "PASAPORTE", "EXTRANJERO" });
-            cboTipoDocCliente.Location = new Point(202, 587);
+            cboTipoDocCliente.Location = new Point(275, 587);
             cboTipoDocCliente.Name = "cboTipoDocCliente";
             cboTipoDocCliente.Size = new Size(189, 40);
             cboTipoDocCliente.TabIndex = 38;
+            // 
+            // ID
+            // 
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 6;
+            ID.Name = "ID";
+            // 
+            // Actividad
+            // 
+            Actividad.HeaderText = "ACTIVIDAD";
+            Actividad.MinimumWidth = 6;
+            Actividad.Name = "Actividad";
+            // 
+            // Dias
+            // 
+            Dias.HeaderText = "DÍAS";
+            Dias.MinimumWidth = 6;
+            Dias.Name = "Dias";
+            // 
+            // Hora
+            // 
+            Hora.HeaderText = "HORA";
+            Hora.MinimumWidth = 6;
+            Hora.Name = "Hora";
+            // 
+            // CuposMax
+            // 
+            CuposMax.HeaderText = "CUPOS_MAX";
+            CuposMax.MinimumWidth = 6;
+            CuposMax.Name = "CuposMax";
+            // 
+            // Cupos_Disp
+            // 
+            Cupos_Disp.HeaderText = "CUPOS_DISP.";
+            Cupos_Disp.MinimumWidth = 6;
+            Cupos_Disp.Name = "Cupos_Disp";
+            // 
+            // Instructor
+            // 
+            Instructor.HeaderText = "INSTRUCTOR";
+            Instructor.MinimumWidth = 6;
+            Instructor.Name = "Instructor";
+            // 
+            // Precio
+            // 
+            Precio.HeaderText = "PRECIO ($)";
+            Precio.MinimumWidth = 6;
+            Precio.Name = "Precio";
             // 
             // frmInscribirActividad
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1054, 784);
+            ClientSize = new Size(1195, 784);
             Controls.Add(cboTipoDocCliente);
             Controls.Add(label1);
             Controls.Add(panel2);
@@ -309,13 +323,15 @@
         private Button btnLimpiarInscripcion;
         private Button btnInscribirCliente;
         private Panel panel2;
+        private Label label1;
+        private ComboBox cboTipoDocCliente;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn Actividad;
         private DataGridViewTextBoxColumn Dias;
         private DataGridViewTextBoxColumn Hora;
+        private DataGridViewTextBoxColumn CuposMax;
+        private DataGridViewTextBoxColumn Cupos_Disp;
         private DataGridViewTextBoxColumn Instructor;
         private DataGridViewTextBoxColumn Precio;
-        private Label label1;
-        private ComboBox cboTipoDocCliente;
     }    
 }

@@ -6,7 +6,7 @@ SELECT * FROM cliente;
 SET @rta = 0;
 
 -- Llama al procedimiento con valores de ejemplo
-CALL InsActividad(0, 846, @rta);
+CALL InsActividad("DNI","12345678", 846, @rta);
 
 
 SELECT * FROM inscripcion;
@@ -111,3 +111,12 @@ WHERE IdInscripcion = 201;
 
 SELECT * FROM Inscripcion;
 SELECT * FROM Cliente;
+
+UPDATE Actividad AS a
+  INNER JOIN Edicion AS e ON e.NActividad = a.NActividad
+   SET a.CantInscriptos = a.CantInscriptos + 1
+ WHERE e.IdEdicion = 845;
+
+SELECT * FROM Actividad;
+
+SELECT COUNT(*) FROM Cliente WHERE TDocC = 'DNI' AND DocC = '12345678';

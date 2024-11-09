@@ -50,6 +50,7 @@
             Fecha = new DataGridViewTextBoxColumn();
             Precio = new DataGridViewTextBoxColumn();
             btnBuscarDeudas = new Button();
+            cboTipoDocCPagos = new ComboBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panel1.SuspendLayout();
@@ -60,7 +61,7 @@
             // 
             lblIngreseNumero.AutoSize = true;
             lblIngreseNumero.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lblIngreseNumero.Location = new Point(214, 137);
+            lblIngreseNumero.Location = new Point(193, 135);
             lblIngreseNumero.Name = "lblIngreseNumero";
             lblIngreseNumero.Size = new Size(425, 35);
             lblIngreseNumero.TabIndex = 0;
@@ -128,7 +129,7 @@
             // txtDocumento
             // 
             txtDocumento.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDocumento.Location = new Point(307, 195);
+            txtDocumento.Location = new Point(405, 199);
             txtDocumento.Name = "txtDocumento";
             txtDocumento.Size = new Size(251, 41);
             txtDocumento.TabIndex = 2;
@@ -268,11 +269,22 @@
             btnBuscarDeudas.UseVisualStyleBackColor = true;
             btnBuscarDeudas.Click += btnBuscarDeudas_Click;
             // 
+            // cboTipoDocCPagos
+            // 
+            cboTipoDocCPagos.Font = new Font("Futura Md BT", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            cboTipoDocCPagos.FormattingEnabled = true;
+            cboTipoDocCPagos.Items.AddRange(new object[] { "DNI", "PASAPORTE", "EXTRANJERO" });
+            cboTipoDocCPagos.Location = new Point(193, 200);
+            cboTipoDocCPagos.Name = "cboTipoDocCPagos";
+            cboTipoDocCPagos.Size = new Size(189, 40);
+            cboTipoDocCPagos.TabIndex = 39;
+            // 
             // frmPagar
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 734);
+            Controls.Add(cboTipoDocCPagos);
             Controls.Add(btnBuscarDeudas);
             Controls.Add(dtgvDeudas);
             Controls.Add(label2);
@@ -321,5 +333,6 @@
         private DataGridViewTextBoxColumn Fecha;
         private DataGridViewTextBoxColumn Precio;
         private Button btnBuscarDeudas;
+        private ComboBox cboTipoDocCPagos;
     }
 }

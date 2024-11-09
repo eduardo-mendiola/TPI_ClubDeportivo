@@ -25,9 +25,9 @@ CONSTRAINT fk_usuario FOREIGN KEY(RolUsu) REFERENCES Roles(RolUsu)
 );
 
 INSERT INTO usuario(NombreUsu,PassUsu,RolUsu) VALUES
+('a', '1', 120),
 ('Cari', '1234',120),
 ('Edu', '1234', 120),
-('Joa', '1234', 120),
 ('Jose', '1234', '121');
 
 CREATE TABLE Cliente (
@@ -78,7 +78,7 @@ CONSTRAINT pk_NActividad PRIMARY KEY(NActividad)
 
 INSERT INTO Actividad (NActividad, NombreActividad, DuracionMinutos, MaxParticipantes, CantInscriptos, CostoDiario) VALUES
 (100, 'Futbol', 45, 20, DEFAULT, 2350),
-(101, 'Tenis', 45, 4, DEFAULT, 3220),
+(101, 'Tenis', 45, 1, DEFAULT, 3220),
 (102, 'Natacion', 30, 10, DEFAULT, 3800),
 (103, 'Gimnasio', 25, 15, DEFAULT, 1560),
 (104, 'Basquet', 20, 10, DEFAULT, 2100);
@@ -232,8 +232,90 @@ CREATE PROCEDURE InsActividad(IN TipoDoc VARCHAR(20), IN NumDocCliente VARCHAR(2
 	 
 	  IF Existe = 0 THEN	 
 		 INSERT INTO Inscripcion VALUES(Filas, TipoDoc, NumDocCliente, IdEdi, Fecha_Actual, Pago);
+         
+         UPDATE Actividad AS a
+		  INNER JOIN Edicion AS e ON e.NActividad = a.NActividad
+            SET a.CantInscriptos = a.CantInscriptos + 1
+          WHERE e.IdEdicion = IdEdi;
+          
 	  ELSE
 		 SET rta = Existe;
       END IF;		 
      END //
 DELIMITER ;
+
+
+-- Ejemplo 1: Cliente nuevo con apto físico y socio
+CALL NuevoCliente(
+    'Juan',           -- Nombre
+    'Pérez',          -- Apellido
+    'DNI',            -- Tipo de Documento
+    '12345678',       -- Documento
+    '1985-04-15',     -- Fecha de Nacimiento
+    '1122334455',     -- Teléfono
+    'Calle Falsa 123',-- Domicilio
+    'juan.perez@example.com', -- Email
+    1,                -- EsSocio (1 = sí, 0 = no)
+    1,                -- AptoFisico (1 = sí, 0 = no)
+    @rta              -- Variable para recibir respuesta
+);
+
+-- Ejemplo 2: Cliente nuevo sin apto físico, no socio
+CALL NuevoCliente(
+    'María',          -- Nombre
+    'Gómez',          -- Apellido
+    'DNI',            -- Tipo de Documento
+    '87654321',       -- Documento
+    '1990-07-20',     -- Fecha de Nacimiento
+    '1133445566',     -- Teléfono
+    'Avenida Siempre Viva 742', -- Domicilio
+    'maria.gomez@example.com',  -- Email
+    0,                -- EsSocio
+    0,                -- AptoFisico
+    @rta
+);
+
+-- Ejemplo 3: Cliente nuevo con apto físico, socio
+CALL NuevoCliente(
+    'Carlos',         -- Nombre
+    'López',          -- Apellido
+    'Pasaporte',      -- Tipo de Documento
+    'P1234567',       -- Documento
+    '1978-11-25',     -- Fecha de Nacimiento
+    '1155667788',     -- Teléfono
+    'Calle Nueva 456',-- Domicilio
+    'carlos.lopez@example.com', -- Email
+    1,                -- EsSocio
+    1,                -- AptoFisico
+    @rta
+);
+
+-- Ejemplo 4: Cliente nuevo sin apto físico, socio
+CALL NuevoCliente(
+    'Ana',            -- Nombre
+    'Martínez',       -- Apellido
+    'EXTRANJERO',     -- Tipo de Documento
+    '20304050',       -- Documento
+    '1988-02-12',     -- Fecha de Nacimiento
+    '1177889900',     -- Teléfono
+    'Avenida Principal 1000', -- Domicilio
+    'ana.martinez@example.com', -- Email
+    1,                -- EsSocio
+    0,                -- AptoFisico
+    @rta
+);
+
+-- Ejemplo 5: Cliente nuevo con apto físico, no socio
+CALL NuevoCliente(
+    'Diego',          -- Nombre
+    'Ríos',           -- Apellido
+    'DNI',            -- Tipo de Documento
+    '55667788',       -- Documento
+    '2000-09-30',     -- Fecha de Nacimiento
+    '1199887766',     -- Teléfono
+    'Calle Sur 789',  -- Domicilio
+    'diego.rios@example.com',  -- Email
+    0,                -- EsSocio
+    1,                -- AptoFisico
+    @rta
+);

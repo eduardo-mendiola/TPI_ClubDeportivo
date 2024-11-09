@@ -12,6 +12,7 @@ namespace TPI_ClubDeportivo
 {
     public partial class FrmPrincipal : Form
     {
+        // TODO: Crear el formulario con las cuotas que vencen hoy.
         public FrmPrincipal()
         {
             InitializeComponent();
