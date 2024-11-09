@@ -4,24 +4,24 @@ DROP DATABASE IF EXISTS ClubDeportivo;
 CREATE DATABASE ClubDeportivo;
 USE ClubDeportivo;
 
-CREATE TABLE roles(
+CREATE TABLE Roles(
 	RolUsu INT,
 	NomRol VARCHAR(30),
 CONSTRAINT PRIMARY KEY(RolUsu)
 );
 
-INSERT INTO roles VALUES
+INSERT INTO Roles VALUES
 (120,'Administrador'),
 (121,'Cliente');
 
-CREATE TABLE usuario(
+CREATE TABLE Usuario(
 	IdUsu INT AUTO_INCREMENT,
 NombreUsu VARCHAR (20),
   PassUsu VARCHAR (15),
    RolUsu INT,
    Activo BOOLEAN DEFAULT TRUE,
 CONSTRAINT pk_usuario PRIMARY KEY (IdUsu),
-CONSTRAINT fk_usuario FOREIGN KEY(RolUsu) REFERENCES roles(RolUsu)
+CONSTRAINT fk_usuario FOREIGN KEY(RolUsu) REFERENCES Roles(RolUsu)
 );
 
 INSERT INTO usuario(NombreUsu,PassUsu,RolUsu) VALUES
@@ -30,19 +30,20 @@ INSERT INTO usuario(NombreUsu,PassUsu,RolUsu) VALUES
 ('Joa', '1234', 120),
 ('Jose', '1234', '121');
 
-CREATE TABLE cliente(
-idCliente INT,
-NombreC VARCHAR(30),
-ApellidoC VARCHAR(40),
-TDocC VARCHAR(20),
-DocC VARCHAR(20),
-FechaNacC DATE,
-TelC VARCHAR(20),
-DomicilioC VARCHAR(50),
-EmailC VARCHAR(30),
-EsSocio TINYINT,
-AptoFisico TINYINT,
-CONSTRAINT pk_idCliente PRIMARY KEY(idCliente)
+CREATE TABLE Cliente (
+    IdCliente INT,
+    NombreC VARCHAR(30),
+    ApellidoC VARCHAR(40),
+    TDocC VARCHAR(20),
+    DocC VARCHAR(20),
+    FechaNacC DATE,
+    TelC VARCHAR(20),
+    DomicilioC VARCHAR(50),
+    EmailC VARCHAR(30),
+    EsSocio TINYINT,
+    AptoFisico TINYINT,
+    CONSTRAINT pk_IdCliente PRIMARY KEY (IdCliente),
+    CONSTRAINT uq_TDocC_DocC UNIQUE (TDocC, DocC)  
 );
 
 CREATE TABLE Instructor(
@@ -104,13 +105,14 @@ INSERT INTO Edicion (IdEdicion, NActividad, Fecha, HorarioActividad, DiasActivid
 
 CREATE TABLE Inscripcion (
     IdInscripcion INT AUTO_INCREMENT,
-    IdCliente INT,
+    TipoDocCliente VARCHAR(20),
+    DocCliente VARCHAR(20),
     IdEdicion INT,
     FechaInscripcion DATE,
     Pagado BOOLEAN DEFAULT FALSE,
-    CONSTRAINT pk_IdInscripcion PRIMARY KEY(IdInscripcion),
-    CONSTRAINT fk_IdCliente FOREIGN KEY(IdCliente) REFERENCES Cliente(IdCliente),
-    CONSTRAINT fk_Inscripcion_Actividad FOREIGN KEY(IdEdicion) REFERENCES Edicion(IdEdicion)
+    CONSTRAINT pk_IdInscripcion PRIMARY KEY (IdInscripcion),
+    CONSTRAINT fk_TipoDoc_DocCliente FOREIGN KEY (TipoDocCliente, DocCliente) REFERENCES Cliente (TDocC, DocC),
+    CONSTRAINT fk_Inscripcion_Actividad FOREIGN KEY (IdEdicion) REFERENCES Edicion (IdEdicion)
 );
 
 CREATE TABLE Pago(
@@ -122,6 +124,16 @@ CREATE TABLE Pago(
 	CONSTRAINT fk_Pago FOREIGN KEY (IdInscripcion) REFERENCES Inscripcion(IdInscripcion)
 );
 
+CREATE TABLE CuotasMensuales(
+	IdPago INT AUTO_INCREMENT,
+    IdSocio INT,
+    Monto FLOAT,
+    Fecha DATE,
+    Mes INT,
+    CONSTRAINT pk_IdPago PRIMARY KEY (IdPago),
+    CONSTRAINT fk_IdSocio FOREIGN KEY (IdSocio) REFERENCES Cliente(IdCliente)
+);
+    
 
 /*Procedimiento para verificar si un usuario existe, es correcta la contraseña y si esta activo*/
 
@@ -190,7 +202,7 @@ DELIMITER ;
 DELIMITER //
 DROP PROCEDURE IF EXISTS InsActividad //
 
-CREATE PROCEDURE InsActividad(IN NumCliente INT, IN IdEdi INT, OUT rta INT)
+CREATE PROCEDURE InsActividad(IN TipoDoc VARCHAR(20), IN NumDocCliente VARCHAR(20), IN IdEdi INT, OUT rta INT)
  BEGIN
      DECLARE Filas int default 0;
 	 DECLARE Primer int default 0;
@@ -215,11 +227,11 @@ CREATE PROCEDURE InsActividad(IN NumCliente INT, IN IdEdi INT, OUT rta INT)
 		/* ---------------------------------------------------------
 			para saber si ya esta almacenado el postulante
 		------------------------------------------------------- */	
-		SET Existe = (SELECT count(*) FROM Inscripcion WHERE IdCliente = NumCliente and IdEdicion = IdEdi);
+		SET Existe = (SELECT count(*) FROM Inscripcion WHERE TipoDocCliente = TipoDoc AND DocCliente = NumDocCliente AND IdEdicion = IdEdi);
      END IF;
 	 
 	  IF Existe = 0 THEN	 
-		 INSERT INTO Inscripcion VALUES(Filas, NumCliente, IdEdi, Fecha_Actual, Pago);
+		 INSERT INTO Inscripcion VALUES(Filas, TipoDoc, NumDocCliente, IdEdi, Fecha_Actual, Pago);
 	  ELSE
 		 SET rta = Existe;
       END IF;		 

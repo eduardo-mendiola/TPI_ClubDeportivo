@@ -24,7 +24,8 @@ namespace TPI_ClubDeportivo.Datos
                 MySqlCommand comando = new MySqlCommand("InsActividad", sqlCon);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                comando.Parameters.Add("NumCliente", MySqlDbType.Int32).Value = inscripcion.IdCliente;
+                comando.Parameters.Add("TipoDoc", MySqlDbType.VarChar).Value = inscripcion.TipoDoc;
+                comando.Parameters.Add("NumDocCliente", MySqlDbType.VarChar).Value = inscripcion.DocCliente;
                 comando.Parameters.Add("IdEdi", MySqlDbType.Int32).Value = inscripcion.IdActividad;
 
                 MySqlParameter ParCodigo = new MySqlParameter();

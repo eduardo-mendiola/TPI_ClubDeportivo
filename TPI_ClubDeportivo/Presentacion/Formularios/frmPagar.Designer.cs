@@ -95,7 +95,7 @@
             // 
             cboCuotasTarjeta.Enabled = false;
             cboCuotasTarjeta.FormattingEnabled = true;
-            cboCuotasTarjeta.Items.AddRange(new object[] { "1 ", "3", "6", "12" });
+            cboCuotasTarjeta.Items.AddRange(new object[] { "1 ", "3", "6" });
             cboCuotasTarjeta.Location = new Point(168, 126);
             cboCuotasTarjeta.Name = "cboCuotasTarjeta";
             cboCuotasTarjeta.Size = new Size(103, 36);

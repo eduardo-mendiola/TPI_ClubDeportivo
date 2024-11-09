@@ -26,6 +26,7 @@ namespace TPI_ClubDeportivo
         private void frmAsignar_Load(object sender, EventArgs e)
         {
             CargarGrilla(); // Llamada al procedimiento
+            cboTipoDocCliente.SelectedIndex = 0; // Para que al iniciar el form de registro muestre DNI en el tipo por defecto.
         }
 
         public void CargarGrilla()
@@ -88,16 +89,17 @@ namespace TPI_ClubDeportivo
 
         private void btnInscribirCliente_Click(object sender, EventArgs e)
         {
-            if (txtIdCliente.Text == "" || txtIdActividad.Text == "")
+            if (cboTipoDocCliente.Text == "" || txtDocCliente.Text == "" || txtIdActividad.Text == "")
             {
-                MessageBox.Show("Debe completar datos requeridos (*) ", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe completar todos los datos requeridos", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 String respuesta;
                 E_Actividad inscripcion = new E_Actividad();
 
-                inscripcion.SetIdCliente(Convert.ToInt32(txtIdCliente.Text));
+                inscripcion.SetTipoDoc(cboTipoDocCliente.Text);
+                inscripcion.SetDocCliente(txtDocCliente.Text);
                 inscripcion.SetIdActividad(Convert.ToInt32(txtIdActividad.Text));
 
                 // Instaciamos para usar el método dentro de postulantes
@@ -116,7 +118,7 @@ namespace TPI_ClubDeportivo
                     }
                     else
                     {
-                        MessageBox.Show("Se inscribio con éxito el cliente ID: " + txtIdCliente.Text + " a la Actividad ID: " + txtIdActividad.Text, "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        MessageBox.Show("Se inscribio con éxito el cliente con documento: " + cboTipoDocCliente.Text + ": " + txtDocCliente.Text + " a la Actividad ID: " + txtIdActividad.Text, "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Question);
                     }
                 }
             }
@@ -125,7 +127,7 @@ namespace TPI_ClubDeportivo
 
         private void btnLimpiarInscripcion_Click(object sender, EventArgs e)
         {
-            txtIdCliente.Text = "";
+            txtDocCliente.Text = "";
             txtIdActividad.Text = "";
         }
     }
