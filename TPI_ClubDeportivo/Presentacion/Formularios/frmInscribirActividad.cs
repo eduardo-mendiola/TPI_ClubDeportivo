@@ -88,93 +88,17 @@ namespace TPI_ClubDeportivo
             this.Close();       // Cerrá el formulario actual
         }
 
-        private bool ComprobarCupoDisponible(int CodAct)
-        {
-            bool Respuesta = false;
-            try
-            {
-                using (MySqlConnection sqlCon = ConexionDB.getInstancia().CrearConexion())
-                {
-                    sqlCon.Open();
-                    string query = "SELECT MaxParticipantes, CantInscriptos " +
-                                   "FROM Actividad a " +
-                                   "INNER JOIN Edicion e ON a.NActividad = e.NActividad " +
-                                   "WHERE e.IdEdicion = @CodAct";
-
-                    MySqlCommand comando = new MySqlCommand(query, sqlCon);
-                    comando.Parameters.AddWithValue("@CodAct", CodAct);
-
-                    using (MySqlDataReader reader = comando.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            int maxParticipantes = reader.GetInt32(0);
-                            int cantInscriptos = reader.GetInt32(1);
-                            int cupoDisponible = maxParticipantes - cantInscriptos;
-
-                            // Comprueba si hay cupo disponible
-                            Respuesta = cupoDisponible > 0;
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo obtener el cupo disponible de la actividad.", "Error");
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al comprobar el cupo disponible: " + ex.Message);
-            }
-            return Respuesta;
-        }
-
-
+        
         private void btnInscribirCliente_Click(object sender, EventArgs e)
         {
-            if (cboTipoDocCliente.Text == "" || txtDocCliente.Text == "" || txtIdActividad.Text == "")
+            E_Actividad NuevaInscripcion = new E_Actividad();
+            if (NuevaInscripcion.InscribirEnActividad(cboTipoDocCliente.Text, txtDocCliente.Text, txtIdActividad.Text))
             {
-                MessageBox.Show("Debe completar todos los datos requeridos", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                String respuesta;
-                E_Actividad inscripcion = new E_Actividad();
-
-                inscripcion.SetTipoDoc(cboTipoDocCliente.Text);
-                inscripcion.SetDocCliente(txtDocCliente.Text);
-                inscripcion.SetIdActividad(Convert.ToInt32(txtIdActividad.Text));
-
-                if (ComprobarCupoDisponible(Convert.ToInt32(txtIdActividad.Text))) 
-                {
-                    // Instaciamos para usar el método dentro de postulantes
-                    D_Actividad inscribir = new D_Actividad();
-
-                    respuesta = inscribir.Nueva_Inscripcion(inscripcion);
-
-                    bool esnumero = int.TryParse(respuesta, out int codigo);
-
-                    if (esnumero)
-                    {
-                        if (codigo == 1)
-                        {
-                            MessageBox.Show("El cliente ya está inscrito en la actividad.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Se inscribió con éxito el cliente con documento: " + cboTipoDocCliente.Text + ": " + txtDocCliente.Text + " a la Actividad ID: " + txtIdActividad.Text, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            dtgvActividades.Rows.Clear();
-                            CargarGrilla();
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No hay cupos disponibles en la actividad.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+                dtgvActividades.Rows.Clear();
+                CargarGrilla();
             }
         }
+        
 
 
         private void btnLimpiarInscripcion_Click(object sender, EventArgs e)

@@ -9,4 +9,6 @@ namespace TPI_ClubDeportivo.Entidades
     internal class E_Cuota
     {
     }
+
+
 }
