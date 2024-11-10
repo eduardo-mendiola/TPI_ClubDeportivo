@@ -36,7 +36,7 @@
             btnVerActividades = new Button();
             btnEmitirCarnet = new Button();
             btnPagar = new Button();
-            button3 = new Button();
+            bntVisualizarVencimientos = new Button();
             panel1 = new Panel();
             lblIFTS29 = new Label();
             picLogo = new PictureBox();
@@ -132,17 +132,18 @@
             btnPagar.UseVisualStyleBackColor = false;
             btnPagar.Click += btnPagar_Click;
             // 
-            // button3
+            // bntVisualizarVencimientos
             // 
-            button3.BackColor = Color.DarkGoldenrod;
-            button3.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(483, 529);
-            button3.Name = "button3";
-            button3.Size = new Size(350, 100);
-            button3.TabIndex = 5;
-            button3.Text = "Cuotas que Vencen Hoy";
-            button3.UseVisualStyleBackColor = false;
+            bntVisualizarVencimientos.BackColor = Color.DarkGoldenrod;
+            bntVisualizarVencimientos.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            bntVisualizarVencimientos.ForeColor = Color.White;
+            bntVisualizarVencimientos.Location = new Point(483, 529);
+            bntVisualizarVencimientos.Name = "bntVisualizarVencimientos";
+            bntVisualizarVencimientos.Size = new Size(350, 100);
+            bntVisualizarVencimientos.TabIndex = 5;
+            bntVisualizarVencimientos.Text = "Cuotas que Vencen Hoy";
+            bntVisualizarVencimientos.UseVisualStyleBackColor = false;
+            bntVisualizarVencimientos.Click += button3_Click;
             // 
             // panel1
             // 
@@ -199,7 +200,7 @@
             Controls.Add(picLogo);
             Controls.Add(panel1);
             Controls.Add(lblUsuario);
-            Controls.Add(button3);
+            Controls.Add(bntVisualizarVencimientos);
             Controls.Add(btnPagar);
             Controls.Add(btnEmitirCarnet);
             Controls.Add(btnVerActividades);
@@ -225,7 +226,7 @@
         private Button btnVerActividades;
         private Button btnEmitirCarnet;
         private Button btnPagar;
-        private Button button3;
+        private Button bntVisualizarVencimientos;
         private Panel panel1;
         private PictureBox picLogo;
         private Label lblRol;

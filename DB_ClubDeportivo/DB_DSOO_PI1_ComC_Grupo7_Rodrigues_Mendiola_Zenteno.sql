@@ -71,7 +71,7 @@ NombreActividad VARCHAR(40),
 DuracionMinutos INT,
 MaxParticipantes INT,
 CantInscriptos INT DEFAULT 0,
-CostoDiario float,
+CostoDiario FLOAT,
 
 CONSTRAINT pk_NActividad PRIMARY KEY(NActividad)
 );

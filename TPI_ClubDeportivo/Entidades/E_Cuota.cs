@@ -45,12 +45,12 @@ namespace TPI_ClubDeportivo.Entidades
                 sqlCon = ConexionDB.getInstancia().CrearConexion();
 
                 // Ajustar la consulta para filtrar las cuotas que vencen hoy
-                string query = "SELECT i.IdInscripcion, a.NombreActividad, i.FechaInscripcion, a.CostoDiario " +
-                               "FROM Inscripcion i " +
-                               "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
-                               "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
-                               "INNER JOIN Cliente c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
-                               "WHERE AND i.FechaVencimiento = CURDATE()"; 
+                string query = "SELECT  cm.IdPago, cm.FechaGeneracion, cm.FechaVencimiento, s.IdSocio, " +
+                               "c.NombreC, c.ApellidoC, c.TDocC, c.DocC, cm.Monto, cm.EstadoPago " +
+                               "FROM CuotaMensual AS cm " +
+                               "INNER JOIN Socio AS s ON cm.IdSocio = s.IdSocio " +
+                               "INNER JOIN Cliente AS c ON s.IdCliente = c.IdCliente " +
+                               "WHERE cm.FechaVencimiento = CURDATE();"; 
 
                 // Usar parámetros para evitar inyecciones SQL
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
@@ -65,19 +65,23 @@ namespace TPI_ClubDeportivo.Entidades
                     while (reader.Read())
                     {
                         int renglon = dataGridView.Rows.Add();
-                        EsSocio = reader.GetInt32(4); // Leer EsSocio
 
-                        dataGridView.Rows[renglon].Cells[0].Value = reader.GetInt32(0); // IdInscripcion
-                        dataGridView.Columns[1].HeaderText = "Actividad";
-                        dataGridView.Rows[renglon].Cells[1].Value = reader.GetString(1); // NombreActividad
-                        dataGridView.Rows[renglon].Cells[2].Value = reader.GetDateTime(2); // FechaInscripcion
-                        dataGridView.Rows[renglon].Cells[3].Value = reader.GetFloat(3); // Valor a pagar
+                        dataGridView.Rows[renglon].Cells[0].Value = reader.GetInt32(0);  // IdPago
+                        dataGridView.Rows[renglon].Cells[1].Value = reader.GetDateTime(1); // FechaGeneracion
+                        dataGridView.Rows[renglon].Cells[2].Value = reader.GetDateTime(2); // FechaVencimiento
+                        dataGridView.Rows[renglon].Cells[3].Value = reader.GetString(3);  // IdSocio
+                        dataGridView.Rows[renglon].Cells[4].Value = reader.GetString(4);  // NombreC
+                        dataGridView.Rows[renglon].Cells[5].Value = reader.GetString(5);  // ApellidoC
+                        dataGridView.Rows[renglon].Cells[6].Value = reader.GetString(6);  // TDocC
+                        dataGridView.Rows[renglon].Cells[7].Value = reader.GetString(7);  // DocC
+                        dataGridView.Rows[renglon].Cells[8].Value = reader.GetFloat(8);   // Monto
+                        dataGridView.Rows[renglon].Cells[9].Value = reader.GetBoolean(9) ? "Pago" : "Impago"; // EstadoPago
 
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No hay deudas para este cliente.");
+                    MessageBox.Show("No hay deudas que vencen hoy.");
                 }
             }
             catch (Exception ex)

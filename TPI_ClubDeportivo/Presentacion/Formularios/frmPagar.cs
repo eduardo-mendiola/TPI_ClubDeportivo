@@ -78,15 +78,8 @@ namespace TPI_ClubDeportivo
                             "FROM CuotaMensual cm " +
                             "INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio " +
                             "INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente " +
-                            "WHERE cm.IdPago = @IdReg"; // Usamos parámetro para evitar inyección SQL.
+                            "WHERE cm.IdPago = @IdReg"; 
 
-                    /*
-                     "SELECT cm.IdPago, cm.IdSocio, cm.FechaVencimiento, cm.Monto " +
-                               "FROM CuotaMensual AS cm " +
-                               "INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio " +
-                               "INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente " +
-                               "WHERE c.TDocC = @TipoDoc AND c.DocC = @Documento AND cm.EstadoPago = 0";
-                     */
                 }
                 else
                 {
@@ -96,7 +89,7 @@ namespace TPI_ClubDeportivo
                             "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
                             "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
                             "INNER JOIN Cliente c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
-                            "WHERE i.IdInscripcion = @IdReg"; // Usamos parámetro para evitar inyección SQL.
+                            "WHERE i.IdInscripcion = @IdReg"; 
                 }
                
 
@@ -181,80 +174,7 @@ namespace TPI_ClubDeportivo
             }
         }
 
-        //private void btnBuscarDeudas_Click(object sender, EventArgs e)
-        //{
-        //    MySqlConnection sqlCon = new MySqlConnection();
-        //    try
-        //    {
-        //        dtgvDeudas.Rows.Clear();
-        //        int EsSocio;
-
-        //        sqlCon = ConexionDB.getInstancia().CrearConexion();
-        //        string query = "SELECT i.IdInscripcion, a.NombreActividad, i.FechaInscripcion, a.CostoDiario, c.EsSocio " +
-        //                       "FROM Inscripcion i " +
-        //                       "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
-        //                       "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
-        //                       "INNER JOIN Cliente c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
-        //                       "WHERE c.TDocC = @TipoDoc AND c.DocC = @Documento AND i.Pagado = 0";
-
-        //        // Usar parámetros para los valores
-        //        MySqlCommand comando = new MySqlCommand(query, sqlCon);
-        //        comando.CommandType = CommandType.Text;
-
-        //        // Definir los parámetros con sus valores
-        //        comando.Parameters.AddWithValue("@TipoDoc", cboTipoDocCPagos.Text);
-        //        comando.Parameters.AddWithValue("@Documento", txtDocumento.Text);
-
-        //        sqlCon.Open();
-        //        MySqlDataReader reader = comando.ExecuteReader();
-
-        //        if (reader.HasRows)
-        //        {
-        //            reader.Read(); // Mover a la primera fila
-        //            EsSocio = reader.GetInt32(4);
-
-        //            // Recorre todas las filas
-        //            do
-        //            {
-        //                int renglon = dtgvDeudas.Rows.Add();
-        //                dtgvDeudas.Rows[renglon].Cells[0].Value = reader.GetInt32(0); // IdInscripcion
-        //                dtgvDeudas.Rows[renglon].Cells[2].Value = reader.GetDateTime(2); // FechaInscripcion
-
-        //                if (EsSocio == 0)
-        //                {
-        //                    // No es socio, se muestra el costo de la actividad
-        //                    dtgvDeudas.Columns[1].HeaderText = "Actividad";
-        //                    dtgvDeudas.Rows[renglon].Cells[1].Value = reader.GetString(1); // NombreActividad
-        //                    dtgvDeudas.Rows[renglon].Cells[3].Value = reader.GetFloat(3); // CostoDiario
-        //                }
-        //                else
-        //                {
-        //                    // Es socio, se muestra la cuota mensual
-        //                    dtgvDeudas.Columns[1].HeaderText = "Cuota";
-        //                    dtgvDeudas.Rows[renglon].Cells[1].Value = "Mensual";
-        //                    dtgvDeudas.Rows[renglon].Cells[3].Value = doc.ValorCuota;
-        //                }
-
-        //            } while (reader.Read());
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("EL CLIENTE NO REGISTRA DEUDAS");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        if (sqlCon.State == ConnectionState.Open)
-        //        {
-        //            sqlCon.Close();
-        //        }
-        //    }
-        //}
-
+       
         private void btnBuscarDeudas_Click(object sender, EventArgs e)
         {
             E_Cliente NuevoCliente = new E_Cliente();

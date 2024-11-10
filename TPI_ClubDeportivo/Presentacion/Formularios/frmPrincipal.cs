@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TPI_ClubDeportivo.Presentacion.Formularios;
 
 namespace TPI_ClubDeportivo
 {
@@ -76,6 +77,14 @@ namespace TPI_ClubDeportivo
             frmPagar pagar = new frmPagar();
             pagar.Owner = this;
             pagar.Show();
+            this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frmVisualizarVencimientos listarVencimientos = new frmVisualizarVencimientos();
+            listarVencimientos.Owner = this;
+            listarVencimientos.Show();
             this.Hide();
         }
     }
