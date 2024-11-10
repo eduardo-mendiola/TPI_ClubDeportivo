@@ -127,7 +127,7 @@ CREATE TABLE Pago(
 */
 
 CREATE TABLE Socio(
-	IdSocio INT,
+	IdSocio VARCHAR(20),
     IdCliente INT,
     CONSTRAINT pk_IdSocio PRIMARY KEY (IdSocio),
     CONSTRAINT fk_IdSocioCliente FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente)
@@ -135,7 +135,7 @@ CREATE TABLE Socio(
 
 CREATE TABLE CuotaMensual(
     IdPago INT AUTO_INCREMENT,
-    IdSocio INT,
+    IdSocio VARCHAR(20),
     Monto FLOAT,
     FechaGeneracion DATE, -- Fecha en que se genera la cuota
     FechaVencimiento DATE, -- Fecha de vencimiento de la cuota
@@ -265,47 +265,6 @@ CREATE PROCEDURE InsActividad(IN TipoDoc VARCHAR(20), IN NumDocCliente VARCHAR(2
 DELIMITER ;
 
 
--- DELIMITER //
--- DROP PROCEDURE IF EXISTS RegCuotaSocio //
-
--- CREATE PROCEDURE RegCuotaSocio(
---     IN IdCliente INT,
---     IN Monto FLOAT,
---     OUT rta INT
--- )
--- BEGIN
---     DECLARE IdSocio INT;
---     DECLARE Fecha_Actual DATE;
---     DECLARE Fecha_Vencimiento DATE;
---     DECLARE Existe INT DEFAULT 0;
---     DECLARE Prefijo INT DEFAULT 40;  -- Se declara y se le asigna el valor 40
---     DECLARE DocCliente INT;
-
---     -- Obtener el DocCliente asociado a IdCliente
---     SET DocCliente = (SELECT DocC FROM Cliente WHERE IdCliente = IdCliente);
---  
---     -- Convertir IdCliente a VARCHAR, concatenarle el prefijo y luego convertir todo a INT
---     SET IdSocio = CAST(CONCAT(Prefijo, DocCliente) AS UNSIGNED);
-
---     -- Asignar la fecha actual y una fecha de vencimiento (por ejemplo, 30 días después)
---     SET Fecha_Actual = CURDATE();
---     SET Fecha_Vencimiento = DATE_ADD(Fecha_Actual, INTERVAL 30 DAY);
---     SET rta = 0;  -- Valor predeterminado de respuesta
-
---     -- Insertar en la tabla Socio
---     INSERT INTO Socio (IdSocio, IdCliente)
---         VALUES (IdSocio, IdCliente);
-
---     -- Insertar en la tabla CuotaMensual
---     INSERT INTO CuotaMensual (IdSocio, Monto, FechaGeneracion, FechaVencimiento, EstadoPago)
---         VALUES (IdSocio, Monto, Fecha_Actual, Fecha_Vencimiento, 0);
-
---     -- Ajustar el valor de respuesta (puede representar éxito)
---     SET rta = 1;
-
--- END //
--- DELIMITER ;
-
 DELIMITER //
 DROP PROCEDURE IF EXISTS RegCuotaSocio //
 
@@ -315,18 +274,18 @@ CREATE PROCEDURE RegCuotaSocio(
     OUT rta INT
 )
 BEGIN
-    DECLARE IdSocio INT;
+    DECLARE IdSocio VARCHAR(20);
     DECLARE Fecha_Actual DATE;
     DECLARE Fecha_Vencimiento DATE;
     DECLARE Existe INT DEFAULT 0;
-    DECLARE Prefijo INT DEFAULT 40;
-    DECLARE DocCliente INT;
+    DECLARE Prefijo VARCHAR(20);
+    DECLARE DocCliente VARCHAR(20);
 
     -- Obtener el DocCliente asociado al p_IdCliente
     SET DocCliente = (SELECT DocC FROM Cliente WHERE IdCliente = P_IdCliente LIMIT 1);
- 
+	SET Prefijo = "20-";
     -- Convertir p_IdCliente a VARCHAR, concatenarle el prefijo y luego convertir todo a INT
-    SET IdSocio = CAST(CONCAT(Prefijo, DocCliente) AS UNSIGNED);
+    SET IdSocio = concat(Prefijo,DocCliente);
 
     -- Asignar la fecha actual y una fecha de vencimiento (por ejemplo, 30 días después)
     SET Fecha_Actual = CURDATE();
@@ -334,7 +293,7 @@ BEGIN
     SET rta = 0;  -- Valor predeterminado de respuesta
 
     -- Insertar en la tabla Socio
-    INSERT INTO Socio (IdSocio, P_IdCliente)
+    INSERT INTO Socio (IdSocio, IdCliente)
         VALUES (IdSocio, p_IdCliente);
 
     -- Insertar en la tabla CuotaMensual
@@ -423,3 +382,122 @@ CALL NuevoCliente(
     1,                -- AptoFisico
     @rta
 );
+
+-- Ejemplo 6: Cliente nuevo con apto físico, socio
+CALL NuevoCliente(
+    'Lucía',          -- Nombre
+    'Fernández',      -- Apellido
+    'DNI',            -- Tipo de Documento
+    '33445566',       -- Documento
+    '1995-03-22',     -- Fecha de Nacimiento
+    '1144556677',     -- Teléfono
+    'Calle Norte 456',-- Domicilio
+    'lucia.fernandez@example.com', -- Email
+    1,                -- EsSocio
+    1,                -- AptoFisico
+    @rta
+);
+
+-- Ejemplo 7: Cliente nuevo sin apto físico, no socio
+CALL NuevoCliente(
+    'Tomás',          -- Nombre
+    'Sánchez',        -- Apellido
+    'DNI',            -- Tipo de Documento
+    '11223344',       -- Documento
+    '1982-06-18',     -- Fecha de Nacimiento
+    '1122113344',     -- Teléfono
+    'Pasaje Central 202', -- Domicilio
+    'tomas.sanchez@example.com', -- Email
+    0,                -- EsSocio
+    0,                -- AptoFisico
+    @rta
+);
+
+-- Ejemplo 8: Cliente nuevo con apto físico, no socio
+CALL NuevoCliente(
+    'Valeria',        -- Nombre
+    'Duarte',         -- Apellido
+    'DNI',            -- Tipo de Documento
+    '44556677',       -- Documento
+    '2001-01-15',     -- Fecha de Nacimiento
+    '1155778899',     -- Teléfono
+    'Calle Oeste 123',-- Domicilio
+    'valeria.duarte@example.com', -- Email
+    0,                -- EsSocio
+    1,                -- AptoFisico
+    @rta
+);
+
+-- Ejemplo 9: Cliente nuevo sin apto físico, socio
+CALL NuevoCliente(
+    'Federico',       -- Nombre
+    'Méndez',         -- Apellido
+    'Pasaporte',      -- Tipo de Documento
+    'F778899',        -- Documento
+    '1975-12-05',     -- Fecha de Nacimiento
+    '1144667788',     -- Teléfono
+    'Bulevar Este 450', -- Domicilio
+    'federico.mendez@example.com', -- Email
+    1,                -- EsSocio
+    0,                -- AptoFisico
+    @rta
+);
+
+-- Ejemplo 10: Cliente nuevo con apto físico, socio
+CALL NuevoCliente(
+    'Elena',          -- Nombre
+    'Quiroga',        -- Apellido
+    'EXTRANJERO',     -- Tipo de Documento
+    '67890123',       -- Documento
+    '1992-10-29',     -- Fecha de Nacimiento
+    '1133665544',     -- Teléfono
+    'Av. del Centro 305', -- Domicilio
+    'elena.quiroga@example.com', -- Email
+    0,                -- EsSocio
+    1,                -- AptoFisico
+    @rta
+);
+
+-- Ejemplo 1: Registrar cuota para un cliente existente
+CALL RegCuotaSocio(
+    0,              -- P_IdCliente (Id de un cliente existente)
+    9999.88,        -- Monto de la cuota
+    @rta            -- Variable para recibir respuesta
+);
+
+-- Ejemplo 2: Registrar cuota para un cliente existente
+CALL RegCuotaSocio(
+    2,              -- P_IdCliente
+	9999.88,        -- Monto de la cuota
+    @rta
+);
+
+-- Ejemplo 3: Registrar cuota para un cliente existente
+CALL RegCuotaSocio(
+    3,              -- P_IdCliente
+	9999.88,        -- Monto de la cuota
+    @rta
+);
+
+-- Ejemplo 4: Registrar cuota para un cliente existente
+CALL RegCuotaSocio(
+    5,              -- P_IdCliente
+	9999.88,        -- Monto de la cuota
+    @rta
+);
+
+-- Ejemplo 5: Registrar cuota para un cliente existente
+CALL RegCuotaSocio(
+    8,              -- P_IdCliente
+    9999.88,        -- Monto de la cuota
+    @rta
+);
+
+-- Cambia la fecha de vencimiento al día actual para poder realizar las pruebas
+UPDATE CuotaMensual
+	SET 
+		FechaGeneracion = DATE_SUB(CURDATE(), INTERVAL 1 MONTH),  -- Establece la fecha de inscripción como hace un mes
+		FechaVencimiento = CURDATE()  -- Establece la fecha de vencimiento al día de hoy
+  WHERE IdSocio IN ('20-12345678', '20-20304050', '20-33445566');  -- Usa los IdSocio con formato VARCHAR
+
+

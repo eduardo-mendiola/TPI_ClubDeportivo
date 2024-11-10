@@ -30,7 +30,7 @@ namespace TPI_ClubDeportivo.Entidades
         {
             
         }
-
+        // TODO: Arreglar el boton de pago para socio, ahora esta igual que no socio
         public void RealizarPago(string IdPago)
         {
             MySqlConnection sqlCon = new MySqlConnection();
@@ -75,12 +75,11 @@ namespace TPI_ClubDeportivo.Entidades
                 dataGridView.Rows.Clear(); // Limpiar la grilla antes de cargar datos
 
                 sqlCon = ConexionDB.getInstancia().CrearConexion();
-                string query = "SELECT i.IdInscripcion, a.NombreActividad, i.FechaInscripcion, a.CostoDiario " +
-                               "FROM Inscripcion i " +
-                               "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
-                               "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
-                               "INNER JOIN Cliente c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
-                               "WHERE c.TDocC = @TipoDoc AND c.DocC = @Documento AND i.Pagado = 0";
+                string query = "SELECT cm.IdPago, cm.IdSocio, cm.FechaVencimiento, cm.Monto " +
+                               "FROM CuotaMensual AS cm " +
+                               "INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio " +
+                               "INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente " +
+                               "WHERE c.TDocC = @TipoDoc AND c.DocC = @Documento AND cm.EstadoPago = 0";
 
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
                 comando.Parameters.AddWithValue("@TipoDoc", TipoDocPago);
@@ -92,7 +91,8 @@ namespace TPI_ClubDeportivo.Entidades
                 // Configura los encabezados de columna solo una vez fuera del bucle
                 if (dataGridView.Columns.Count > 1)
                 {
-                    dataGridView.Columns[1].HeaderText = "Actividad";
+                    dataGridView.Columns[1].HeaderText = "ID Socio";
+                    dataGridView.Columns[2].HeaderText = "Fecha Vencimiento";
                 }
 
                 // Procesa todas las filas encontradas
@@ -101,7 +101,7 @@ namespace TPI_ClubDeportivo.Entidades
                     int renglon = dataGridView.Rows.Add();
                     dataGridView.Rows[renglon].Cells[0].Value = reader.GetInt32(0);  // IdInscripcion
                     dataGridView.Rows[renglon].Cells[1].Value = reader.GetString(1);  // NombreActividad
-                    dataGridView.Rows[renglon].Cells[2].Value = reader.GetDateTime(2); // FechaInscripcion
+                    dataGridView.Rows[renglon].Cells[2].Value = reader.GetDateTime(2).ToString("dd/MM/yyyy"); // FechaVencimiento
                     dataGridView.Rows[renglon].Cells[3].Value = reader.GetDecimal(3);  // CostoDiario
                 }
 

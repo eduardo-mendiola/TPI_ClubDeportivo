@@ -111,6 +111,8 @@ WHERE IdInscripcion = 201;
 
 SELECT * FROM Inscripcion;
 SELECT * FROM Cliente;
+SELECT * FROM CuotaMensual;
+SELECT * FROM Socio;
 
 UPDATE Actividad AS a
   INNER JOIN Edicion AS e ON e.NActividad = a.NActividad
@@ -120,3 +122,10 @@ UPDATE Actividad AS a
 SELECT * FROM Actividad;
 
 SELECT COUNT(*) FROM Cliente WHERE TDocC = 'DNI' AND DocC = '12345678';
+
+
+SELECT cm.IdPago, cm.IdSocio, cm.FechaVencimiento, cm.Monto 
+  FROM CuotaMensual AS cm 
+ INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio 
+ INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente 
+ WHERE c.TDocC = "EXTRANJERO" AND c.DocC = 20304050 AND cm.EstadoPaga = 0;
