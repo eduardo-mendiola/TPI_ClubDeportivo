@@ -30,123 +30,135 @@ namespace TPI_ClubDeportivo
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFactura));
             pnlTitulo = new Panel();
+            label1 = new Label();
+            picLogo = new PictureBox();
             lblTitulo = new Label();
             btnImprimir = new Button();
-            label1 = new Label();
-            pictureBox1 = new PictureBox();
-            pnlNombreInstitudo = new Panel();
             pnlDatosInstituto = new Panel();
             label5 = new Label();
+            lblNumComp = new Label();
             label4 = new Label();
             lblDFecha = new Label();
             pnlDatos = new Panel();
+            label3 = new Label();
+            lblMontoPago = new Label();
+            label2 = new Label();
+            lblDescuento = new Label();
+            lblAlumno = new Label();
+            pnlActividad = new Panel();
             pnlCuotaMensual = new Panel();
             lblMensual = new Label();
             label9 = new Label();
-            pnlActividad = new Panel();
             lblCA = new Label();
             lblCostoAct = new Label();
             lblActSoc = new Label();
             lblActCuota = new Label();
-            lblDescuento = new Label();
             label6 = new Label();
             lblCantPagos = new Label();
             label8 = new Label();
-            lblMontoPago = new Label();
-            label3 = new Label();
             lblSocio = new Label();
             lblMontoTotal = new Label();
             label13 = new Label();
             lblTipoPago = new Label();
             label11 = new Label();
-            lblAlumno = new Label();
             pnlTitulo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            pnlNombreInstitudo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             pnlDatosInstituto.SuspendLayout();
             pnlDatos.SuspendLayout();
-            pnlCuotaMensual.SuspendLayout();
             pnlActividad.SuspendLayout();
+            pnlCuotaMensual.SuspendLayout();
             SuspendLayout();
             // 
             // pnlTitulo
             // 
-            pnlTitulo.BackColor = Color.Beige;
+            pnlTitulo.BackColor = Color.Lavender;
+            pnlTitulo.Controls.Add(label1);
+            pnlTitulo.Controls.Add(picLogo);
             pnlTitulo.Controls.Add(lblTitulo);
             pnlTitulo.Location = new Point(12, 19);
             pnlTitulo.Name = "pnlTitulo";
-            pnlTitulo.Size = new Size(776, 78);
+            pnlTitulo.Size = new Size(776, 248);
             pnlTitulo.TabIndex = 0;
-            // 
-            // lblTitulo
-            // 
-            lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            lblTitulo.Location = new Point(234, 17);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(343, 37);
-            lblTitulo.TabIndex = 3;
-            lblTitulo.Text = "COMPROBANTE DE PAGO";
-            // 
-            // btnImprimir
-            // 
-            btnImprimir.Location = new Point(612, 572);
-            btnImprimir.Name = "btnImprimir";
-            btnImprimir.Size = new Size(169, 50);
-            btnImprimir.TabIndex = 1;
-            btnImprimir.Text = "IMPRIMIR";
-            btnImprimir.UseVisualStyleBackColor = true;
-            btnImprimir.Click += btnImprimir_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(7, 12);
+            label1.Location = new Point(170, 135);
             label1.Name = "label1";
-            label1.Size = new Size(270, 32);
+            label1.Size = new Size(223, 32);
             label1.TabIndex = 2;
-            label1.Text = "INSTITUTO TERCIARIO";
+            label1.Text = "CLUB DEPORTIVO ";
             // 
-            // pictureBox1
+            // picLogo
             // 
-            pictureBox1.Location = new Point(281, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 112);
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
+            picLogo.BackColor = Color.Transparent;
+            picLogo.Image = (Image)resources.GetObject("picLogo.Image");
+            picLogo.InitialImage = null;
+            picLogo.Location = new Point(14, 17);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(150, 150);
+            picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            picLogo.TabIndex = 35;
+            picLogo.TabStop = false;
+            picLogo.WaitOnLoad = true;
             // 
-            // pnlNombreInstitudo
+            // lblTitulo
             // 
-            pnlNombreInstitudo.BackColor = Color.OldLace;
-            pnlNombreInstitudo.Controls.Add(label1);
-            pnlNombreInstitudo.Controls.Add(pictureBox1);
-            pnlNombreInstitudo.Location = new Point(12, 113);
-            pnlNombreInstitudo.Name = "pnlNombreInstitudo";
-            pnlNombreInstitudo.Size = new Size(384, 112);
-            pnlNombreInstitudo.TabIndex = 1;
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTitulo.Location = new Point(3, 187);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(434, 46);
+            lblTitulo.TabIndex = 3;
+            lblTitulo.Text = "COMPROBANTE DE PAGO";
+            // 
+            // btnImprimir
+            // 
+            btnImprimir.BackColor = Color.DodgerBlue;
+            btnImprimir.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            btnImprimir.ForeColor = Color.White;
+            btnImprimir.Location = new Point(287, 705);
+            btnImprimir.Name = "btnImprimir";
+            btnImprimir.Size = new Size(234, 70);
+            btnImprimir.TabIndex = 1;
+            btnImprimir.Text = "IMPRIMIR";
+            btnImprimir.UseVisualStyleBackColor = false;
+            btnImprimir.Click += btnImprimir_Click;
             // 
             // pnlDatosInstituto
             // 
-            pnlDatosInstituto.BackColor = Color.OldLace;
+            pnlDatosInstituto.BackColor = Color.White;
             pnlDatosInstituto.Controls.Add(label5);
+            pnlDatosInstituto.Controls.Add(lblNumComp);
             pnlDatosInstituto.Controls.Add(label4);
             pnlDatosInstituto.Controls.Add(lblDFecha);
-            pnlDatosInstituto.Location = new Point(404, 113);
+            pnlDatosInstituto.Location = new Point(12, 279);
             pnlDatosInstituto.Name = "pnlDatosInstituto";
-            pnlDatosInstituto.Size = new Size(384, 112);
+            pnlDatosInstituto.Size = new Size(776, 91);
             pnlDatosInstituto.TabIndex = 2;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(7, 64);
+            label5.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(398, 13);
             label5.Name = "label5";
-            label5.Size = new Size(370, 23);
-            label5.TabIndex = 6;
-            label5.Text = "DATOS GENERALES DEL INSTITUTO TÉCNICO";
+            label5.Size = new Size(224, 30);
+            label5.TabIndex = 7;
+            label5.Text = "Num. Comprobante:";
+            // 
+            // lblNumComp
+            // 
+            lblNumComp.AutoSize = true;
+            lblNumComp.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNumComp.Location = new Point(622, 15);
+            lblNumComp.Name = "lblNumComp";
+            lblNumComp.Size = new Size(104, 30);
+            lblNumComp.TabIndex = 6;
+            lblNumComp.Text = "0000000";
             // 
             // label4
             // 
@@ -170,54 +182,76 @@ namespace TPI_ClubDeportivo
             // 
             // pnlDatos
             // 
-            pnlDatos.BackColor = Color.Beige;
+            pnlDatos.BackColor = Color.White;
             pnlDatos.Controls.Add(pnlCuotaMensual);
-            pnlDatos.Controls.Add(pnlActividad);
+            pnlDatos.Controls.Add(label3);
+            pnlDatos.Controls.Add(lblMontoPago);
+            pnlDatos.Controls.Add(label2);
             pnlDatos.Controls.Add(lblDescuento);
+            pnlDatos.Controls.Add(lblAlumno);
+            pnlDatos.Controls.Add(pnlActividad);
             pnlDatos.Controls.Add(label6);
             pnlDatos.Controls.Add(lblCantPagos);
             pnlDatos.Controls.Add(label8);
-            pnlDatos.Controls.Add(lblMontoPago);
-            pnlDatos.Controls.Add(label3);
             pnlDatos.Controls.Add(lblSocio);
             pnlDatos.Controls.Add(lblMontoTotal);
             pnlDatos.Controls.Add(label13);
             pnlDatos.Controls.Add(lblTipoPago);
             pnlDatos.Controls.Add(label11);
-            pnlDatos.Controls.Add(lblAlumno);
-            pnlDatos.Location = new Point(12, 242);
+            pnlDatos.Location = new Point(12, 381);
             pnlDatos.Name = "pnlDatos";
             pnlDatos.Size = new Size(776, 312);
             pnlDatos.TabIndex = 1;
             // 
-            // pnlCuotaMensual
+            // label3
             // 
-            pnlCuotaMensual.Controls.Add(lblMensual);
-            pnlCuotaMensual.Controls.Add(label9);
-            pnlCuotaMensual.Location = new Point(22, 121);
-            pnlCuotaMensual.Name = "pnlCuotaMensual";
-            pnlCuotaMensual.Size = new Size(295, 48);
-            pnlCuotaMensual.TabIndex = 26;
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(491, 259);
+            label3.Name = "label3";
+            label3.Size = new Size(128, 30);
+            label3.TabIndex = 27;
+            label3.Text = "Pago de:  $";
             // 
-            // lblMensual
+            // lblMontoPago
             // 
-            lblMensual.AutoSize = true;
-            lblMensual.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lblMensual.Location = new Point(167, 9);
-            lblMensual.Name = "lblMensual";
-            lblMensual.Size = new Size(85, 35);
-            lblMensual.TabIndex = 24;
-            lblMensual.Text = "11111";
+            lblMontoPago.AutoSize = true;
+            lblMontoPago.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            lblMontoPago.Location = new Point(615, 256);
+            lblMontoPago.Name = "lblMontoPago";
+            lblMontoPago.Size = new Size(85, 35);
+            lblMontoPago.TabIndex = 28;
+            lblMontoPago.Text = "11111";
             // 
-            // label9
+            // label2
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(8, 10);
-            label9.Name = "label9";
-            label9.Size = new Size(164, 30);
-            label9.TabIndex = 8;
-            label9.Text = "Valor Cuota:  $";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 25F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(47, 159);
+            label2.Name = "label2";
+            label2.Size = new Size(49, 57);
+            label2.TabIndex = 23;
+            label2.Text = "$";
+            // 
+            // lblDescuento
+            // 
+            lblDescuento.AutoSize = true;
+            lblDescuento.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDescuento.Location = new Point(588, 192);
+            lblDescuento.Name = "lblDescuento";
+            lblDescuento.Size = new Size(29, 35);
+            lblDescuento.TabIndex = 22;
+            lblDescuento.Text = "1";
+            // 
+            // lblAlumno
+            // 
+            lblAlumno.AutoSize = true;
+            lblAlumno.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            lblAlumno.Location = new Point(33, 20);
+            lblAlumno.Name = "lblAlumno";
+            lblAlumno.Size = new Size(132, 41);
+            lblAlumno.TabIndex = 7;
+            lblAlumno.Text = "Nombre";
             // 
             // pnlActividad
             // 
@@ -225,66 +259,85 @@ namespace TPI_ClubDeportivo
             pnlActividad.Controls.Add(lblCostoAct);
             pnlActividad.Controls.Add(lblActSoc);
             pnlActividad.Controls.Add(lblActCuota);
-            pnlActividad.Location = new Point(23, 121);
+            pnlActividad.Location = new Point(372, 54);
             pnlActividad.Name = "pnlActividad";
-            pnlActividad.Size = new Size(295, 87);
+            pnlActividad.Size = new Size(364, 87);
             pnlActividad.TabIndex = 25;
+            // 
+            // pnlCuotaMensual
+            // 
+            pnlCuotaMensual.Controls.Add(lblMensual);
+            pnlCuotaMensual.Controls.Add(label9);
+            pnlCuotaMensual.Location = new Point(368, 70);
+            pnlCuotaMensual.Name = "pnlCuotaMensual";
+            pnlCuotaMensual.Size = new Size(364, 48);
+            pnlCuotaMensual.TabIndex = 26;
+            // 
+            // lblMensual
+            // 
+            lblMensual.AutoSize = true;
+            lblMensual.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            lblMensual.Location = new Point(194, 9);
+            lblMensual.Name = "lblMensual";
+            lblMensual.Size = new Size(97, 37);
+            lblMensual.TabIndex = 24;
+            lblMensual.Text = "11111";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(8, 10);
+            label9.Name = "label9";
+            label9.Size = new Size(182, 32);
+            label9.TabIndex = 8;
+            label9.Text = "Valor Cuota:  $";
             // 
             // lblCA
             // 
             lblCA.AutoSize = true;
-            lblCA.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            lblCA.Location = new Point(8, 48);
+            lblCA.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCA.Location = new Point(7, 48);
             lblCA.Name = "lblCA";
-            lblCA.Size = new Size(171, 30);
+            lblCA.Size = new Size(191, 32);
             lblCA.TabIndex = 23;
             lblCA.Text = "Costo Diario:  $";
             // 
             // lblCostoAct
             // 
             lblCostoAct.AutoSize = true;
-            lblCostoAct.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lblCostoAct.Location = new Point(172, 45);
+            lblCostoAct.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCostoAct.Location = new Point(193, 45);
             lblCostoAct.Name = "lblCostoAct";
-            lblCostoAct.Size = new Size(85, 35);
+            lblCostoAct.Size = new Size(97, 37);
             lblCostoAct.TabIndex = 24;
             lblCostoAct.Text = "11111";
             // 
             // lblActSoc
             // 
             lblActSoc.AutoSize = true;
-            lblActSoc.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            lblActSoc.Location = new Point(35, 10);
+            lblActSoc.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblActSoc.Location = new Point(41, 10);
             lblActSoc.Name = "lblActSoc";
-            lblActSoc.Size = new Size(118, 30);
+            lblActSoc.Size = new Size(129, 32);
             lblActSoc.TabIndex = 8;
             lblActSoc.Text = "Actividad:";
             // 
             // lblActCuota
             // 
             lblActCuota.AutoSize = true;
-            lblActCuota.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lblActCuota.Location = new Point(150, 8);
+            lblActCuota.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            lblActCuota.Location = new Point(169, 8);
             lblActCuota.Name = "lblActCuota";
-            lblActCuota.Size = new Size(126, 35);
+            lblActCuota.Size = new Size(140, 37);
             lblActCuota.TabIndex = 9;
             lblActCuota.Text = "Actividad";
-            // 
-            // lblDescuento
-            // 
-            lblDescuento.AutoSize = true;
-            lblDescuento.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lblDescuento.Location = new Point(601, 170);
-            lblDescuento.Name = "lblDescuento";
-            lblDescuento.Size = new Size(29, 35);
-            lblDescuento.TabIndex = 22;
-            lblDescuento.Text = "1";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(479, 173);
+            label6.Location = new Point(466, 195);
             label6.Name = "label6";
             label6.Size = new Size(128, 30);
             label6.TabIndex = 21;
@@ -294,7 +347,7 @@ namespace TPI_ClubDeportivo
             // 
             lblCantPagos.AutoSize = true;
             lblCantPagos.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lblCantPagos.Location = new Point(601, 136);
+            lblCantPagos.Location = new Point(591, 228);
             lblCantPagos.Name = "lblCantPagos";
             lblCantPagos.Size = new Size(29, 35);
             lblCantPagos.TabIndex = 20;
@@ -304,37 +357,17 @@ namespace TPI_ClubDeportivo
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(463, 136);
+            label8.Location = new Point(453, 228);
             label8.Name = "label8";
             label8.Size = new Size(141, 30);
             label8.TabIndex = 19;
             label8.Text = "Cant. Pagos:";
             // 
-            // lblMontoPago
-            // 
-            lblMontoPago.AutoSize = true;
-            lblMontoPago.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lblMontoPago.Location = new Point(626, 207);
-            lblMontoPago.Name = "lblMontoPago";
-            lblMontoPago.Size = new Size(85, 35);
-            lblMontoPago.TabIndex = 18;
-            lblMontoPago.Text = "11111";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(463, 210);
-            label3.Name = "label3";
-            label3.Size = new Size(171, 30);
-            label3.TabIndex = 17;
-            label3.Text = "Monto Pago:  $";
-            // 
             // lblSocio
             // 
             lblSocio.AutoSize = true;
             lblSocio.Font = new Font("Segoe UI", 15F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            lblSocio.Location = new Point(38, 75);
+            lblSocio.Location = new Point(33, 69);
             lblSocio.Name = "lblSocio";
             lblSocio.Size = new Size(76, 35);
             lblSocio.TabIndex = 16;
@@ -343,10 +376,10 @@ namespace TPI_ClubDeportivo
             // lblMontoTotal
             // 
             lblMontoTotal.AutoSize = true;
-            lblMontoTotal.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lblMontoTotal.Location = new Point(626, 245);
+            lblMontoTotal.Font = new Font("Segoe UI", 25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblMontoTotal.Location = new Point(93, 161);
             lblMontoTotal.Name = "lblMontoTotal";
-            lblMontoTotal.Size = new Size(85, 35);
+            lblMontoTotal.Size = new Size(145, 57);
             lblMontoTotal.TabIndex = 15;
             lblMontoTotal.Text = "11111";
             // 
@@ -354,17 +387,17 @@ namespace TPI_ClubDeportivo
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.Location = new Point(463, 248);
+            label13.Location = new Point(34, 127);
             label13.Name = "label13";
-            label13.Size = new Size(170, 30);
+            label13.Size = new Size(64, 30);
             label13.TabIndex = 14;
-            label13.Text = "Monto Total:  $";
+            label13.Text = "Total";
             // 
             // lblTipoPago
             // 
             lblTipoPago.AutoSize = true;
             lblTipoPago.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lblTipoPago.Location = new Point(640, 94);
+            lblTipoPago.Location = new Point(597, 161);
             lblTipoPago.Name = "lblTipoPago";
             lblTipoPago.Size = new Size(111, 35);
             lblTipoPago.TabIndex = 13;
@@ -374,30 +407,19 @@ namespace TPI_ClubDeportivo
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(463, 97);
+            label11.Location = new Point(420, 164);
             label11.Name = "label11";
             label11.Size = new Size(174, 30);
             label11.TabIndex = 12;
             label11.Text = "Forma de Pago:";
             // 
-            // lblAlumno
-            // 
-            lblAlumno.AutoSize = true;
-            lblAlumno.Font = new Font("Segoe UI", 15F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            lblAlumno.Location = new Point(37, 28);
-            lblAlumno.Name = "lblAlumno";
-            lblAlumno.Size = new Size(110, 35);
-            lblAlumno.TabIndex = 7;
-            lblAlumno.Text = "Nombre";
-            // 
             // frmFactura
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 644);
+            ClientSize = new Size(799, 787);
             Controls.Add(pnlDatos);
             Controls.Add(pnlDatosInstituto);
-            Controls.Add(pnlNombreInstitudo);
             Controls.Add(btnImprimir);
             Controls.Add(pnlTitulo);
             Name = "frmFactura";
@@ -405,29 +427,25 @@ namespace TPI_ClubDeportivo
             Load += frmFactura_Load;
             pnlTitulo.ResumeLayout(false);
             pnlTitulo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            pnlNombreInstitudo.ResumeLayout(false);
-            pnlNombreInstitudo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             pnlDatosInstituto.ResumeLayout(false);
             pnlDatosInstituto.PerformLayout();
             pnlDatos.ResumeLayout(false);
             pnlDatos.PerformLayout();
-            pnlCuotaMensual.ResumeLayout(false);
-            pnlCuotaMensual.PerformLayout();
             pnlActividad.ResumeLayout(false);
             pnlActividad.PerformLayout();
+            pnlCuotaMensual.ResumeLayout(false);
+            pnlCuotaMensual.PerformLayout();
             ResumeLayout(false);
         }
 
         private Panel pnlTitulo;
         private Button btnImprimir;
         private Label label1;
-        private PictureBox pictureBox1;
-        private Panel pnlNombreInstitudo;
         private Panel pnlDatosInstituto;
         private Panel pnlDatos;
         private Label lblTitulo;
-        private Label label5;
+        private Label lblNumComp;
         private Label label4;
         private Label lblDFecha;
         private Label lblMontoTotal;
@@ -443,8 +461,6 @@ namespace TPI_ClubDeportivo
         private Label lblSocio;
         private Label lblCantPagos;
         private Label label8;
-        private Label lblMontoPago;
-        private Label label3;
         private Label lblDescuento;
         private Label label6;
         private Label lblCostoAct;
@@ -455,5 +471,9 @@ namespace TPI_ClubDeportivo
         private Label lblMensual;
         private Label label9;
         private Label label10;
+        private PictureBox picLogo;
+        private Label label3;
+        private Label lblMontoPago;
+        private Label label5;
     }
 }

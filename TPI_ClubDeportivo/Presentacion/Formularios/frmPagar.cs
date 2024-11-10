@@ -116,7 +116,6 @@ namespace TPI_ClubDeportivo
                     doc.Alumno_f = reader.GetString(2);
                     doc.EsSocio_f = reader.GetInt16(3);
                     doc.CostoAct_f = reader.GetFloat(4);
-                    //doc.Monto_f = (doc.EsSocio_f == 1) ? doc.ValorCuota : reader.GetFloat(4);
                     doc.Monto_f = reader.GetFloat(4);
                     doc.CantCuotas_f = int.Parse(cboCuotasTarjeta.Text);
                     Pagado_f = reader.GetInt16(5);
@@ -128,15 +127,11 @@ namespace TPI_ClubDeportivo
                         doc.Forma_f = "Efectivo";
                         doc.Monto_f = Math.Round((doc.Monto_f * 0.9), 2);
                         System.Diagnostics.Debug.WriteLine($"Monto después de descuento: {doc.Monto_f}");
-
-                        doc.Forma_f = "Efectivo";
-                        double MontoPrueba = 9999.88 * 0.9;
-                        System.Diagnostics.Debug.WriteLine($"Monto después de descuento: {MontoPrueba}");
-
                     }
                     else
                     {
                         doc.Forma_f = "Tarjeta";
+                        doc.Monto_f = Math.Round(doc.Monto_f, 2);
                     }
 
                     btnComprobante.Enabled = true;

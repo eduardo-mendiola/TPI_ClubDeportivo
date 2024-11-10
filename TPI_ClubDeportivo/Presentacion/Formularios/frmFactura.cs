@@ -36,6 +36,7 @@ namespace TPI_ClubDeportivo
         private double MontoPago;
         public double DescuentoEfectivo = 0.90;
         public double ValorCuota;
+        private static int contadorComprobante = 1;
 
         public void SetValorCuota()
         {
@@ -105,25 +106,28 @@ namespace TPI_ClubDeportivo
              *    cada etiqueta del diseño del comprobante de pago
              *----------------------------------------------------*/
             SetValorCuota();
-            MontoPago = Math.Round((Monto_f / CantCuotas_f),2);
+            MontoPago = Math.Round((Monto_f / CantCuotas_f), 2);
 
             lblAlumno.Text = Alumno_f;
             lblActCuota.Text = Actividad_f;
-            lblCostoAct.Text = Convert.ToString(Monto_f);
+            lblCostoAct.Text = Convert.ToString(CostoAct_f);
             lblMensual.Text = Convert.ToString(ValorCuota);
             lblTipoPago.Text = Forma_f;
             lblCantPagos.Text = Convert.ToString(CantCuotas_f);
             lblMontoPago.Text = Convert.ToString(MontoPago);
             lblMontoTotal.Text = Convert.ToString(Monto_f);
-            lblDescuento.Text = (Forma_f == "Efectivo") ? Convert.ToString(DescuentoEfectivo) : "No Aplica" ;
-
+            lblDescuento.Text = (Forma_f == "Efectivo") ? Convert.ToString(DescuentoEfectivo) : "No Aplica";
+            GenerarNumeroComprobante(lblNumComp);
+                  
             if (EsSocio_f == 1)
             {
+                pnlCuotaMensual.Visible = true;
                 pnlActividad.Visible = false;
                 lblSocio.Text = "Es Socio";
             }
             else
             {
+                pnlActividad.Visible = true;
                 pnlCuotaMensual.Visible = false;
                 lblSocio.Text = "No es Socio";
             }
@@ -131,5 +135,15 @@ namespace TPI_ClubDeportivo
             // Se obtiene la fecha actual
             lblDFecha.Text = DateTime.UtcNow.ToShortDateString();
         }
+              
+        private void GenerarNumeroComprobante(Label label)
+        {
+            string numeroComprobante = contadorComprobante.ToString("D7"); // "D7" asegura que haya 7 dígitos
+          
+            label.Text = numeroComprobante;
+         
+            contadorComprobante++;
+        }
+
     }
 }
