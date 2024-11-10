@@ -121,7 +121,7 @@ namespace TPI_ClubDeportivo
                         {
                             E_Socio socio = new E_Socio();
                             socio.SetIdCliente(codigo);  // Asigna el código del cliente como IdCliente
-                            socio.GetValorCuota();       // Asigna el valor de la cuota
+                            socio.SetIdSocio(cliente);  // Asigna el código del socio como IdSocio
 
                             D_Socio socioReg = new D_Socio();
                             String respuestaSocio = socioReg.Nuevo_Socio(socio);

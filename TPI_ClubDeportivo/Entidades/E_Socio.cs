@@ -12,18 +12,29 @@ namespace TPI_ClubDeportivo.Entidades
 {
     internal class E_Socio : E_Cliente, IPago
     {
-        public double ValorCuota { get; private set; }
+        public string IdSocio { get; private set; }
+        public E_Cuota Cuota { get; private set; }
 
-        private double SetValorCuota()
+        public E_Socio() 
         {
-            E_Cuota cuota = new E_Cuota();
-            this.ValorCuota = cuota.ValorCuota;
-            return this.ValorCuota; 
+            Cuota = new E_Cuota(); 
         }
 
         public double GetValorCuota()
         {
-            return this.ValorCuota;
+            return this.Cuota.ValorCuota;
+        }
+
+        public void SetIdSocio(E_Cliente cliente)
+        {
+            string ultimosDosDigitos = DateTime.Now.ToString("yy");
+            string sufijo = "-" + ultimosDosDigitos;
+            IdSocio = cliente.Doc + sufijo;
+        }
+
+        public string GetIdSocio()
+        {
+            return this.IdSocio;
         }
 
         public void InscribirSocio(int IdCliente)

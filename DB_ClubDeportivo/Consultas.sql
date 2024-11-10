@@ -128,4 +128,7 @@ SELECT cm.IdPago, cm.IdSocio, cm.FechaVencimiento, cm.Monto
   FROM CuotaMensual AS cm 
  INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio 
  INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente 
- WHERE c.TDocC = "EXTRANJERO" AND c.DocC = 20304050 AND cm.EstadoPaga = 0;
+ WHERE c.TDocC = "EXTRANJERO" 
+   AND c.DocC = '20304050'  -- DocC entre comillas si es VARCHAR
+   AND cm.EstadoPago = 0;  -- EstadoPago, si este es el nombre correcto
+

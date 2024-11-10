@@ -24,8 +24,9 @@ namespace TPI_ClubDeportivo.Datos
                 MySqlCommand comando = new MySqlCommand("RegCuotaSocio", sqlCon);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                comando.Parameters.Add("P_IdCliente", MySqlDbType.VarChar).Value = socio.IdCliente;
-                comando.Parameters.Add("Monto", MySqlDbType.Float).Value = socio.ValorCuota;
+                comando.Parameters.Add("P_IdCliente", MySqlDbType.VarChar).Value = socio.GetIdCliente();
+                comando.Parameters.Add("P_IdSocio", MySqlDbType.VarChar).Value = socio.GetIdSocio();
+                comando.Parameters.Add("Monto", MySqlDbType.Float).Value = socio.Cuota.GetValorCuota();
                 
 
                 MySqlParameter ParCodigo = new MySqlParameter();

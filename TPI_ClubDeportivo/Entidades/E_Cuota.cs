@@ -31,6 +31,8 @@ namespace TPI_ClubDeportivo.Entidades
             return ValorCuota = 9999.88;
         }
 
+        public double GetValorCuota() { return ValorCuota; }
+
         public void ListarCuotasVencenHoy(DataGridView dataGridView)
         {
             MySqlConnection sqlCon = new MySqlConnection();

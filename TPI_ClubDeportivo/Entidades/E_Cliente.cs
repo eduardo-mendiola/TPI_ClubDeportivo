@@ -36,6 +36,11 @@ namespace TPI_ClubDeportivo.Entidades
             IdCliente = idCliente;
         }
 
+        public int GetIdCliente()
+        {
+            return IdCliente;
+        }
+
         public void SetNombre(string nombre)
         {
             Nombre = nombre;
