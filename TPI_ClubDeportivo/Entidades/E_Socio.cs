@@ -41,7 +41,7 @@ namespace TPI_ClubDeportivo.Entidades
         {
             
         }
-        // TODO: Arreglar el boton de pago para socio, ahora esta igual que no socio
+        
         public void RealizarPago(string IdPago)
         {
             MySqlConnection sqlCon = new MySqlConnection();
@@ -49,10 +49,10 @@ namespace TPI_ClubDeportivo.Entidades
             {
                 string query;
                 sqlCon = ConexionDB.getInstancia().CrearConexion();
-                query = "UPDATE CuotaMensual SET Pagado = 1 WHERE IdCuotaMensual = @IdCuotaMensual";
+                query = "UPDATE CuotaMensual SET EstadoPago = 1 WHERE IdPago = @IdPago";
 
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
-                comando.Parameters.AddWithValue("@IdCuotaMensual", IdPago);
+                comando.Parameters.AddWithValue("@IdPago", IdPago);
                 comando.CommandType = CommandType.Text;
                 sqlCon.Open();
 

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TPI_ClubDeportivo.Entidades;
 
 namespace TPI_ClubDeportivo
 {
@@ -25,16 +26,22 @@ namespace TPI_ClubDeportivo
 
         public string? Alumno_f;
         public string? Actividad_f;
-        public float? CostoAct_f;
+        public double? CostoAct_f;
         public string? TipoPago_f;
-        public float Monto_f;
+        public double Monto_f;
         public int? Numero_f;
         public int? EsSocio_f;
         public string? Forma_f;
         public int CantCuotas_f;
-        private float MontoPago;
-        public float DescuentoEfectivo = 0.90f;
-        public float ValorCuota = 9999.99f;
+        private double MontoPago;
+        public double DescuentoEfectivo = 0.90;
+        public double ValorCuota;
+
+        public void SetValorCuota()
+        {
+            E_Cuota cuota = new E_Cuota();
+            this.ValorCuota = cuota.ValorCuota;
+        }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
@@ -97,12 +104,12 @@ namespace TPI_ClubDeportivo
              *    Asignación de los valores a los datos que muestra
              *    cada etiqueta del diseño del comprobante de pago
              *----------------------------------------------------*/
-
-            MontoPago = MathF.Round((Monto_f / CantCuotas_f),2);
+            SetValorCuota();
+            MontoPago = Math.Round((Monto_f / CantCuotas_f),2);
 
             lblAlumno.Text = Alumno_f;
             lblActCuota.Text = Actividad_f;
-            lblCostoAct.Text = Convert.ToString(CostoAct_f);
+            lblCostoAct.Text = Convert.ToString(Monto_f);
             lblMensual.Text = Convert.ToString(ValorCuota);
             lblTipoPago.Text = Forma_f;
             lblCantPagos.Text = Convert.ToString(CantCuotas_f);

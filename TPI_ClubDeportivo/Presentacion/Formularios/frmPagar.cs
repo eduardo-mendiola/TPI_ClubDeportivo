@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Esf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,18 +64,44 @@ namespace TPI_ClubDeportivo
             try
             {
                 int Pagado_f;
+                bool MembresiaCliente;
+                string query;
                 sqlCon = ConexionDB.getInstancia().CrearConexion();
 
-                string query = "SELECT i.IdInscripcion, a.NombreActividad, CONCAT(c.NombreC, ' ', c.ApellidoC), c.EsSocio, " +
-                               "a.CostoDiario, i.Pagado " +
-                               "FROM Inscripcion i " +
-                               "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
-                               "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
-                               "INNER JOIN Cliente c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
-                               "WHERE i.IdInscripcion = @IdInscripcion"; // Usamos parámetro para evitar inyección SQL.
+                E_Cliente NuevoCliente = new E_Cliente();
+                MembresiaCliente = NuevoCliente.VerificarEsSocio(cboTipoDocCPagos.Text, txtDocumento.Text);
+                
+                if (MembresiaCliente)
+                {
+                    query = "SELECT cm.IdPago, cm.IdSocio, CONCAT(c.NombreC, ' ', c.ApellidoC), c.EsSocio, " +
+                            "cm.Monto, cm.EstadoPago " +
+                            "FROM CuotaMensual cm " +
+                            "INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio " +
+                            "INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente " +
+                            "WHERE cm.IdPago = @IdReg"; // Usamos parámetro para evitar inyección SQL.
+
+                    /*
+                     "SELECT cm.IdPago, cm.IdSocio, cm.FechaVencimiento, cm.Monto " +
+                               "FROM CuotaMensual AS cm " +
+                               "INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio " +
+                               "INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente " +
+                               "WHERE c.TDocC = @TipoDoc AND c.DocC = @Documento AND cm.EstadoPago = 0";
+                     */
+                }
+                else
+                {
+                    query = "SELECT i.IdInscripcion, a.NombreActividad, CONCAT(c.NombreC, ' ', c.ApellidoC), c.EsSocio, " +
+                            "a.CostoDiario, i.Pagado " +
+                            "FROM Inscripcion i " +
+                            "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
+                            "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
+                            "INNER JOIN Cliente c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
+                            "WHERE i.IdInscripcion = @IdReg"; // Usamos parámetro para evitar inyección SQL.
+                }
+               
 
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
-                comando.Parameters.AddWithValue("@IdInscripcion", txtIdPago.Text); // Definimos el parámetro.
+                comando.Parameters.AddWithValue("@IdReg", txtIdPago.Text); // Definimos el parámetro.
 
                 comando.CommandType = CommandType.Text;
                 sqlCon.Open();
@@ -89,15 +116,23 @@ namespace TPI_ClubDeportivo
                     doc.Alumno_f = reader.GetString(2);
                     doc.EsSocio_f = reader.GetInt16(3);
                     doc.CostoAct_f = reader.GetFloat(4);
-                    doc.Monto_f = (doc.EsSocio_f == 1) ? doc.ValorCuota : reader.GetFloat(4);
+                    //doc.Monto_f = (doc.EsSocio_f == 1) ? doc.ValorCuota : reader.GetFloat(4);
+                    doc.Monto_f = reader.GetFloat(4);
                     doc.CantCuotas_f = int.Parse(cboCuotasTarjeta.Text);
                     Pagado_f = reader.GetInt16(5);
 
                     // Evaluamos que opción es la seleccionada
                     if (optEfvo.Checked)
                     {
+                        System.Diagnostics.Debug.WriteLine($"Monto después de descuento: {doc.Monto_f}");
                         doc.Forma_f = "Efectivo";
-                        doc.Monto_f = MathF.Round((doc.Monto_f * doc.DescuentoEfectivo), 2);
+                        doc.Monto_f = Math.Round((doc.Monto_f * 0.9), 2);
+                        System.Diagnostics.Debug.WriteLine($"Monto después de descuento: {doc.Monto_f}");
+
+                        doc.Forma_f = "Efectivo";
+                        double MontoPrueba = 9999.88 * 0.9;
+                        System.Diagnostics.Debug.WriteLine($"Monto después de descuento: {MontoPrueba}");
+
                     }
                     else
                     {

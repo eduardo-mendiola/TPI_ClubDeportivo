@@ -269,23 +269,14 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS RegCuotaSocio //
 
 CREATE PROCEDURE RegCuotaSocio(
-    IN P_IdCliente INT, -- Cambié el nombre del parámetro para evitar confusión
+    IN P_IdCliente INT, 
+    IN P_IdSocio VARCHAR(25),
     IN Monto FLOAT,
     OUT rta INT
 )
 BEGIN
-    DECLARE IdSocio VARCHAR(20);
     DECLARE Fecha_Actual DATE;
     DECLARE Fecha_Vencimiento DATE;
-    DECLARE Existe INT DEFAULT 0;
-    DECLARE Prefijo VARCHAR(20);
-    DECLARE DocCliente VARCHAR(20);
-
-    -- Obtener el DocCliente asociado al p_IdCliente
-    SET DocCliente = (SELECT DocC FROM Cliente WHERE IdCliente = P_IdCliente LIMIT 1);
-	SET Prefijo = "20-";
-    -- Convertir p_IdCliente a VARCHAR, concatenarle el prefijo y luego convertir todo a INT
-    SET IdSocio = concat(Prefijo,DocCliente);
 
     -- Asignar la fecha actual y una fecha de vencimiento (por ejemplo, 30 días después)
     SET Fecha_Actual = CURDATE();
@@ -294,11 +285,11 @@ BEGIN
 
     -- Insertar en la tabla Socio
     INSERT INTO Socio (IdSocio, IdCliente)
-        VALUES (IdSocio, p_IdCliente);
+        VALUES (P_IdSocio, P_IdCliente);
 
     -- Insertar en la tabla CuotaMensual
     INSERT INTO CuotaMensual (IdSocio, Monto, FechaGeneracion, FechaVencimiento, EstadoPago)
-        VALUES (IdSocio, Monto, Fecha_Actual, Fecha_Vencimiento, 0);
+        VALUES (P_IdSocio, Monto, Fecha_Actual, Fecha_Vencimiento, 0);
 
     -- Ajustar el valor de respuesta (puede representar éxito)
     SET rta = 1;
@@ -461,6 +452,7 @@ CALL NuevoCliente(
 -- Ejemplo 1: Registrar cuota para un cliente existente
 CALL RegCuotaSocio(
     0,              -- P_IdCliente (Id de un cliente existente)
+    '12345678-24',  -- P_IdSocio
     9999.88,        -- Monto de la cuota
     @rta            -- Variable para recibir respuesta
 );
@@ -468,6 +460,7 @@ CALL RegCuotaSocio(
 -- Ejemplo 2: Registrar cuota para un cliente existente
 CALL RegCuotaSocio(
     2,              -- P_IdCliente
+    'P1234567-24',  -- P_IdSocio
 	9999.88,        -- Monto de la cuota
     @rta
 );
@@ -475,6 +468,7 @@ CALL RegCuotaSocio(
 -- Ejemplo 3: Registrar cuota para un cliente existente
 CALL RegCuotaSocio(
     3,              -- P_IdCliente
+    '20304050-24',  -- P_IdSocio
 	9999.88,        -- Monto de la cuota
     @rta
 );
@@ -482,6 +476,7 @@ CALL RegCuotaSocio(
 -- Ejemplo 4: Registrar cuota para un cliente existente
 CALL RegCuotaSocio(
     5,              -- P_IdCliente
+    '33445566-24',  -- P_IdSocio
 	9999.88,        -- Monto de la cuota
     @rta
 );
@@ -489,6 +484,7 @@ CALL RegCuotaSocio(
 -- Ejemplo 5: Registrar cuota para un cliente existente
 CALL RegCuotaSocio(
     8,              -- P_IdCliente
+    'F778899-24',  -- P_IdSocio
     9999.88,        -- Monto de la cuota
     @rta
 );
@@ -498,6 +494,6 @@ UPDATE CuotaMensual
 	SET 
 		FechaGeneracion = DATE_SUB(CURDATE(), INTERVAL 1 MONTH),  -- Establece la fecha de inscripción como hace un mes
 		FechaVencimiento = CURDATE()  -- Establece la fecha de vencimiento al día de hoy
-  WHERE IdSocio IN ('20-12345678', '20-20304050', '20-33445566');  -- Usa los IdSocio con formato VARCHAR
+  WHERE IdSocio IN ('12345678-24', '20304050-24', '33445566-24');  -- Usa los IdSocio con formato VARCHAR
 
 
