@@ -25,7 +25,7 @@ CONSTRAINT fk_usuario FOREIGN KEY(RolUsu) REFERENCES Roles(RolUsu)
 );
 
 INSERT INTO usuario(NombreUsu,PassUsu,RolUsu) VALUES
-('a', '1', 120),
+('a', 'a', 120),
 ('Cari', '1234',120),
 ('Edu', '1234', 120),
 ('Jose', '1234', '121');
@@ -115,6 +115,7 @@ CREATE TABLE Inscripcion (
     CONSTRAINT fk_Inscripcion_Actividad FOREIGN KEY (IdEdicion) REFERENCES Edicion (IdEdicion)
 );
 
+/*
 CREATE TABLE Pago(
 	IdPago INT AUTO_INCREMENT,
 	IdInscripcion INT,
@@ -123,16 +124,26 @@ CREATE TABLE Pago(
 	CONSTRAINT pk_Pago PRIMARY KEY (IdPago),
 	CONSTRAINT fk_Pago FOREIGN KEY (IdInscripcion) REFERENCES Inscripcion(IdInscripcion)
 );
+*/
 
-CREATE TABLE CuotasMensuales(
-	IdPago INT AUTO_INCREMENT,
+CREATE TABLE Socio(
+	IdSocio INT,
+    IdCliente INT,
+    CONSTRAINT pk_IdSocio PRIMARY KEY (IdSocio),
+    CONSTRAINT fk_IdSocioCliente FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente)
+);
+
+CREATE TABLE CuotaMensual(
+    IdPago INT AUTO_INCREMENT,
     IdSocio INT,
     Monto FLOAT,
-    Fecha DATE,
-    Mes INT,
+    FechaGeneracion DATE, -- Fecha en que se genera la cuota
+    FechaVencimiento DATE, -- Fecha de vencimiento de la cuota
+    EstadoPago BOOLEAN DEFAULT 0, -- 0 = Pendiente, 1 = Pagado
     CONSTRAINT pk_IdPago PRIMARY KEY (IdPago),
-    CONSTRAINT fk_IdSocio FOREIGN KEY (IdSocio) REFERENCES Cliente(IdCliente)
+    CONSTRAINT fk_IdSocioCuota FOREIGN KEY (IdSocio) REFERENCES Socio(IdSocio)
 );
+
     
 
 /*Procedimiento para verificar si un usuario existe, es correcta la contraseña y si esta activo*/
@@ -204,11 +215,11 @@ DROP PROCEDURE IF EXISTS InsActividad //
 
 CREATE PROCEDURE InsActividad(IN TipoDoc VARCHAR(20), IN NumDocCliente VARCHAR(20), IN IdEdi INT, OUT rta INT)
  BEGIN
-     DECLARE Filas int default 0;
-	 DECLARE Primer int default 0;
-	 DECLARE Existe int default 0;
+     DECLARE Filas INT DEFAULT 0;
+	 DECLARE Existe INT DEFAULT 0;
      DECLARE Fecha_Actual DATE;
-     DECLARE Pago boolean default false;
+     DECLARE EsSocioC BOOLEAN DEFAULT FALSE;
+     DECLARE Pago BOOLEAN DEFAULT FALSE;
      
 	 SET Fecha_Actual = CURDATE();  -- Asigna la fecha actual (solo la fecha, sin la hora)
      SET rta = 0;  -- Asignar un valor predeterminado a 'rta'
@@ -229,6 +240,15 @@ CREATE PROCEDURE InsActividad(IN TipoDoc VARCHAR(20), IN NumDocCliente VARCHAR(2
 		------------------------------------------------------- */	
 		SET Existe = (SELECT count(*) FROM Inscripcion WHERE TipoDocCliente = TipoDoc AND DocCliente = NumDocCliente AND IdEdicion = IdEdi);
      END IF;
+     
+      -- Determina si el cliente es socio
+      SELECT EsSocio INTO EsSocioC FROM Cliente
+      WHERE TDocC = TipoDoc AND DocC = NumDocCliente;
+
+      -- Si es socio, entonces 'Pago' se establece en TRUE
+      IF EsSocioC = TRUE THEN
+        SET Pago = TRUE;
+      END IF;
 	 
 	  IF Existe = 0 THEN	 
 		 INSERT INTO Inscripcion VALUES(Filas, TipoDoc, NumDocCliente, IdEdi, Fecha_Actual, Pago);
@@ -243,6 +263,90 @@ CREATE PROCEDURE InsActividad(IN TipoDoc VARCHAR(20), IN NumDocCliente VARCHAR(2
       END IF;		 
      END //
 DELIMITER ;
+
+
+-- DELIMITER //
+-- DROP PROCEDURE IF EXISTS RegCuotaSocio //
+
+-- CREATE PROCEDURE RegCuotaSocio(
+--     IN IdCliente INT,
+--     IN Monto FLOAT,
+--     OUT rta INT
+-- )
+-- BEGIN
+--     DECLARE IdSocio INT;
+--     DECLARE Fecha_Actual DATE;
+--     DECLARE Fecha_Vencimiento DATE;
+--     DECLARE Existe INT DEFAULT 0;
+--     DECLARE Prefijo INT DEFAULT 40;  -- Se declara y se le asigna el valor 40
+--     DECLARE DocCliente INT;
+
+--     -- Obtener el DocCliente asociado a IdCliente
+--     SET DocCliente = (SELECT DocC FROM Cliente WHERE IdCliente = IdCliente);
+--  
+--     -- Convertir IdCliente a VARCHAR, concatenarle el prefijo y luego convertir todo a INT
+--     SET IdSocio = CAST(CONCAT(Prefijo, DocCliente) AS UNSIGNED);
+
+--     -- Asignar la fecha actual y una fecha de vencimiento (por ejemplo, 30 días después)
+--     SET Fecha_Actual = CURDATE();
+--     SET Fecha_Vencimiento = DATE_ADD(Fecha_Actual, INTERVAL 30 DAY);
+--     SET rta = 0;  -- Valor predeterminado de respuesta
+
+--     -- Insertar en la tabla Socio
+--     INSERT INTO Socio (IdSocio, IdCliente)
+--         VALUES (IdSocio, IdCliente);
+
+--     -- Insertar en la tabla CuotaMensual
+--     INSERT INTO CuotaMensual (IdSocio, Monto, FechaGeneracion, FechaVencimiento, EstadoPago)
+--         VALUES (IdSocio, Monto, Fecha_Actual, Fecha_Vencimiento, 0);
+
+--     -- Ajustar el valor de respuesta (puede representar éxito)
+--     SET rta = 1;
+
+-- END //
+-- DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS RegCuotaSocio //
+
+CREATE PROCEDURE RegCuotaSocio(
+    IN P_IdCliente INT, -- Cambié el nombre del parámetro para evitar confusión
+    IN Monto FLOAT,
+    OUT rta INT
+)
+BEGIN
+    DECLARE IdSocio INT;
+    DECLARE Fecha_Actual DATE;
+    DECLARE Fecha_Vencimiento DATE;
+    DECLARE Existe INT DEFAULT 0;
+    DECLARE Prefijo INT DEFAULT 40;
+    DECLARE DocCliente INT;
+
+    -- Obtener el DocCliente asociado al p_IdCliente
+    SET DocCliente = (SELECT DocC FROM Cliente WHERE IdCliente = P_IdCliente LIMIT 1);
+ 
+    -- Convertir p_IdCliente a VARCHAR, concatenarle el prefijo y luego convertir todo a INT
+    SET IdSocio = CAST(CONCAT(Prefijo, DocCliente) AS UNSIGNED);
+
+    -- Asignar la fecha actual y una fecha de vencimiento (por ejemplo, 30 días después)
+    SET Fecha_Actual = CURDATE();
+    SET Fecha_Vencimiento = DATE_ADD(Fecha_Actual, INTERVAL 30 DAY);
+    SET rta = 0;  -- Valor predeterminado de respuesta
+
+    -- Insertar en la tabla Socio
+    INSERT INTO Socio (IdSocio, P_IdCliente)
+        VALUES (IdSocio, p_IdCliente);
+
+    -- Insertar en la tabla CuotaMensual
+    INSERT INTO CuotaMensual (IdSocio, Monto, FechaGeneracion, FechaVencimiento, EstadoPago)
+        VALUES (IdSocio, Monto, Fecha_Actual, Fecha_Vencimiento, 0);
+
+    -- Ajustar el valor de respuesta (puede representar éxito)
+    SET rta = 1;
+
+END //
+DELIMITER ;
+
 
 
 -- Ejemplo 1: Cliente nuevo con apto físico y socio

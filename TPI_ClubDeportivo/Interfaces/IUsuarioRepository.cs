@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TPI_ClubDeportivo.Datos.Interfaces
+namespace TPI_ClubDeportivo.Interfaces
 {
     internal interface IUsuarioRepository
     {

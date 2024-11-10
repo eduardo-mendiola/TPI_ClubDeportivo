@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TPI_ClubDeportivo.Datos.Infrastructure;
-using TPI_ClubDeportivo.Datos.Interfaces;
+using TPI_ClubDeportivo.Interfaces;
 
 namespace TPI_ClubDeportivo.Datos.Repositories
 {

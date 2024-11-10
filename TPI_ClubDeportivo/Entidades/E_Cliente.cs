@@ -1,8 +1,11 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TPI_ClubDeportivo.Datos.Infrastructure;
 
 namespace TPI_ClubDeportivo.Entidades
 {
@@ -26,17 +29,7 @@ namespace TPI_ClubDeportivo.Entidades
             this.EsSocio = false;
             this.AptoFisico = true;
         }
-        public E_Cliente(int idCliente, string nombre, string apellido, string tipoDoc, string doc)
-        {
-            this.IdCliente = idCliente;
-            this.Nombre = nombre;
-            this.Apellido = apellido;
-            this.TipoDoc = tipoDoc;
-            this.Doc = doc;
-            this.ActividadesInscriptas = new List<E_Actividad>();
-            this.EsSocio = false; 
-            this.AptoFisico = true; 
-        }
+
 
         public void SetIdCliente(int idCliente)
         {
@@ -99,7 +92,49 @@ namespace TPI_ClubDeportivo.Entidades
         }
 
 
+        public bool VerificarEsSocio(string TipoDocPago, string Documento)
+        {
+            MySqlConnection sqlCon = new MySqlConnection();
+            bool esSocio = false; 
 
+            try
+            {
+                sqlCon = ConexionDB.getInstancia().CrearConexion();
+
+                string query = "SELECT EsSocio " +
+                               "FROM Cliente " +
+                               "WHERE TDocC = @TipoDoc AND DocC = @Documento";
+
+                MySqlCommand comando = new MySqlCommand(query, sqlCon);
+                comando.Parameters.AddWithValue("@TipoDoc", TipoDocPago);
+                comando.Parameters.AddWithValue("@Documento", Documento);
+
+                sqlCon.Open();
+                MySqlDataReader reader = comando.ExecuteReader();
+
+                if (reader.Read()) 
+                {
+                    esSocio = reader.GetInt32(0) == 1; 
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                {
+                    sqlCon.Close();
+                }
+            }
+
+            return esSocio;
+        }
 
     }
 }
+
+
