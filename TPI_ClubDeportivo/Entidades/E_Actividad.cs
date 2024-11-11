@@ -16,6 +16,14 @@ namespace TPI_ClubDeportivo.Entidades
         public string? TipoDoc { get; private set; }
         public string? DocCliente { get; private set; }
 
+        public E_Cliente cliente { get; private set; }
+
+
+        public E_Actividad()
+        {
+            cliente = new E_Cliente();
+        }
+
         public void SetIdActividad(int idActividad)
         {
             IdActividad = idActividad;
@@ -80,12 +88,20 @@ namespace TPI_ClubDeportivo.Entidades
                 return false; 
             }
 
+            // Verificar si el cliente existe
+            if (!cliente.ClienteExiste(TipoDoc, Doc))
+            {
+                MessageBox.Show("El cliente no existe en el sistema.");
+                return false; // Salir del método si el cliente no existe
+            }
+
             // Verifica si IdActividad es un número válido
             if (!int.TryParse(IdActividad, out int idActividad))
             {
                 MessageBox.Show("El ID de la actividad debe ser un número válido.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
 
             string respuesta;
             E_Actividad inscripcion = new E_Actividad();
