@@ -11,25 +11,23 @@ using TPI_ClubDeportivo.Entidades;
 
 namespace TPI_ClubDeportivo.Presentacion.Formularios
 {
-    public partial class frmVisualizarVencimientos : Form
+    public partial class frmListarActividades : Form
     {
-        public frmVisualizarVencimientos()
+        public frmListarActividades()
         {
             InitializeComponent();
         }
 
-        
-        private void frmVisualizarVencimientos_Load(object sender, EventArgs e)
+        private void frmListarActividades_Load(object sender, EventArgs e)
         {
-            E_Cuota CuentasVencen = new E_Cuota();
-            CuentasVencen.ListarCuotasVencenHoy(dtgvVencen);
+            E_Actividad ListaActividades = new E_Actividad();
+            ListaActividades.ListarActividadesRegistradas(dtgvActReg);
         }
 
-        private void btnVolverVence_Click(object sender, EventArgs e)
+        private void btnVolverListAct_Click(object sender, EventArgs e)
         {
             this.Owner.Show();
             this.Close();
         }
-
     }
 }

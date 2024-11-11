@@ -17,8 +17,9 @@ namespace TPI_ClubDeportivo
 {
     public partial class frmInscribirActividad : Form
     {
-        
+
         private E_Cliente cliente;
+        public bool AbiertoDesdePrincipal { get; set; } = false;
 
         public frmInscribirActividad(E_Cliente cliente)
         {
@@ -103,6 +104,7 @@ namespace TPI_ClubDeportivo
         }
 
 
+  
         private void btnInscribirCliente_Click(object sender, EventArgs e)
         {
             E_Actividad NuevaInscripcion = new E_Actividad();
@@ -111,11 +113,16 @@ namespace TPI_ClubDeportivo
                 dtgvActividades.Rows.Clear();
                 CargarGrilla();
 
-                MessageBox.Show("Inscripción completada correctamente.");
-                this.DialogResult = DialogResult.OK;  // Retornar OK al formulario principal
-                this.Close();
+                
+                if (!AbiertoDesdePrincipal)  // Ejecuta esta lógica solo si no fue abierto desde frmPrincipal
+                {
+                    MessageBox.Show("Inscripción completada correctamente.");
+                    this.DialogResult = DialogResult.OK;  // Retornar OK
+                    this.Close();
+                }
             }
         }
+
 
 
         private void btnLimpiarInscripcion_Click(object sender, EventArgs e)

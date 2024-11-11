@@ -101,12 +101,12 @@
             dtgvVencen.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvVencen.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvVencen.Columns.AddRange(new DataGridViewColumn[] { ID_Pago, Inscripcion, Vencimiento, IdSocio, Nombre, Apellido, TipoDoc, Doc, Monto, Estado });
-            dtgvVencen.Location = new Point(35, 266);
+            dtgvVencen.Location = new Point(35, 248);
             dtgvVencen.Name = "dtgvVencen";
             dtgvVencen.RowHeadersWidth = 50;
             dtgvVencen.RowTemplate.Height = 33;
             dtgvVencen.Size = new Size(1365, 324);
-            dtgvVencen.TabIndex = 40;
+            dtgvVencen.TabIndex = 44;
             // 
             // ID_Pago
             // 
@@ -173,9 +173,9 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1430, 681);
+            Controls.Add(dtgvVencen);
             Controls.Add(picLogo);
             Controls.Add(panel1);
-            Controls.Add(dtgvVencen);
             Name = "frmVisualizarVencimientos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmVisualizarVencimientos";

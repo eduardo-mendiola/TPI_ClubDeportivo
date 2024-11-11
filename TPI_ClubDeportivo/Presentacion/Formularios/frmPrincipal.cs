@@ -58,19 +58,21 @@ namespace TPI_ClubDeportivo
         // Abre el formulario de inscripción
         private void btnInscribir_Click(Object sender, EventArgs e)
         {
-            FrmRegistro inscripcion = new FrmRegistro();
-            inscripcion.Owner = this;  // Establecer frmPrincipal como dueño
-            inscripcion.Show();
+            FrmRegistro inscripcionPrincipal = new FrmRegistro();
+            inscripcionPrincipal.Owner = this;  // Establecer frmPrincipal como dueño
+            inscripcionPrincipal.Show();
             this.Hide();
         }
 
-        private void btnAsignarCurso_Click(object sender, EventArgs e)
+        private void btnIscribirActividad_Click(object sender, EventArgs e)
         {
-            frmInscribirActividad asignar = new frmInscribirActividad();
-            asignar.Owner = this;
-            asignar.Show();
+            frmInscribirActividad inscripcionPrincipal = new frmInscribirActividad();
+            inscripcionPrincipal.Owner = this;  // Establecer frmPrincipal como dueño
+            inscripcionPrincipal.AbiertoDesdePrincipal = true;  // Indicar que se abrió desde frmPrincipal
+            inscripcionPrincipal.Show();
             this.Hide();
         }
+    
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
@@ -80,12 +82,23 @@ namespace TPI_ClubDeportivo
             this.Hide();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+
+        private void bntVisualizarVencimientos_Click(object sender, EventArgs e)
         {
             frmVisualizarVencimientos listarVencimientos = new frmVisualizarVencimientos();
             listarVencimientos.Owner = this;
             listarVencimientos.Show();
             this.Hide();
         }
+
+        private void btnListarActividades_Click(object sender, EventArgs e)
+        {
+            frmListarActividades listarActividades = new frmListarActividades();
+            listarActividades.Owner = this;
+            listarActividades.Show();
+            this.Hide();
+        }
+
+        
     }
 }

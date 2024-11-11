@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             lblUsuario = new Label();
             btnSalir = new Button();
-            button2 = new Button();
-            btnAsignarCurso = new Button();
-            btnVerActividades = new Button();
+            btnInscribir = new Button();
+            btnIscribirActividad = new Button();
+            btnListarActividades = new Button();
             btnEmitirCarnet = new Button();
             btnPagar = new Button();
             bntVisualizarVencimientos = new Button();
@@ -69,43 +69,44 @@
             btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
             // 
-            // button2
+            // btnInscribir
             // 
-            button2.BackColor = Color.DarkGoldenrod;
-            button2.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(56, 247);
-            button2.Name = "button2";
-            button2.Size = new Size(350, 100);
-            button2.TabIndex = 0;
-            button2.Text = "Registrar Cliente";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += btnInscribir_Click;
+            btnInscribir.BackColor = Color.DarkGoldenrod;
+            btnInscribir.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            btnInscribir.ForeColor = Color.White;
+            btnInscribir.Location = new Point(56, 247);
+            btnInscribir.Name = "btnInscribir";
+            btnInscribir.Size = new Size(350, 100);
+            btnInscribir.TabIndex = 0;
+            btnInscribir.Text = "Registrar Cliente";
+            btnInscribir.UseVisualStyleBackColor = false;
+            btnInscribir.Click += btnInscribir_Click;
             // 
-            // btnAsignarCurso
+            // btnIscribirActividad
             // 
-            btnAsignarCurso.BackColor = Color.DarkGoldenrod;
-            btnAsignarCurso.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            btnAsignarCurso.ForeColor = Color.White;
-            btnAsignarCurso.Location = new Point(483, 247);
-            btnAsignarCurso.Name = "btnAsignarCurso";
-            btnAsignarCurso.Size = new Size(350, 100);
-            btnAsignarCurso.TabIndex = 1;
-            btnAsignarCurso.Text = "Inscribir en Actividad";
-            btnAsignarCurso.UseVisualStyleBackColor = false;
-            btnAsignarCurso.Click += btnAsignarCurso_Click;
+            btnIscribirActividad.BackColor = Color.DarkGoldenrod;
+            btnIscribirActividad.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            btnIscribirActividad.ForeColor = Color.White;
+            btnIscribirActividad.Location = new Point(483, 247);
+            btnIscribirActividad.Name = "btnIscribirActividad";
+            btnIscribirActividad.Size = new Size(350, 100);
+            btnIscribirActividad.TabIndex = 1;
+            btnIscribirActividad.Text = "Inscribir en Actividad";
+            btnIscribirActividad.UseVisualStyleBackColor = false;
+            btnIscribirActividad.Click += btnIscribirActividad_Click;
             // 
-            // btnVerActividades
+            // btnListarActividades
             // 
-            btnVerActividades.BackColor = Color.DarkGoldenrod;
-            btnVerActividades.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            btnVerActividades.ForeColor = Color.White;
-            btnVerActividades.Location = new Point(56, 389);
-            btnVerActividades.Name = "btnVerActividades";
-            btnVerActividades.Size = new Size(350, 100);
-            btnVerActividades.TabIndex = 2;
-            btnVerActividades.Text = "Ver Actividades";
-            btnVerActividades.UseVisualStyleBackColor = false;
+            btnListarActividades.BackColor = Color.DarkGoldenrod;
+            btnListarActividades.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            btnListarActividades.ForeColor = Color.White;
+            btnListarActividades.Location = new Point(56, 389);
+            btnListarActividades.Name = "btnListarActividades";
+            btnListarActividades.Size = new Size(350, 100);
+            btnListarActividades.TabIndex = 2;
+            btnListarActividades.Text = "Ver Actividades";
+            btnListarActividades.UseVisualStyleBackColor = false;
+            btnListarActividades.Click += btnListarActividades_Click;
             // 
             // btnEmitirCarnet
             // 
@@ -143,7 +144,7 @@
             bntVisualizarVencimientos.TabIndex = 5;
             bntVisualizarVencimientos.Text = "Cuotas que Vencen Hoy";
             bntVisualizarVencimientos.UseVisualStyleBackColor = false;
-            bntVisualizarVencimientos.Click += button3_Click;
+            bntVisualizarVencimientos.Click += bntVisualizarVencimientos_Click;
             // 
             // panel1
             // 
@@ -203,9 +204,9 @@
             Controls.Add(bntVisualizarVencimientos);
             Controls.Add(btnPagar);
             Controls.Add(btnEmitirCarnet);
-            Controls.Add(btnVerActividades);
-            Controls.Add(btnAsignarCurso);
-            Controls.Add(button2);
+            Controls.Add(btnListarActividades);
+            Controls.Add(btnIscribirActividad);
+            Controls.Add(btnInscribir);
             Name = "FrmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "VENTANA PRINCIPAL";
@@ -221,9 +222,9 @@
 
         private Label lblUsuario;
         private Button btnSalir;
-        private Button button2;
-        private Button btnAsignarCurso;
-        private Button btnVerActividades;
+        private Button btnInscribir;
+        private Button btnIscribirActividad;
+        private Button btnListarActividades;
         private Button btnEmitirCarnet;
         private Button btnPagar;
         private Button bntVisualizarVencimientos;

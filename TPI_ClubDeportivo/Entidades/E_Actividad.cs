@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -121,6 +122,79 @@ namespace TPI_ClubDeportivo.Entidades
             {
                 MessageBox.Show("No hay cupos disponibles en la actividad.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+        }
+
+
+        public void ListarActividadesRegistradas(DataGridView dataGridView)
+        {
+            MySqlConnection sqlCon = new MySqlConnection();
+            try
+            {
+                // Limpiar las filas previas de la grilla
+                dataGridView.Rows.Clear();
+                int EsSocio;
+
+                sqlCon = ConexionDB.getInstancia().CrearConexion();
+
+                // Ajustar la consulta para filtrar las cuotas que vencen hoy
+                string query = "SELECT e.IdEdicion, a.NombreActividad, a.DuracionMinutos, a.MaxParticipantes, a.CantInscriptos, a.CostoDiario, " +
+                               "e.Fecha, e.HorarioActividad, e.DiasActividad, CONCAT(i.NombreInst, ' ', i.ApellidoInst) AS ApellidoInstructor " +
+                               "FROM Actividad AS a " +
+                               "INNER JOIN Edicion AS e ON a.NActividad = e.NActividad " +
+                               "INNER JOIN Instructor AS i ON e.Instructor = i.NInstructor " +
+                               "ORDER BY a.NombreActividad, e.Fecha, e.HorarioActividad;";
+
+                // Usar parámetros para evitar inyecciones SQL
+                MySqlCommand comando = new MySqlCommand(query, sqlCon);
+                comando.CommandType = CommandType.Text;
+
+                sqlCon.Open();
+                MySqlDataReader reader = comando.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    // Recorrer todas las filas
+                    while (reader.Read())
+                    {
+                        int renglon = dataGridView.Rows.Add();
+
+                        dataGridView.Rows[renglon].Cells[0].Value = reader.GetInt32(0);  // IdEdicion
+                        dataGridView.Rows[renglon].Cells[1].Value = reader.GetString(1);  // NombreActividad
+                        dataGridView.Rows[renglon].Cells[2].Value = reader.GetInt32(2);  // DuracionMinutos
+                        dataGridView.Rows[renglon].Cells[3].Value = reader.GetInt32(3);  // MaxParticipantes
+                        // Si la cantidad de inscritos es igual al máximo
+                        if (reader.GetInt32(4) == reader.GetInt32(3))
+                        {
+                            dataGridView.Rows[renglon].Cells[4].Value = "COMP.";
+                        }
+                        else
+                        {
+                            dataGridView.Rows[renglon].Cells[4].Value = reader.GetInt32(4);  // CantInscriptos
+                        }
+                        dataGridView.Rows[renglon].Cells[5].Value = reader.GetFloat(5);   // CostoDiario
+                        dataGridView.Rows[renglon].Cells[6].Value = reader.GetDateTime(6); // Fecha
+                        dataGridView.Rows[renglon].Cells[7].Value = reader.GetTimeSpan(7).ToString(@"hh\:mm"); // HorarioActividad
+                        dataGridView.Rows[renglon].Cells[8].Value = reader.GetString(8);  // DiasActividad
+                        dataGridView.Rows[renglon].Cells[9].Value = reader.GetString(9);  // ApellidoInstructor
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay ACTIVIDADES registradas.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                {
+                    sqlCon.Close();
+                }
             }
         }
 
