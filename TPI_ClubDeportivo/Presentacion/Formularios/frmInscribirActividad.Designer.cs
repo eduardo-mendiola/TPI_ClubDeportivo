@@ -30,6 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInscribirActividad));
             dtgvActividades = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            Actividad = new DataGridViewTextBoxColumn();
+            Dias = new DataGridViewTextBoxColumn();
+            Hora = new DataGridViewTextBoxColumn();
+            CuposMax = new DataGridViewTextBoxColumn();
+            Cupos_Disp = new DataGridViewTextBoxColumn();
+            Instructor = new DataGridViewTextBoxColumn();
+            Precio = new DataGridViewTextBoxColumn();
             lblTitleListAct = new Label();
             lblIdcliente = new Label();
             txtDocCliente = new TextBox();
@@ -45,14 +53,6 @@
             panel2 = new Panel();
             label1 = new Label();
             cboTipoDocCliente = new ComboBox();
-            ID = new DataGridViewTextBoxColumn();
-            Actividad = new DataGridViewTextBoxColumn();
-            Dias = new DataGridViewTextBoxColumn();
-            Hora = new DataGridViewTextBoxColumn();
-            CuposMax = new DataGridViewTextBoxColumn();
-            Cupos_Disp = new DataGridViewTextBoxColumn();
-            Instructor = new DataGridViewTextBoxColumn();
-            Precio = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dtgvActividades).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panel1.SuspendLayout();
@@ -69,6 +69,54 @@
             dtgvActividades.RowTemplate.Height = 33;
             dtgvActividades.Size = new Size(1124, 211);
             dtgvActividades.TabIndex = 0;
+            // 
+            // ID
+            // 
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 6;
+            ID.Name = "ID";
+            // 
+            // Actividad
+            // 
+            Actividad.HeaderText = "ACTIVIDAD";
+            Actividad.MinimumWidth = 6;
+            Actividad.Name = "Actividad";
+            // 
+            // Dias
+            // 
+            Dias.HeaderText = "DÍAS";
+            Dias.MinimumWidth = 6;
+            Dias.Name = "Dias";
+            // 
+            // Hora
+            // 
+            Hora.HeaderText = "HORA";
+            Hora.MinimumWidth = 6;
+            Hora.Name = "Hora";
+            // 
+            // CuposMax
+            // 
+            CuposMax.HeaderText = "CUPOS_MAX";
+            CuposMax.MinimumWidth = 6;
+            CuposMax.Name = "CuposMax";
+            // 
+            // Cupos_Disp
+            // 
+            Cupos_Disp.HeaderText = "CUPOS_DISP.";
+            Cupos_Disp.MinimumWidth = 6;
+            Cupos_Disp.Name = "Cupos_Disp";
+            // 
+            // Instructor
+            // 
+            Instructor.HeaderText = "INSTRUCTOR";
+            Instructor.MinimumWidth = 6;
+            Instructor.Name = "Instructor";
+            // 
+            // Precio
+            // 
+            Precio.HeaderText = "PRECIO ($)";
+            Precio.MinimumWidth = 6;
+            Precio.Name = "Precio";
             // 
             // lblTitleListAct
             // 
@@ -227,54 +275,6 @@
             cboTipoDocCliente.Size = new Size(189, 40);
             cboTipoDocCliente.TabIndex = 38;
             // 
-            // ID
-            // 
-            ID.HeaderText = "ID";
-            ID.MinimumWidth = 6;
-            ID.Name = "ID";
-            // 
-            // Actividad
-            // 
-            Actividad.HeaderText = "ACTIVIDAD";
-            Actividad.MinimumWidth = 6;
-            Actividad.Name = "Actividad";
-            // 
-            // Dias
-            // 
-            Dias.HeaderText = "DÍAS";
-            Dias.MinimumWidth = 6;
-            Dias.Name = "Dias";
-            // 
-            // Hora
-            // 
-            Hora.HeaderText = "HORA";
-            Hora.MinimumWidth = 6;
-            Hora.Name = "Hora";
-            // 
-            // CuposMax
-            // 
-            CuposMax.HeaderText = "CUPOS_MAX";
-            CuposMax.MinimumWidth = 6;
-            CuposMax.Name = "CuposMax";
-            // 
-            // Cupos_Disp
-            // 
-            Cupos_Disp.HeaderText = "CUPOS_DISP.";
-            Cupos_Disp.MinimumWidth = 6;
-            Cupos_Disp.Name = "Cupos_Disp";
-            // 
-            // Instructor
-            // 
-            Instructor.HeaderText = "INSTRUCTOR";
-            Instructor.MinimumWidth = 6;
-            Instructor.Name = "Instructor";
-            // 
-            // Precio
-            // 
-            Precio.HeaderText = "PRECIO ($)";
-            Precio.MinimumWidth = 6;
-            Precio.Name = "Precio";
-            // 
             // frmInscribirActividad
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -295,6 +295,7 @@
             Controls.Add(lblTitleListAct);
             Controls.Add(dtgvActividades);
             Name = "frmInscribirActividad";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmAsignar";
             Load += frmAsignar_Load;
             ((System.ComponentModel.ISupportInitialize)dtgvActividades).EndInit();

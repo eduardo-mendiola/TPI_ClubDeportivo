@@ -138,6 +138,7 @@
             Controls.Add(txtUser);
             Controls.Add(lblUser);
             Name = "FrmLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             ResumeLayout(false);

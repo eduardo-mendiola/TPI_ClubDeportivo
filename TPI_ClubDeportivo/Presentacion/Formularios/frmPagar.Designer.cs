@@ -297,6 +297,7 @@
             Controls.Add(groupBox1);
             Controls.Add(lblIngreseNumero);
             Name = "frmPagar";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmPagar";
             Load += frmPagar_Load;
             groupBox1.ResumeLayout(false);

@@ -177,6 +177,7 @@
             Controls.Add(panel1);
             Controls.Add(dtgvVencen);
             Name = "frmVisualizarVencimientos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmVisualizarVencimientos";
             Load += frmVisualizarVencimientos_Load;
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();

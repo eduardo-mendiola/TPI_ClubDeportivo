@@ -42,15 +42,15 @@ namespace TPI_ClubDeportivo
             label4 = new Label();
             lblDFecha = new Label();
             pnlDatos = new Panel();
+            pnlCuotaMensual = new Panel();
+            lblMensual = new Label();
+            label9 = new Label();
             label3 = new Label();
             lblMontoPago = new Label();
             label2 = new Label();
             lblDescuento = new Label();
             lblAlumno = new Label();
             pnlActividad = new Panel();
-            pnlCuotaMensual = new Panel();
-            lblMensual = new Label();
-            label9 = new Label();
             lblCA = new Label();
             lblCostoAct = new Label();
             lblActSoc = new Label();
@@ -67,8 +67,8 @@ namespace TPI_ClubDeportivo
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             pnlDatosInstituto.SuspendLayout();
             pnlDatos.SuspendLayout();
-            pnlActividad.SuspendLayout();
             pnlCuotaMensual.SuspendLayout();
+            pnlActividad.SuspendLayout();
             SuspendLayout();
             // 
             // pnlTitulo
@@ -203,6 +203,35 @@ namespace TPI_ClubDeportivo
             pnlDatos.Size = new Size(776, 312);
             pnlDatos.TabIndex = 1;
             // 
+            // pnlCuotaMensual
+            // 
+            pnlCuotaMensual.Controls.Add(lblMensual);
+            pnlCuotaMensual.Controls.Add(label9);
+            pnlCuotaMensual.Location = new Point(368, 70);
+            pnlCuotaMensual.Name = "pnlCuotaMensual";
+            pnlCuotaMensual.Size = new Size(364, 48);
+            pnlCuotaMensual.TabIndex = 26;
+            // 
+            // lblMensual
+            // 
+            lblMensual.AutoSize = true;
+            lblMensual.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            lblMensual.Location = new Point(194, 9);
+            lblMensual.Name = "lblMensual";
+            lblMensual.Size = new Size(97, 37);
+            lblMensual.TabIndex = 24;
+            lblMensual.Text = "11111";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(8, 10);
+            label9.Name = "label9";
+            label9.Size = new Size(182, 32);
+            label9.TabIndex = 8;
+            label9.Text = "Valor Cuota:  $";
+            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -263,35 +292,6 @@ namespace TPI_ClubDeportivo
             pnlActividad.Name = "pnlActividad";
             pnlActividad.Size = new Size(364, 87);
             pnlActividad.TabIndex = 25;
-            // 
-            // pnlCuotaMensual
-            // 
-            pnlCuotaMensual.Controls.Add(lblMensual);
-            pnlCuotaMensual.Controls.Add(label9);
-            pnlCuotaMensual.Location = new Point(368, 70);
-            pnlCuotaMensual.Name = "pnlCuotaMensual";
-            pnlCuotaMensual.Size = new Size(364, 48);
-            pnlCuotaMensual.TabIndex = 26;
-            // 
-            // lblMensual
-            // 
-            lblMensual.AutoSize = true;
-            lblMensual.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            lblMensual.Location = new Point(194, 9);
-            lblMensual.Name = "lblMensual";
-            lblMensual.Size = new Size(97, 37);
-            lblMensual.TabIndex = 24;
-            lblMensual.Text = "11111";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(8, 10);
-            label9.Name = "label9";
-            label9.Size = new Size(182, 32);
-            label9.TabIndex = 8;
-            label9.Text = "Valor Cuota:  $";
             // 
             // lblCA
             // 
@@ -423,6 +423,7 @@ namespace TPI_ClubDeportivo
             Controls.Add(btnImprimir);
             Controls.Add(pnlTitulo);
             Name = "frmFactura";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmFactura";
             Load += frmFactura_Load;
             pnlTitulo.ResumeLayout(false);
@@ -432,10 +433,10 @@ namespace TPI_ClubDeportivo
             pnlDatosInstituto.PerformLayout();
             pnlDatos.ResumeLayout(false);
             pnlDatos.PerformLayout();
-            pnlActividad.ResumeLayout(false);
-            pnlActividad.PerformLayout();
             pnlCuotaMensual.ResumeLayout(false);
             pnlCuotaMensual.PerformLayout();
+            pnlActividad.ResumeLayout(false);
+            pnlActividad.PerformLayout();
             ResumeLayout(false);
         }
 
