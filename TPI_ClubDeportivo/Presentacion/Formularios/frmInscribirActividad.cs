@@ -103,17 +103,6 @@ namespace TPI_ClubDeportivo
         }
 
 
-        //private void btnInscribirCliente_Click(object sender, EventArgs e)
-        //{
-        //    E_Actividad NuevaInscripcion = new E_Actividad();
-        //    if (NuevaInscripcion.InscribirEnActividad(cboTipoDocCliente.Text, txtDocCliente.Text, txtIdActividad.Text))
-        //    {
-        //        dtgvActividades.Rows.Clear();
-        //        CargarGrilla();
-        //    }
-        //}
-
-
         private void btnInscribirCliente_Click(object sender, EventArgs e)
         {
             E_Actividad NuevaInscripcion = new E_Actividad();
@@ -127,7 +116,6 @@ namespace TPI_ClubDeportivo
                 this.Close();
             }
         }
-
 
 
         private void btnLimpiarInscripcion_Click(object sender, EventArgs e)

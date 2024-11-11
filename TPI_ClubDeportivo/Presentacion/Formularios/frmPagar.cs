@@ -19,9 +19,7 @@ namespace TPI_ClubDeportivo
     public partial class frmPagar : Form
     {
 
-
         public frmFactura doc = new frmFactura();
-
 
         private void frmPagar_Load(object sender, EventArgs e)
         {
@@ -33,13 +31,7 @@ namespace TPI_ClubDeportivo
         {
             InitializeComponent();
         }
-
-        //private void btnVolverInsAct_Click(object sender, EventArgs e)
-        //{
-        //    this.Owner.Show();
-        //    this.Close();
-        //}
-
+               
         private void btnVolverInsAct_Click(object sender, EventArgs e)
         {
             if (this.Owner != null)
@@ -59,10 +51,6 @@ namespace TPI_ClubDeportivo
             }
         }
 
-
-
-
-
         private void btnComprobante_Click(object sender, EventArgs e)
         {
             doc.Owner = this;  // Asigna el Owner del formulario actual
@@ -70,15 +58,6 @@ namespace TPI_ClubDeportivo
             this.Hide();
         }
 
-
-        //private void btnComprobante_Click(object sender, EventArgs e)
-        //{
-        //    // Abre el formulario de comprobante y lo muestra
-        //    frmComprobante comprobanteForm = new frmComprobante();
-        //    comprobanteForm.Owner = this.Owner;  // Propietario del formulario actual
-        //    comprobanteForm.Show();
-        //    this.Hide();
-        //}
 
         private void optTarjeta_CheckedChanged(object sender, EventArgs e)
         {
@@ -89,8 +68,7 @@ namespace TPI_ClubDeportivo
         {
             cboCuotasTarjeta.Enabled = false;
         }
-
-       
+            
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
@@ -226,61 +204,6 @@ namespace TPI_ClubDeportivo
             clienteDeuda.ObtenerDeuda(dtgvDeudas, cboTipoDocCPagos.Text, txtDocumento.Text);
         }
 
-
-        //public void cargarDatosDePago(E_Cliente cliente, int codigo)
-        //{
-        //    // Cargar los datos del cliente al formulario de pago
-        //    txtDocumento.Text = cliente.GetDoc();
-        //    cboTipoDocCPagos.Text = cliente.GetTipoDoc();
-
-        //    // Aquí puedes hacer que se carguen las deudas automáticamente basadas en el cliente
-        //    E_Cliente NuevoCliente = new E_Cliente();
-        //    bool MembresiaCliente = NuevoCliente.VerificarEsSocio(cliente.GetTipoDoc(), cliente.GetDoc());
-
-        //    IPago clienteDeuda;
-        //    if (MembresiaCliente)
-        //    {
-        //        clienteDeuda = new E_Socio();
-        //    }
-        //    else
-        //    {
-        //        clienteDeuda = new E_NoSocio();
-        //    }
-        //    clienteDeuda.ObtenerDeuda(dtgvDeudas, cliente.GetTipoDoc(), cliente.GetDoc());
-        //}
-
-        //public void cargarDatosDePago(E_Cliente cliente, int codigo)
-        //{
-        //    txtDocumento.Text = cliente.GetDoc();
-        //    cboTipoDocCPagos.Text = cliente.GetTipoDoc();
-
-        //    // Verificar si el cliente es socio
-        //    E_Cliente NuevoCliente = new E_Cliente();
-        //    bool MembresiaCliente = NuevoCliente.VerificarEsSocio(cliente.GetTipoDoc(), cliente.GetDoc());
-
-        //    if (!MembresiaCliente)
-        //    {
-        //        MessageBox.Show("El cliente no es socio. Redirigiendo al formulario de inscripción...");
-
-        //        // Abrir el formulario de inscripción en modo modal
-        //        frmInscribirActividad inscripcionForm = new frmInscribirActividad(cliente); // Pasa el cliente para la inscripción
-        //        this.Hide();
-
-        //        DialogResult resultado = inscripcionForm.ShowDialog();
-
-        //        this.Show();  // Vuelve a mostrar frmPagar
-
-        //        if (resultado != DialogResult.OK)
-        //        {
-        //            MessageBox.Show("El cliente debe inscribirse para poder continuar.");
-        //            return;
-        //        }
-        //    }
-
-        //    // Continuar con la obtención de deudas después de la inscripción (o si es socio)
-        //    IPago clienteDeuda = MembresiaCliente ? new E_Socio() : new E_NoSocio();
-        //    clienteDeuda.ObtenerDeuda(dtgvDeudas, cliente.GetTipoDoc(), cliente.GetDoc());
-        //}
 
         public void cargarDatosDePago(E_Cliente cliente, int codigo)
         {

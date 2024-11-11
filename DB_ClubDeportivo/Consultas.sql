@@ -57,3 +57,13 @@ SELECT cm.IdPago, cm.IdSocio, cm.FechaVencimiento, cm.Monto
    AND c.DocC = '20304050'  -- DocC entre comillas si es VARCHAR
    AND cm.EstadoPago = 0;  -- EstadoPago, si este es el nombre correcto
 
+
+SELECT cm.IdPago, cm.FechaGeneracion, cm.FechaVencimiento, s.IdSocio,
+    c.NombreC, c.ApellidoC, c.TDocC, c.DocC, cm.Monto, cm.EstadoPago
+FROM CuotaMensual cm
+INNER JOIN Socio s ON cm.IdSocio = s.IdSocio
+INNER JOIN Cliente c ON s.IdCliente = c.IdCliente
+WHERE cm.FechaVencimiento = CURDATE(); 
+
+SELECT EsSocio FROM Cliente WHERE TDocC = 'DNI' AND DocC = '44555666';
+

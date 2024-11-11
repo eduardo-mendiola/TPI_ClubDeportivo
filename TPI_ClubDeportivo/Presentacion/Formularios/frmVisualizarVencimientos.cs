@@ -18,8 +18,6 @@ namespace TPI_ClubDeportivo.Presentacion.Formularios
             InitializeComponent();
         }
 
-
-
         private void btnVolverVence_Click(object sender, EventArgs e)
         {
             this.Owner.Show();
