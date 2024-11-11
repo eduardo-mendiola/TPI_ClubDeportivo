@@ -20,10 +20,10 @@ namespace TPI_ClubDeportivo.Entidades
             {
                 string query;
                 sqlCon = ConexionDB.getInstancia().CrearConexion();
-                query = "UPDATE Inscripcion SET Pagado = 1 WHERE IdInscripcion = @IdInscripcion";
+                query = "UPDATE InscripcionAct SET Pagado = 1 WHERE IdInscripcionAct = @IdInscripcionAct";
 
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
-                comando.Parameters.AddWithValue("@IdInscripcion", IdPago);
+                comando.Parameters.AddWithValue("@IdInscripcionAct", IdPago);
                 comando.CommandType = CommandType.Text;
                 sqlCon.Open();
 
@@ -57,8 +57,8 @@ namespace TPI_ClubDeportivo.Entidades
                 dataGridView.Rows.Clear(); 
 
                 sqlCon = ConexionDB.getInstancia().CrearConexion();
-                string query = "SELECT i.IdInscripcion, a.NombreActividad, i.FechaInscripcion, a.CostoDiario " +
-                               "FROM Inscripcion i " +
+                string query = "SELECT i.IdInscripcionAct, a.NombreActividad, i.FechaInscripcion, a.CostoDiario " +
+                               "FROM InscripcionAct i " +
                                "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
                                "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
                                "INNER JOIN Cliente c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
@@ -79,7 +79,7 @@ namespace TPI_ClubDeportivo.Entidades
                 while (reader.Read())
                 {
                     int renglon = dataGridView.Rows.Add();
-                    dataGridView.Rows[renglon].Cells[0].Value = reader.GetInt32(0);  // IdInscripcion
+                    dataGridView.Rows[renglon].Cells[0].Value = reader.GetInt32(0);  // IdInscripcionAct
                     dataGridView.Rows[renglon].Cells[1].Value = reader.GetString(1);  // NombreActividad
                     dataGridView.Rows[renglon].Cells[2].Value = reader.GetDateTime(2); // FechaInscripcion
                     dataGridView.Rows[renglon].Cells[3].Value = reader.GetDecimal(3);  // CostoDiario

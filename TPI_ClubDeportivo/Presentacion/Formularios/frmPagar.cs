@@ -96,13 +96,13 @@ namespace TPI_ClubDeportivo
                 }
                 else
                 {
-                    query = "SELECT i.IdInscripcion, a.NombreActividad, CONCAT(c.NombreC, ' ', c.ApellidoC), c.EsSocio, " +
+                    query = "SELECT i.IdInscripcionAct, a.NombreActividad, CONCAT(c.NombreC, ' ', c.ApellidoC), c.EsSocio, " +
                             "a.CostoDiario, i.Pagado " +
-                            "FROM Inscripcion i " +
-                            "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
-                            "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
-                            "INNER JOIN Cliente c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
-                            "WHERE i.IdInscripcion = @IdReg"; 
+                            "FROM InscripcionAct AS i " +
+                            "INNER JOIN Edicion AS e ON i.IdEdicion = e.IdEdicion " +
+                            "INNER JOIN Actividad  AS a ON a.Nactividad = e.Nactividad " +
+                            "INNER JOIN Cliente AS c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
+                            "WHERE i.IdInscripcionAct = @IdReg"; 
                 }
                
 

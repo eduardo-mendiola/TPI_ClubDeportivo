@@ -9,32 +9,32 @@ SET @rta = 0;
 CALL InsActividad("DNI","12345678", 846, @rta);
 
 
-SELECT * FROM inscripcion;
+SELECT * FROM InscripcionAct;
 
--- OBTENER DATOS DE LA INSCRIPCION
-SELECT IdInscripcion, NombreActividad, CONCAT(NombreC, ' ', ApellidoC), EsSocio, CostoDiario, e.Fecha 
-FROM Inscripcion i 
+-- OBTENER DATOS DE LA INSCRIPCION A LA ACTIVIDAD
+SELECT IdInscripcionAct, NombreActividad, CONCAT(NombreC, ' ', ApellidoC), EsSocio, CostoDiario, e.Fecha 
+FROM InscripcionAct i 
 inner join Edicion e on i.IdEdicion = e.IdEdicion
 inner join Actividad a on a.Nactividad = e.Nactividad 
 inner join Cliente c on c.Idcliente = i.Idcliente
 where c.DocC = 1234343;
 
 -- ELIMINAR UNA INSCRIPCIÓN
-DELETE FROM Inscripcion WHERE IdInscri = 1;
+DELETE FROM InscipcionAct WHERE IdInscri = 1;
 
 
-SELECT i.IdInscripcion, a.NombreActividad, i.FechaInscripcion, a.CostoDiario, i.Pagado 
-	FROM Inscripcion i 
+SELECT i.IdInscripcionAct, a.NombreActividad, i.FechaInscripcion, a.CostoDiario, i.Pagado 
+	FROM InscripcionAct i 
 	INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion 
     INNER JOIN Actividad a ON a.Nactividad = e.Nactividad 
     INNER JOIN Cliente c on c.Idcliente = i.Idcliente 
     WHERE c.DocC = 454543353 AND i.Pagado = 0;
     
-UPDATE Inscripcion
+UPDATE InscripcionAct
 SET Pagado = 0
-WHERE IdInscripcion = 201;
+WHERE IdInscripcionAct = 201;
 
-SELECT * FROM Inscripcion;
+SELECT * FROM InscripcionAct;
 SELECT * FROM Cliente;
 SELECT * FROM CuotaMensual;
 SELECT * FROM Socio;

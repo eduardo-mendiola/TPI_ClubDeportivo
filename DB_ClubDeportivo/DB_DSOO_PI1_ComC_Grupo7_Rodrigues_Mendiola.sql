@@ -1,4 +1,4 @@
-/* DB_DSOO_PI1_ComC_Grupo7_Rodrigues_Mendiola_Zenteno */
+/* DB_DSOO_PI1_ComC_Grupo7_Rodrigues_Mendiola */
 
 DROP DATABASE IF EXISTS ClubDeportivo;
 CREATE DATABASE ClubDeportivo;
@@ -42,6 +42,7 @@ CREATE TABLE Cliente (
     EmailC VARCHAR(30),
     EsSocio TINYINT,
     AptoFisico TINYINT,
+    FechaRegistro DATE,
     CONSTRAINT pk_IdCliente PRIMARY KEY (IdCliente),
     CONSTRAINT uq_TDocC_DocC UNIQUE (TDocC, DocC)  
 );
@@ -102,14 +103,14 @@ INSERT INTO Edicion (IdEdicion, NActividad, Fecha, HorarioActividad, DiasActivid
 (NULL, 104, '2024-12-11', '09:00:00', 'Miércoles', 204);
 
 
-CREATE TABLE Inscripcion (
-    IdInscripcion INT AUTO_INCREMENT,
+CREATE TABLE InscripcionAct (
+    IdInscripcionAct INT AUTO_INCREMENT,
     TipoDocCliente VARCHAR(20),
     DocCliente VARCHAR(20),
     IdEdicion INT,
     FechaInscripcion DATE,
     Pagado BOOLEAN DEFAULT FALSE,
-    CONSTRAINT pk_IdInscripcion PRIMARY KEY (IdInscripcion),
+    CONSTRAINT pk_IdInscripcionAct PRIMARY KEY (IdInscripcionAct),
     CONSTRAINT fk_TipoDoc_DocCliente FOREIGN KEY (TipoDocCliente, DocCliente) REFERENCES Cliente (TDocC, DocC),
     CONSTRAINT fk_Inscripcion_Actividad FOREIGN KEY (IdEdicion) REFERENCES Edicion (IdEdicion)
 );
@@ -184,9 +185,11 @@ CREATE PROCEDURE NuevoCliente(
 BEGIN
     DECLARE filas INT DEFAULT 0;
     DECLARE existe INT DEFAULT 0;
+    DECLARE FechaReg DATE;
 
     SET filas = (SELECT COUNT(*) FROM cliente);
-
+	SET FechaReg = CURDATE();
+    
     IF filas = 0 THEN
         SET filas = 0; 
     ELSE
@@ -197,8 +200,8 @@ BEGIN
 
     IF existe = 0 THEN
         -- Insertar el nuevo cliente con todos los campos
-        INSERT INTO cliente (idCliente, NombreC, ApellidoC, TDocC, DocC, FechaNacC, TelC, DomicilioC, EmailC, EsSocio, AptoFisico) 
-        VALUES (filas, Nom, Ape, Tip, Doc, FechaNac, Tel, Domicilio, Email, EsSocio, AptoFisico);
+        INSERT INTO cliente (idCliente, NombreC, ApellidoC, TDocC, DocC, FechaNacC, TelC, DomicilioC, EmailC, EsSocio, AptoFisico, FechaRegistro) 
+        VALUES (filas, Nom, Ape, Tip, Doc, FechaNac, Tel, Domicilio, Email, EsSocio, AptoFisico, FechaReg);
 
         -- Retornar el nuevo conteo de clientes
         SET rta = filas; 
@@ -223,7 +226,7 @@ CREATE PROCEDURE InsActividad(IN TipoDoc VARCHAR(20), IN NumDocCliente VARCHAR(2
 	 SET Fecha_Actual = CURDATE();  -- Asigna la fecha actual (solo la fecha, sin la hora)
      SET rta = 0;  -- Asignar un valor predeterminado a 'rta'
 
-     SET Filas = (SELECT count(*) FROM Inscripcion);
+     SET Filas = (SELECT count(*) FROM InscripcionAct);
      IF Filas = 0 THEN
 		SET Filas = 200; /* consideramos a este numero como el primer numero de postulante */
      ELSE
@@ -232,12 +235,12 @@ CREATE PROCEDURE InsActividad(IN TipoDoc VARCHAR(20), IN NumDocCliente VARCHAR(2
 		considerarla como PRIMARY KEY de la tabla
 		Lo mismo hacemos para alumno
    ___________________________________________________________________________ */
-		SET Filas = (SELECT max(IdInscripcion) + 1 FROM Inscripcion);
+		SET Filas = (SELECT max(IdInscripcionAct) + 1 FROM InscripcionAct);
 
 		/* ---------------------------------------------------------
 			para saber si ya esta almacenado el postulante
 		------------------------------------------------------- */	
-		SET Existe = (SELECT count(*) FROM Inscripcion WHERE TipoDocCliente = TipoDoc AND DocCliente = NumDocCliente AND IdEdicion = IdEdi);
+		SET Existe = (SELECT count(*) FROM InscripcionAct WHERE TipoDocCliente = TipoDoc AND DocCliente = NumDocCliente AND IdEdicion = IdEdi);
      END IF;
      
       -- Determina si el cliente es socio
@@ -250,7 +253,7 @@ CREATE PROCEDURE InsActividad(IN TipoDoc VARCHAR(20), IN NumDocCliente VARCHAR(2
       END IF;
 	 
 	  IF Existe = 0 THEN	 
-		 INSERT INTO Inscripcion VALUES(Filas, TipoDoc, NumDocCliente, IdEdi, Fecha_Actual, Pago);
+		 INSERT INTO InscripcionAct VALUES(Filas, TipoDoc, NumDocCliente, IdEdi, Fecha_Actual, Pago);
          
          UPDATE Actividad AS a
 		  INNER JOIN Edicion AS e ON e.NActividad = a.NActividad
