@@ -21,44 +21,6 @@ namespace TPI_ClubDeportivo
             InitializeComponent();
         }
 
-        private void txtUsuario_Enter(object sender, EventArgs e)
-        {
-            /* Este evento se ejecuta cuando llega el foco. */
-            if (txtUser.Text == "USUARIO")
-            {
-                txtUser.Text = "";
-            }
-        }
-
-        private void txtUsuario_Leave(object sender, EventArgs e)
-        {
-            /* Este evento se ejecuta cuando se va el foco */
-            if (txtUser.Text == "")
-            {
-                txtUser.Text = "USUARIO";
-            }
-        }
-
-        private void txtPass_Enter(object sender, EventArgs e)
-        {
-            if (txtPass.Text == "CONTRASEÑA")
-            {
-                txtPass.Text = "";
-                txtPass.UseSystemPasswordChar = true;
-            }
-        }
-
-        private void txtPass_Leave(object sender, EventArgs e)
-        {
-            if (txtPass.Text == "")
-            {
-                txtPass.Text = "CONTRASEÑA";
-                txtPass.UseSystemPasswordChar = false;
-            }
-        }
-
-
-
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             DataTable tablaLogin = new DataTable(); // es la que recibe los datos desde el formulario.

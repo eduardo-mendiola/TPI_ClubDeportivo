@@ -14,39 +14,54 @@ namespace TPI_ClubDeportivo.Datos.Infrastructure
         private string servidor;
         private string puerto;
         private string usuario;
-        private string clave;
-        private static ConexionDB? con = null; // Variable estática para la instancia de conexión
+        private string clave;     
+        private static ConexionDB? _instancia = null; // Variable estática para la instancia de conexión
 
-        // Constructor de la clase Conexion
         private ConexionDB()
         {
             bool correcto = false;
             int mensaje;
-
-            // Valores predeterminados sugeridos
-            string T_servidor = "localhost"; // Servidor sugerido
-            string T_puerto = "3306"; // Puerto sugerido para MySQL
-            string T_usuario = "root"; // Usuario sugerido
-            string T_clave = "root"; // Contraseña sugerida 
+            string T_servidor = "localhost";
+            string T_puerto = "3306";
+            string T_usuario = "root";
+            string T_clave = "root";
 
             while (!correcto)
             {
-                // Muestra los valores predeterminados en cada campo
-                T_servidor = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Servidor", "DATOS DE INSTALACIÓN MySQL", T_servidor);
-                T_puerto = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Puerto", "DATOS DE INSTALACIÓN MySQL", T_puerto);
-                T_usuario = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Usuario", "DATOS DE INSTALACIÓN MySQL", T_usuario);
-                T_clave = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Clave", "DATOS DE INSTALACIÓN MySQL", T_clave);
+                // Pedir datos al usuario
+                T_servidor = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Servidor", "CLUB DEPORTIVO  -  DATOS DE INSTALACIÓN MySQL", T_servidor);
+                if (string.IsNullOrEmpty(T_servidor))
+                {
+                    throw new InvalidOperationException("La configuración fue cancelada por el usuario."); // Lanza excepción si se cancela
+                }
 
-                mensaje = (int)MessageBox.Show("Su Ingreso: SERVIDOR = " + T_servidor + " PUERTO= " + T_puerto + " USUARIO: " 
+                T_puerto = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Puerto", "CLUB DEPORTIVO  -  DATOS DE INSTALACIÓN MySQL", T_puerto);
+                if (string.IsNullOrEmpty(T_puerto))
+                {
+                    throw new InvalidOperationException("La configuración fue cancelada por el usuario.");
+                }
+
+                T_usuario = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Usuario", "CLUB DEPORTIVO  -  DATOS DE INSTALACIÓN MySQL", T_usuario);
+                if (string.IsNullOrEmpty(T_usuario))
+                {
+                    throw new InvalidOperationException("La configuración fue cancelada por el usuario.");
+                }
+
+                T_clave = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Clave", "CLUB DEPORTIVO  -  DATOS DE INSTALACIÓN MySQL", T_clave);
+                if (string.IsNullOrEmpty(T_clave))
+                {
+                    throw new InvalidOperationException("La configuración fue cancelada por el usuario.");
+                }
+
+                // Confirmación de los datos ingresados
+                mensaje = (int)MessageBox.Show("Su Ingreso: SERVIDOR = " + T_servidor + " PUERTO= " + T_puerto + " USUARIO: "
                     + T_usuario + " CLAVE: " + T_clave, "AVISO DEL SISTEMA", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-
-                if (mensaje == 6)  // Si el usuario confirma
+                if (mensaje == (int)DialogResult.Yes)
                 {
-                    // Intentamos validar la conexión
                     if (ValidarConexion(T_servidor, T_puerto, T_usuario, T_clave))
                     {
-                        correcto = true; // Si la validación fue exitosa, terminamos el loop
+                        correcto = true;
                     }
                     else
                     {
@@ -55,12 +70,15 @@ namespace TPI_ClubDeportivo.Datos.Infrastructure
                 }
                 else
                 {
-                    MessageBox.Show("Ingrese nuevamente los datos");
+                    DialogResult confirmExit = MessageBox.Show("¿Desea cancelar la configuración de la conexión?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirmExit == DialogResult.Yes)
+                    {
+                        throw new InvalidOperationException("La conexión fue cancelada por el usuario."); // Lanza excepción si se cancela
+                    }
                 }
-
             }
 
-
+            // Asignar valores a las variables si todo está bien
             this.baseDatos = "ClubDeportivo";
             this.servidor = T_servidor;
             this.puerto = T_puerto;
@@ -68,6 +86,7 @@ namespace TPI_ClubDeportivo.Datos.Infrastructure
             this.clave = T_clave;
         }
 
+        
         // Método para Validad la conexion
         private bool ValidarConexion(string servidor, string puerto, string usuario, string clave)
         {
@@ -114,11 +133,12 @@ namespace TPI_ClubDeportivo.Datos.Infrastructure
         // Método para obtener la instancia única de la clase Conexion
         public static ConexionDB getInstancia()
         {
-            if (con == null) // Verifica si la conexión no ha sido creada
+            if (_instancia == null)
             {
-                con = new ConexionDB(); // Si no existe, se crea una nueva instancia
+                _instancia = new ConexionDB();
             }
-            return con; // Retorna la instancia de conexión (puede ser nueva o existente)
+            return _instancia;
         }
+
     }
 }
