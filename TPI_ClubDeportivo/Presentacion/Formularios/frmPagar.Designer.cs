@@ -77,7 +77,7 @@
             groupBox1.Controls.Add(optEfvo);
             groupBox1.FlatStyle = FlatStyle.Flat;
             groupBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox1.Location = new Point(46, 524);
+            groupBox1.Location = new Point(176, 524);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(311, 182);
             groupBox1.TabIndex = 1;
@@ -137,25 +137,29 @@
             // 
             // btnPagar
             // 
-            btnPagar.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            btnPagar.Location = new Point(477, 586);
+            btnPagar.BackColor = Color.DodgerBlue;
+            btnPagar.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPagar.ForeColor = Color.White;
+            btnPagar.Location = new Point(613, 517);
             btnPagar.Name = "btnPagar";
-            btnPagar.Size = new Size(200, 60);
+            btnPagar.Size = new Size(234, 70);
             btnPagar.TabIndex = 3;
             btnPagar.Text = "PAGAR";
-            btnPagar.UseVisualStyleBackColor = true;
+            btnPagar.UseVisualStyleBackColor = false;
             btnPagar.Click += btnPagar_Click;
             // 
             // btnComprobante
             // 
+            btnComprobante.BackColor = Color.DarkGray;
             btnComprobante.Enabled = false;
-            btnComprobante.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            btnComprobante.Location = new Point(771, 586);
+            btnComprobante.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            btnComprobante.ForeColor = Color.White;
+            btnComprobante.Location = new Point(613, 635);
             btnComprobante.Name = "btnComprobante";
-            btnComprobante.Size = new Size(200, 60);
+            btnComprobante.Size = new Size(234, 70);
             btnComprobante.TabIndex = 4;
             btnComprobante.Text = "COMPROBANTE";
-            btnComprobante.UseVisualStyleBackColor = true;
+            btnComprobante.UseVisualStyleBackColor = false;
             btnComprobante.Click += btnComprobante_Click;
             // 
             // picLogo
@@ -261,13 +265,15 @@
             // 
             // btnBuscarDeudas
             // 
-            btnBuscarDeudas.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            btnBuscarDeudas.Location = new Point(746, 161);
+            btnBuscarDeudas.BackColor = Color.DarkGray;
+            btnBuscarDeudas.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBuscarDeudas.ForeColor = Color.White;
+            btnBuscarDeudas.Location = new Point(752, 180);
             btnBuscarDeudas.Name = "btnBuscarDeudas";
             btnBuscarDeudas.Size = new Size(200, 60);
             btnBuscarDeudas.TabIndex = 38;
             btnBuscarDeudas.Text = "BUSCAR";
-            btnBuscarDeudas.UseVisualStyleBackColor = true;
+            btnBuscarDeudas.UseVisualStyleBackColor = false;
             btnBuscarDeudas.Click += btnBuscarDeudas_Click;
             // 
             // cboTipoDocCPagos

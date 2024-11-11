@@ -121,7 +121,7 @@ namespace TPI_ClubDeportivo
             btnImprimir.BackColor = Color.DodgerBlue;
             btnImprimir.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnImprimir.ForeColor = Color.White;
-            btnImprimir.Location = new Point(74, 705);
+            btnImprimir.Location = new Point(478, 705);
             btnImprimir.Name = "btnImprimir";
             btnImprimir.Size = new Size(234, 70);
             btnImprimir.TabIndex = 1;
@@ -419,7 +419,7 @@ namespace TPI_ClubDeportivo
             btnSalirFact.BackColor = Color.DarkGray;
             btnSalirFact.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnSalirFact.ForeColor = Color.White;
-            btnSalirFact.Location = new Point(465, 705);
+            btnSalirFact.Location = new Point(94, 705);
             btnSalirFact.Name = "btnSalirFact";
             btnSalirFact.Size = new Size(234, 70);
             btnSalirFact.TabIndex = 3;

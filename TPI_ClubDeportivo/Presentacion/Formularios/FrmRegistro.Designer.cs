@@ -137,7 +137,7 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.BackColor = Color.Gray;
+            btnLimpiar.BackColor = Color.DarkGray;
             btnLimpiar.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnLimpiar.ForeColor = Color.White;
             btnLimpiar.Location = new Point(68, 741);

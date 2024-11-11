@@ -223,7 +223,7 @@
             // 
             // btnLimpiarInscripcion
             // 
-            btnLimpiarInscripcion.BackColor = Color.Gray;
+            btnLimpiarInscripcion.BackColor = Color.DarkGray;
             btnLimpiarInscripcion.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnLimpiarInscripcion.ForeColor = Color.White;
             btnLimpiarInscripcion.Location = new Point(222, 676);
