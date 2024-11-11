@@ -14,10 +14,13 @@ namespace TPI_ClubDeportivo.Entidades
     {
         public string IdSocio { get; private set; }
         public E_Cuota Cuota { get; private set; }
+        public E_Cliente cliente {  get; private set; }
 
+        
         public E_Socio() 
         {
-            Cuota = new E_Cuota(); 
+            Cuota = new E_Cuota();
+            cliente = new E_Cliente();
         }
 
         public double GetValorCuota()
@@ -74,8 +77,79 @@ namespace TPI_ClubDeportivo.Entidades
         }
 
 
+        //public void ObtenerDeuda(DataGridView dataGridView, string TipoDocPago, string Documento)
+        //{
+        //    MySqlConnection sqlCon = new MySqlConnection();
+        //    try
+        //    {
+        //        dataGridView.Rows.Clear(); // Limpiar la grilla antes de cargar datos
+
+        //        sqlCon = ConexionDB.getInstancia().CrearConexion();
+        //        string query = "SELECT cm.IdPago, cm.IdSocio, cm.FechaVencimiento, cm.Monto " +
+        //                       "FROM CuotaMensual AS cm " +
+        //                       "INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio " +
+        //                       "INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente " +
+        //                       "WHERE c.TDocC = @TipoDoc AND c.DocC = @Documento AND cm.EstadoPago = 0";
+
+        //        MySqlCommand comando = new MySqlCommand(query, sqlCon);
+        //        comando.Parameters.AddWithValue("@TipoDoc", TipoDocPago);
+        //        comando.Parameters.AddWithValue("@Documento", Documento);
+
+        //        sqlCon.Open();
+        //        MySqlDataReader reader = comando.ExecuteReader();
+
+        //        // Configura los encabezados de columna solo una vez fuera del bucle
+        //        if (dataGridView.Columns.Count > 1)
+        //        {
+        //            dataGridView.Columns[1].HeaderText = "ID Socio";
+        //            dataGridView.Columns[2].HeaderText = "Fecha Vencimiento";
+        //        }
+
+        //        // Procesa todas las filas encontradas
+        //        while (reader.Read())
+        //        {
+        //            int renglon = dataGridView.Rows.Add();
+        //            dataGridView.Rows[renglon].Cells[0].Value = reader.GetInt32(0);  // IdInscripcion
+        //            dataGridView.Rows[renglon].Cells[1].Value = reader.GetString(1);  // NombreActividad
+        //            dataGridView.Rows[renglon].Cells[2].Value = reader.GetDateTime(2).ToString("dd/MM/yyyy"); // FechaVencimiento
+        //            dataGridView.Rows[renglon].Cells[3].Value = reader.GetDecimal(3);  // CostoDiario
+        //        }
+
+        //        // Mensaje si no hay filas en la consulta
+        //        if (!reader.HasRows)
+        //        {
+        //            MessageBox.Show("EL CLIENTE NO REGISTRA DEUDAS");
+        //        }
+
+        //        reader.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        if (sqlCon.State == ConnectionState.Open)
+        //        {
+        //            sqlCon.Close();
+        //        }
+        //    }
+        //}
+
+
+
+
+
         public void ObtenerDeuda(DataGridView dataGridView, string TipoDocPago, string Documento)
         {
+            // Verificar si el cliente existe
+            if (!cliente.ClienteExiste(TipoDocPago, Documento))
+            {
+                MessageBox.Show("El cliente no existe en el sistema.");
+                return; // Salir del método si el cliente no existe
+            }
+
+
             MySqlConnection sqlCon = new MySqlConnection();
             try
             {
@@ -83,10 +157,10 @@ namespace TPI_ClubDeportivo.Entidades
 
                 sqlCon = ConexionDB.getInstancia().CrearConexion();
                 string query = "SELECT cm.IdPago, cm.IdSocio, cm.FechaVencimiento, cm.Monto " +
-                               "FROM CuotaMensual AS cm " +
-                               "INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio " +
-                               "INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente " +
-                               "WHERE c.TDocC = @TipoDoc AND c.DocC = @Documento AND cm.EstadoPago = 0";
+                                       "FROM CuotaMensual AS cm " +
+                                       "INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio " +
+                                       "INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente " +
+                                       "WHERE c.TDocC = @TipoDoc AND c.DocC = @Documento AND cm.EstadoPago = 0";
 
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
                 comando.Parameters.AddWithValue("@TipoDoc", TipoDocPago);
@@ -106,8 +180,8 @@ namespace TPI_ClubDeportivo.Entidades
                 while (reader.Read())
                 {
                     int renglon = dataGridView.Rows.Add();
-                    dataGridView.Rows[renglon].Cells[0].Value = reader.GetInt32(0);  // IdInscripcion
-                    dataGridView.Rows[renglon].Cells[1].Value = reader.GetString(1);  // NombreActividad
+                    dataGridView.Rows[renglon].Cells[0].Value = reader.GetInt32(0);  // IdPago
+                    dataGridView.Rows[renglon].Cells[1].Value = reader.GetString(1);  // IdSocio
                     dataGridView.Rows[renglon].Cells[2].Value = reader.GetDateTime(2).ToString("dd/MM/yyyy"); // FechaVencimiento
                     dataGridView.Rows[renglon].Cells[3].Value = reader.GetDecimal(3);  // CostoDiario
                 }

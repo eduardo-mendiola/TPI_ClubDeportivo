@@ -187,6 +187,40 @@ namespace TPI_ClubDeportivo.Entidades
             return esSocio;
         }
 
+
+        public bool ClienteExiste(string tipoDoc, string documento)
+        {
+            MySqlConnection sqlCon = ConexionDB.getInstancia().CrearConexion();
+            bool existe = false;
+
+            try
+            {
+                string query = "SELECT COUNT(*) FROM Cliente WHERE TDocC = @TipoDoc AND DocC = @Documento";
+                MySqlCommand comando = new MySqlCommand(query, sqlCon);
+                comando.Parameters.AddWithValue("@TipoDoc", tipoDoc);
+                comando.Parameters.AddWithValue("@Documento", documento);
+
+                sqlCon.Open();
+                int count = Convert.ToInt32(comando.ExecuteScalar()); // Obtiene el número de coincidencias
+                existe = (count > 0); // Si hay una coincidencia, entonces el cliente existe
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar la existencia del cliente: " + ex.Message);
+            }
+            finally
+            {
+                if (sqlCon.State == System.Data.ConnectionState.Open)
+                {
+                    sqlCon.Close();
+                }
+            }
+
+            return existe;
+        }
+
+
+
     }
 }
 

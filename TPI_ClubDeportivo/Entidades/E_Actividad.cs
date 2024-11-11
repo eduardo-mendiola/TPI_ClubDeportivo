@@ -114,7 +114,7 @@ namespace TPI_ClubDeportivo.Entidades
                 }
                 else
                 {
-                    MessageBox.Show("Error al procesar la inscripción. Respuesta inesperada: " + respuesta, "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al procesar la inscripción. Verifique que los datos ingresados sean correctos.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
