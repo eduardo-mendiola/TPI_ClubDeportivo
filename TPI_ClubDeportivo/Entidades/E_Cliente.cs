@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TPI_ClubDeportivo.Datos.Infrastructure;
 
 namespace TPI_ClubDeportivo.Entidades
@@ -22,12 +23,14 @@ namespace TPI_ClubDeportivo.Entidades
         public string? Domicilio { get; private set; }
         public bool EsSocio { get; private set; }
         public bool AptoFisico { get; private set; }
+        public DateTime FechaRegistro { get; private set; }
         public List<E_Actividad> ActividadesInscriptas { get; private set; }
 
         public E_Cliente()
         {
             this.EsSocio = false;
             this.AptoFisico = true;
+            SetFechaRegistro();
         }
 
 
@@ -100,11 +103,52 @@ namespace TPI_ClubDeportivo.Entidades
             ActividadesInscriptas = actividades;
         }
 
+        public void SetFechaRegistro()
+        {
+            MySqlConnection sqlCon = new MySqlConnection();
+            try
+            {
+                sqlCon = ConexionDB.getInstancia().CrearConexion();
+
+                string query = "SELECT FechaRegistro " +
+                               "FROM Cliente " +
+                               "WHERE TDocC = @TipoDoc AND DocC = @Documento";
+
+                MySqlCommand comando = new MySqlCommand(query, sqlCon);
+                comando.Parameters.AddWithValue("@TipoDoc", this.TipoDoc);
+                comando.Parameters.AddWithValue("@Documento", this.Doc);
+
+                sqlCon.Open();
+                MySqlDataReader reader = comando.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    this.FechaRegistro = reader.GetDateTime(0);
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                {
+                    sqlCon.Close();
+                }
+            }
+
+        }
+
+        public DateTime GetFechaRegistro() { return this.FechaRegistro; }
+
 
         public bool VerificarEsSocio(string TipoDocPago, string Documento)
         {
             MySqlConnection sqlCon = new MySqlConnection();
-            bool esSocio = false; 
+            bool esSocio = false;
 
             try
             {
@@ -121,9 +165,9 @@ namespace TPI_ClubDeportivo.Entidades
                 sqlCon.Open();
                 MySqlDataReader reader = comando.ExecuteReader();
 
-                if (reader.Read()) 
+                if (reader.Read())
                 {
-                    esSocio = reader.GetInt32(0) == 1; 
+                    esSocio = reader.GetInt32(0) == 1;
                 }
 
                 reader.Close();
@@ -145,5 +189,6 @@ namespace TPI_ClubDeportivo.Entidades
 
     }
 }
+
 
 
