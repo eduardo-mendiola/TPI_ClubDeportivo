@@ -53,7 +53,7 @@ namespace TPI_ClubDeportivo.Entidades
 
         public void SetTipoDoc(string tipoDoc)
         {
-            TipoDoc = tipoDoc;
+            this.TipoDoc = tipoDoc;
         }
 
         public string GetTipoDoc() { return TipoDoc; }

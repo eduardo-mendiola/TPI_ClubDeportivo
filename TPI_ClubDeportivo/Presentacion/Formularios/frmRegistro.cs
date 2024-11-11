@@ -89,7 +89,7 @@ namespace TPI_ClubDeportivo
                         }
                         // Abre el formulario de pago y pasa los datos automáticamente
                         frmPagar pagoForm = new frmPagar();
-                        pagoForm.cargarDatosDePago(cliente, codigo); // Pasar los datos del cliente y el código
+                        pagoForm.cargarDatosDePago(cliente); // Pasar los datos del cliente y el código
 
                         this.Hide();
                         

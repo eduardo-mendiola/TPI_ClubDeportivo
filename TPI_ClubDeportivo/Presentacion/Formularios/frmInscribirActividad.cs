@@ -25,7 +25,7 @@ namespace TPI_ClubDeportivo
             InitializeComponent();
             this.cliente = cliente;  // Guarda el cliente para usarlo en el formulario
 
-            // Opcional: Puedes precargar los datos del cliente en los campos de texto si es necesario
+            // Precargar los datos del cliente en los campos de texto si es necesario
             cboTipoDocCliente.Text = cliente.GetTipoDoc();
             txtDocCliente.Text = cliente.GetDoc();
         }
@@ -39,7 +39,7 @@ namespace TPI_ClubDeportivo
         private void frmAsignar_Load(object sender, EventArgs e)
         {
             CargarGrilla(); // Llamada al procedimiento
-            cboTipoDocCliente.SelectedIndex = 0; // Para que al iniciar el form de registro muestre DNI en el tipo por defecto.
+            //cboTipoDocCliente.SelectedIndex = 0; // Para que al iniciar el form de registro muestre DNI en el tipo por defecto.
         }
 
         public void CargarGrilla()

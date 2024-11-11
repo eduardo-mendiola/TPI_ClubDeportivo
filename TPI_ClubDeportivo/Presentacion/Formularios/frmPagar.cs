@@ -24,7 +24,8 @@ namespace TPI_ClubDeportivo
         private void frmPagar_Load(object sender, EventArgs e)
         {
             cboCuotasTarjeta.SelectedIndex = 0;
-            cboTipoDocCPagos.SelectedIndex = 0;
+            //cboTipoDocCPagos.SelectedIndex = 0;
+
         }
 
         public frmPagar()
@@ -205,7 +206,7 @@ namespace TPI_ClubDeportivo
         }
 
 
-        public void cargarDatosDePago(E_Cliente cliente, int codigo)
+        public void cargarDatosDePago(E_Cliente cliente)
         {
             // Cargar los datos del cliente en el formulario de pago
             txtDocumento.Text = cliente.GetDoc();
@@ -217,9 +218,9 @@ namespace TPI_ClubDeportivo
 
             if (!MembresiaCliente)
             {
-                MessageBox.Show("El cliente no es socio. Redirigiendo al formulario de inscripción...");
+                MessageBox.Show("El cliente no es socio. Redirigiendo al formulario de inscripción...", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // **Aquí abrimos el formulario de inscripción en modo modal**
+                // **Abrimos el formulario de inscripción en modo modal**
                 frmInscribirActividad inscripcionForm = new frmInscribirActividad(cliente);
                 this.Hide();  // Oculta el formulario actual (frmPagar) para mostrar solo el de inscripción
                 DialogResult resultado = inscripcionForm.ShowDialog();  // Abre frmInscribirActividad y espera hasta que se cierre

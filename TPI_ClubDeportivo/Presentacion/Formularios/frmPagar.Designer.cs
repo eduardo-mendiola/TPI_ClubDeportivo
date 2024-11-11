@@ -51,6 +51,7 @@
             Precio = new DataGridViewTextBoxColumn();
             btnBuscarDeudas = new Button();
             cboTipoDocCPagos = new ComboBox();
+            label3 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panel1.SuspendLayout();
@@ -61,11 +62,11 @@
             // 
             lblIngreseNumero.AutoSize = true;
             lblIngreseNumero.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lblIngreseNumero.Location = new Point(193, 135);
+            lblIngreseNumero.Location = new Point(421, 160);
             lblIngreseNumero.Name = "lblIngreseNumero";
-            lblIngreseNumero.Size = new Size(425, 35);
+            lblIngreseNumero.Size = new Size(260, 35);
             lblIngreseNumero.TabIndex = 0;
-            lblIngreseNumero.Text = "Número de Documento del Cliente";
+            lblIngreseNumero.Text = "Núm. de Documento";
             // 
             // groupBox1
             // 
@@ -129,7 +130,7 @@
             // txtDocumento
             // 
             txtDocumento.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDocumento.Location = new Point(405, 199);
+            txtDocumento.Location = new Point(426, 199);
             txtDocumento.Name = "txtDocumento";
             txtDocumento.Size = new Size(251, 41);
             txtDocumento.TabIndex = 2;
@@ -279,11 +280,22 @@
             cboTipoDocCPagos.Size = new Size(189, 40);
             cboTipoDocCPagos.TabIndex = 39;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(225, 160);
+            label3.Name = "label3";
+            label3.Size = new Size(127, 35);
+            label3.TabIndex = 40;
+            label3.Text = "Tipo Doc.";
+            // 
             // frmPagar
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 734);
+            Controls.Add(label3);
             Controls.Add(cboTipoDocCPagos);
             Controls.Add(btnBuscarDeudas);
             Controls.Add(dtgvDeudas);
@@ -335,5 +347,6 @@
         private DataGridViewTextBoxColumn Precio;
         private Button btnBuscarDeudas;
         private ComboBox cboTipoDocCPagos;
+        private Label label3;
     }
 }
