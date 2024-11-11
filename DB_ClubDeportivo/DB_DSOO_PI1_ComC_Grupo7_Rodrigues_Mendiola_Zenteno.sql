@@ -115,16 +115,16 @@ CREATE TABLE Inscripcion (
     CONSTRAINT fk_Inscripcion_Actividad FOREIGN KEY (IdEdicion) REFERENCES Edicion (IdEdicion)
 );
 
-/*
-CREATE TABLE Pago(
-	IdPago INT AUTO_INCREMENT,
-	IdInscripcion INT,
-	Monto FLOAT,
-	Fecha DATE,
-	CONSTRAINT pk_Pago PRIMARY KEY (IdPago),
-	CONSTRAINT fk_Pago FOREIGN KEY (IdInscripcion) REFERENCES Inscripcion(IdInscripcion)
-);
-*/
+
+-- CREATE TABLE Comprobante(
+-- 	IdFactura INT AUTO_INCREMENT,
+-- 	IdCliente INT,
+-- 	Monto FLOAT,
+-- 	Fecha DATE,
+-- 	CONSTRAINT pk_Pago PRIMARY KEY (IdFactura),
+-- 	CONSTRAINT fk_IdClienteFactura FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente)
+-- );
+
 
 CREATE TABLE Socio(
 	IdSocio VARCHAR(20),

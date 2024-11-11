@@ -36,7 +36,7 @@ namespace TPI_ClubDeportivo
         private double MontoPago;
         public double DescuentoEfectivo = 0.90;
         public double ValorCuota;
-        private static int contadorComprobante = 1;
+        private static int contadorComprobante = 10; // TODO: El numero tendria que salir de una tabla Comprobante.
 
         public void SetValorCuota()
         {
@@ -116,7 +116,7 @@ namespace TPI_ClubDeportivo
             lblCantPagos.Text = Convert.ToString(CantCuotas_f);
             lblMontoPago.Text = Convert.ToString(MontoPago);
             lblMontoTotal.Text = Convert.ToString(Monto_f);
-            lblDescuento.Text = (Forma_f == "Efectivo") ? Convert.ToString(DescuentoEfectivo) : "No Aplica";
+            lblDescuento.Text = (Forma_f == "Efectivo") ? (Convert.ToString(Math.Round((1 - DescuentoEfectivo) * 100) ) + "%") : "No Aplica";
             GenerarNumeroComprobante(lblNumComp);
                   
             if (EsSocio_f == 1)

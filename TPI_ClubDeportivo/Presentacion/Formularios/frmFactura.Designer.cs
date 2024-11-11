@@ -339,9 +339,9 @@ namespace TPI_ClubDeportivo
             label6.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label6.Location = new Point(466, 195);
             label6.Name = "label6";
-            label6.Size = new Size(128, 30);
+            label6.Size = new Size(134, 30);
             label6.TabIndex = 21;
-            label6.Text = "Descuento:";
+            label6.Text = "Descuento: ";
             // 
             // lblCantPagos
             // 
