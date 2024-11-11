@@ -26,31 +26,34 @@ namespace TPI_ClubDeportivo.Datos.Infrastructure
             string T_usuario = "root";
             string T_clave = "root";
 
+            string MensajeEncabezado = "CLUB DEPORTIVO  -  DATOS DE INSTALACIÓN MySQL";
+            string MensajeCancelacion = "La configuración fue cancelada por el usuario.";
+
             while (!correcto)
             {
                 // Pedir datos al usuario
-                T_servidor = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Servidor", "CLUB DEPORTIVO  -  DATOS DE INSTALACIÓN MySQL", T_servidor);
+                T_servidor = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Servidor", MensajeEncabezado, T_servidor);
                 if (string.IsNullOrEmpty(T_servidor))
                 {
-                    throw new InvalidOperationException("La configuración fue cancelada por el usuario."); // Lanza excepción si se cancela
+                    throw new InvalidOperationException(MensajeCancelacion); // Lanza excepción si se cancela
                 }
 
-                T_puerto = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Puerto", "CLUB DEPORTIVO  -  DATOS DE INSTALACIÓN MySQL", T_puerto);
+                T_puerto = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Puerto", MensajeEncabezado, T_puerto);
                 if (string.IsNullOrEmpty(T_puerto))
                 {
-                    throw new InvalidOperationException("La configuración fue cancelada por el usuario.");
+                    throw new InvalidOperationException(MensajeCancelacion);
                 }
 
-                T_usuario = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Usuario", "CLUB DEPORTIVO  -  DATOS DE INSTALACIÓN MySQL", T_usuario);
+                T_usuario = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Usuario", MensajeEncabezado, T_usuario);
                 if (string.IsNullOrEmpty(T_usuario))
                 {
-                    throw new InvalidOperationException("La configuración fue cancelada por el usuario.");
+                    throw new InvalidOperationException(MensajeCancelacion);
                 }
 
-                T_clave = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Clave", "CLUB DEPORTIVO  -  DATOS DE INSTALACIÓN MySQL", T_clave);
+                T_clave = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Clave", MensajeEncabezado, T_clave);
                 if (string.IsNullOrEmpty(T_clave))
                 {
-                    throw new InvalidOperationException("La configuración fue cancelada por el usuario.");
+                    throw new InvalidOperationException(MensajeCancelacion);
                 }
 
                 // Confirmación de los datos ingresados
