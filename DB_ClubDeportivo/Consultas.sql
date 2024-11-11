@@ -67,3 +67,11 @@ WHERE cm.FechaVencimiento = CURDATE();
 
 SELECT EsSocio FROM Cliente WHERE TDocC = 'DNI' AND DocC = '44555666';
 
+SELECT e.IdEdicion, a.NombreActividad, a.DuracionMinutos, a.MaxParticipantes, a.CantInscriptos, a.CostoDiario, 
+    e.Fecha, e.HorarioActividad, e.DiasActividad, CONCAT(i.NombreInst, ' ', i.ApellidoInst) AS ApellidoInstructor
+FROM Actividad a
+JOIN Edicion e ON a.NActividad = e.NActividad
+JOIN Instructor i ON e.Instructor = i.NInstructor
+ORDER BY a.NombreActividad, e.Fecha, e.HorarioActividad;
+
+

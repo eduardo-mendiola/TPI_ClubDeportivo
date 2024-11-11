@@ -1,6 +1,4 @@
-﻿// Referencia a MySQL (se agrega como librería)
-using MySql.Data.MySqlClient; // Importa la biblioteca necesaria para trabajar con MySQL
-//---------------------------------------------
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,15 +18,74 @@ namespace TPI_ClubDeportivo.Datos.Infrastructure
         private static ConexionDB? con = null; // Variable estática para la instancia de conexión
 
         // Constructor de la clase Conexion
-        public ConexionDB()
+        private ConexionDB()
         {
-            baseDatos = "ClubDeportivo"; // Nombre de la base de datos asignado.
-            // Obtiene las variables de entorno para la configuración de conexión.
-            servidor = Environment.GetEnvironmentVariable("DB_HOST_MYSQL");
-            puerto = Environment.GetEnvironmentVariable("DB_PORT_MYSQL");
-            usuario = Environment.GetEnvironmentVariable("DB_USER_MYSQL");
-            clave = Environment.GetEnvironmentVariable("DB_PASSWORD_MYSQL");
+            bool correcto = false;
+            int mensaje;
+
+            // Valores predeterminados sugeridos
+            string T_servidor = "localhost"; // Servidor sugerido
+            string T_puerto = "3306"; // Puerto sugerido para MySQL
+            string T_usuario = "root"; // Usuario sugerido
+            string T_clave = "root"; // Contraseña sugerida 
+
+            while (!correcto)
+            {
+                // Muestra los valores predeterminados en cada campo
+                T_servidor = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Servidor", "DATOS DE INSTALACIÓN MySQL", T_servidor);
+                T_puerto = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Puerto", "DATOS DE INSTALACIÓN MySQL", T_puerto);
+                T_usuario = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Usuario", "DATOS DE INSTALACIÓN MySQL", T_usuario);
+                T_clave = Microsoft.VisualBasic.Interaction.InputBox("Ingrese Clave", "DATOS DE INSTALACIÓN MySQL", T_clave);
+
+                mensaje = (int)MessageBox.Show("Su Ingreso: SERVIDOR = " + T_servidor + " PUERTO= " + T_puerto + " USUARIO: " 
+                    + T_usuario + " CLAVE: " + T_clave, "AVISO DEL SISTEMA", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+
+                if (mensaje == 6)  // Si el usuario confirma
+                {
+                    // Intentamos validar la conexión
+                    if (ValidarConexion(T_servidor, T_puerto, T_usuario, T_clave))
+                    {
+                        correcto = true; // Si la validación fue exitosa, terminamos el loop
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error de conexión. Verifique los datos e intente nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese nuevamente los datos");
+                }
+
+            }
+
+
+            this.baseDatos = "ClubDeportivo";
+            this.servidor = T_servidor;
+            this.puerto = T_puerto;
+            this.usuario = T_usuario;
+            this.clave = T_clave;
         }
+
+        // Método para Validad la conexion
+        private bool ValidarConexion(string servidor, string puerto, string usuario, string clave)
+        {
+            string cadenaConexion = $"datasource={servidor};port={puerto};username={usuario};password={clave};";
+            using (var conexionPrueba = new MySqlConnection(cadenaConexion))
+            {
+                try
+                {
+                    conexionPrueba.Open();
+                    return true;
+                }
+                catch
+                {
+                    return false; // Si ocurre un error en la conexión, devolvemos false
+                }
+            }
+        }
+
 
         // Método para crear una conexión a la base de datos
         public MySqlConnection CrearConexion()
@@ -40,11 +97,11 @@ namespace TPI_ClubDeportivo.Datos.Infrastructure
             try
             {
                 // Construir la cadena de conexión utilizando las propiedades definidas
-                cadena.ConnectionString = "datasource=" + servidor +
-                                          ";port=" + puerto +
-                                          ";username=" + usuario +
-                                          ";password=" + clave +
-                                          ";Database=" + baseDatos;
+                cadena.ConnectionString = "datasource=" + this.servidor +
+                                          ";port=" + this.puerto +
+                                          ";username=" + this.usuario +
+                                          ";password=" + this.clave +
+                                          ";Database=" + this.baseDatos;
             }
             catch (Exception ex) // Captura cualquier excepción que ocurra
             {

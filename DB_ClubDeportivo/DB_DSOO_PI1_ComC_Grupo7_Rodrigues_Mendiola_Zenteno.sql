@@ -72,7 +72,6 @@ DuracionMinutos INT,
 MaxParticipantes INT,
 CantInscriptos INT DEFAULT 0,
 CostoDiario FLOAT,
-
 CONSTRAINT pk_NActividad PRIMARY KEY(NActividad)
 );
 
