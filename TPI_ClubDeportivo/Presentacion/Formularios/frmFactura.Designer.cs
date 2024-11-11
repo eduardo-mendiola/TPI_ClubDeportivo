@@ -63,6 +63,7 @@ namespace TPI_ClubDeportivo
             label13 = new Label();
             lblTipoPago = new Label();
             label11 = new Label();
+            btnSalirFact = new Button();
             pnlTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             pnlDatosInstituto.SuspendLayout();
@@ -120,7 +121,7 @@ namespace TPI_ClubDeportivo
             btnImprimir.BackColor = Color.DodgerBlue;
             btnImprimir.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnImprimir.ForeColor = Color.White;
-            btnImprimir.Location = new Point(287, 705);
+            btnImprimir.Location = new Point(74, 705);
             btnImprimir.Name = "btnImprimir";
             btnImprimir.Size = new Size(234, 70);
             btnImprimir.TabIndex = 1;
@@ -413,11 +414,25 @@ namespace TPI_ClubDeportivo
             label11.TabIndex = 12;
             label11.Text = "Forma de Pago:";
             // 
+            // btnSalirFact
+            // 
+            btnSalirFact.BackColor = Color.DarkGray;
+            btnSalirFact.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSalirFact.ForeColor = Color.White;
+            btnSalirFact.Location = new Point(465, 705);
+            btnSalirFact.Name = "btnSalirFact";
+            btnSalirFact.Size = new Size(234, 70);
+            btnSalirFact.TabIndex = 3;
+            btnSalirFact.Text = "SALIR";
+            btnSalirFact.UseVisualStyleBackColor = false;
+            btnSalirFact.Click += btnSalirFact_Click;
+            // 
             // frmFactura
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(799, 787);
+            Controls.Add(btnSalirFact);
             Controls.Add(pnlDatos);
             Controls.Add(pnlDatosInstituto);
             Controls.Add(btnImprimir);
@@ -476,5 +491,6 @@ namespace TPI_ClubDeportivo
         private Label label3;
         private Label lblMontoPago;
         private Label label5;
+        private Button btnSalirFact;
     }
 }

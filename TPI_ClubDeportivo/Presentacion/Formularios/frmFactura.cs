@@ -44,6 +44,16 @@ namespace TPI_ClubDeportivo
             this.ValorCuota = cuota.ValorCuota;
         }
 
+        private void btnSalirFact_Click(object sender, EventArgs e)
+        {
+            // Mostrar frmPagar y ocultar frmFactura
+            if (this.Owner != null)
+            {
+                this.Owner.Show();  // Mostramos frmPagar
+            }
+            this.Hide();  // Ocultamos frmFactura No cerrarlo
+        }
+
         private void btnImprimir_Click(object sender, EventArgs e)
         {
             /* ---------------------------------------------------
@@ -74,12 +84,12 @@ namespace TPI_ClubDeportivo
 
 
 
-            // Mostrar frmPagar y cerrar frmFactura
+            // Mostrar frmPagar y ocultar frmFactura
             if (this.Owner != null)
             {
                 this.Owner.Show();  // Mostramos frmPagar
             }
-            this.Close();  // Cerramos frmFactura
+            this.Hide();  // Ocultamos frmFactura No cerrarlo
         }
 
         /*----------------------------------------------------------
@@ -116,9 +126,9 @@ namespace TPI_ClubDeportivo
             lblCantPagos.Text = Convert.ToString(CantCuotas_f);
             lblMontoPago.Text = Convert.ToString(MontoPago);
             lblMontoTotal.Text = Convert.ToString(Monto_f);
-            lblDescuento.Text = (Forma_f == "Efectivo") ? (Convert.ToString(Math.Round((1 - DescuentoEfectivo) * 100) ) + "%") : "No Aplica";
+            lblDescuento.Text = (Forma_f == "Efectivo") ? (Convert.ToString(Math.Round((1 - DescuentoEfectivo) * 100)) + "%") : "No Aplica";
             GenerarNumeroComprobante(lblNumComp);
-                  
+
             if (EsSocio_f == 1)
             {
                 pnlCuotaMensual.Visible = true;
@@ -135,15 +145,16 @@ namespace TPI_ClubDeportivo
             // Se obtiene la fecha actual
             lblDFecha.Text = DateTime.UtcNow.ToShortDateString();
         }
-              
+
         private void GenerarNumeroComprobante(Label label)
         {
             string numeroComprobante = contadorComprobante.ToString("D7"); // "D7" asegura que haya 7 dígitos
-          
+
             label.Text = numeroComprobante;
-         
+
             contadorComprobante++;
         }
 
+        
     }
 }
