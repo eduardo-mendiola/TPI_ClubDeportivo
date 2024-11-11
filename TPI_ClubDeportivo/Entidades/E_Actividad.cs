@@ -9,7 +9,7 @@ using TPI_ClubDeportivo.Datos.Infrastructure;
 
 namespace TPI_ClubDeportivo.Entidades
 {
-    internal class E_Actividad
+    public class E_Actividad
     {
         public int IdActividad { get; private set; }
         public string? TipoDoc { get; private set; }

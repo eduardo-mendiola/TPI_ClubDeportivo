@@ -37,10 +37,6 @@ namespace TPI_ClubDeportivo.Entidades
             return this.IdSocio;
         }
 
-        public void InscribirSocio(int IdCliente)
-        {
-            
-        }
         
         public void RealizarPago(string IdPago)
         {

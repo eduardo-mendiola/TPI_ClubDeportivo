@@ -11,12 +11,26 @@ using System.Windows.Forms;
 using TPI_ClubDeportivo.Datos;
 using TPI_ClubDeportivo.Datos.Infrastructure;
 using TPI_ClubDeportivo.Entidades;
+using TPI_ClubDeportivo.Interfaces;
 
 namespace TPI_ClubDeportivo
 {
     public partial class frmInscribirActividad : Form
     {
-        // TODO: Mostar solo lista de actividades disponibles, aquellas que tengan cupo libre.
+        
+        private E_Cliente cliente;
+
+        public frmInscribirActividad(E_Cliente cliente)
+        {
+            InitializeComponent();
+            this.cliente = cliente;  // Guarda el cliente para usarlo en el formulario
+
+            // Opcional: Puedes precargar los datos del cliente en los campos de texto si es necesario
+            cboTipoDocCliente.Text = cliente.GetTipoDoc();
+            txtDocCliente.Text = cliente.GetDoc();
+        }
+
+
         public frmInscribirActividad()
         {
             InitializeComponent();
@@ -88,7 +102,18 @@ namespace TPI_ClubDeportivo
             this.Close();       // Cerrá el formulario actual
         }
 
-        
+
+        //private void btnInscribirCliente_Click(object sender, EventArgs e)
+        //{
+        //    E_Actividad NuevaInscripcion = new E_Actividad();
+        //    if (NuevaInscripcion.InscribirEnActividad(cboTipoDocCliente.Text, txtDocCliente.Text, txtIdActividad.Text))
+        //    {
+        //        dtgvActividades.Rows.Clear();
+        //        CargarGrilla();
+        //    }
+        //}
+
+
         private void btnInscribirCliente_Click(object sender, EventArgs e)
         {
             E_Actividad NuevaInscripcion = new E_Actividad();
@@ -96,9 +121,13 @@ namespace TPI_ClubDeportivo
             {
                 dtgvActividades.Rows.Clear();
                 CargarGrilla();
+
+                MessageBox.Show("Inscripción completada correctamente.");
+                this.DialogResult = DialogResult.OK;  // Retornar OK al formulario principal
+                this.Close();
             }
         }
-        
+
 
 
         private void btnLimpiarInscripcion_Click(object sender, EventArgs e)
@@ -106,5 +135,6 @@ namespace TPI_ClubDeportivo
             txtDocCliente.Text = "";
             txtIdActividad.Text = "";
         }
+
     }
 }

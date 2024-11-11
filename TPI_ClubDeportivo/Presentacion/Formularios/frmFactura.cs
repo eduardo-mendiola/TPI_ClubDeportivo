@@ -74,12 +74,12 @@ namespace TPI_ClubDeportivo
 
 
 
-            // En lugar de crear una nueva instancia de frmPrincipal, mostramos el formulario original (Owner)
+            // Mostrar frmPagar y cerrar frmFactura
             if (this.Owner != null)
             {
-                this.Owner.Show();  // Mostramos el formulario original
+                this.Owner.Show();  // Mostramos frmPagar
             }
-            this.Close();  // Cerramos el formulario actual
+            this.Close();  // Cerramos frmFactura
         }
 
         /*----------------------------------------------------------

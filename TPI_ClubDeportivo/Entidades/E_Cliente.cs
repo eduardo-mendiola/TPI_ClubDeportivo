@@ -9,7 +9,7 @@ using TPI_ClubDeportivo.Datos.Infrastructure;
 
 namespace TPI_ClubDeportivo.Entidades
 {
-    internal class E_Cliente
+    public class E_Cliente
     {
         public int IdCliente { get; private set; }
         public string? Nombre { get; private set; }
@@ -56,10 +56,14 @@ namespace TPI_ClubDeportivo.Entidades
             TipoDoc = tipoDoc;
         }
 
+        public string GetTipoDoc() { return TipoDoc; }
+
         public void SetDoc(string doc)
         {
             Doc = doc;
         }
+
+        public string GetDoc() { return Doc; }
 
         public void SetFechaNacimiento(DateTime? fechaNacimiento)
         {
