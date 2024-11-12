@@ -454,7 +454,7 @@ CALL NuevoCliente(
 -- Ejemplo 1: Registrar cuota para un cliente existente
 CALL RegCuotaSocio(
     0,              -- P_IdCliente (Id de un cliente existente)
-    '12345678-24',  -- P_IdSocio
+    '1-12345678-24',  -- P_IdSocio
     9999.88,        -- Monto de la cuota
     @rta            -- Variable para recibir respuesta
 );
@@ -462,7 +462,7 @@ CALL RegCuotaSocio(
 -- Ejemplo 2: Registrar cuota para un cliente existente
 CALL RegCuotaSocio(
     2,              -- P_IdCliente
-    'P1234567-24',  -- P_IdSocio
+    '2-P1234567-24',  -- P_IdSocio
 	9999.88,        -- Monto de la cuota
     @rta
 );
@@ -470,7 +470,7 @@ CALL RegCuotaSocio(
 -- Ejemplo 3: Registrar cuota para un cliente existente
 CALL RegCuotaSocio(
     3,              -- P_IdCliente
-    '20304050-24',  -- P_IdSocio
+    '3-20304050-24',  -- P_IdSocio
 	9999.88,        -- Monto de la cuota
     @rta
 );
@@ -478,7 +478,7 @@ CALL RegCuotaSocio(
 -- Ejemplo 4: Registrar cuota para un cliente existente
 CALL RegCuotaSocio(
     5,              -- P_IdCliente
-    '33445566-24',  -- P_IdSocio
+    '1-33445566-24',  -- P_IdSocio
 	9999.88,        -- Monto de la cuota
     @rta
 );
@@ -486,7 +486,7 @@ CALL RegCuotaSocio(
 -- Ejemplo 5: Registrar cuota para un cliente existente
 CALL RegCuotaSocio(
     8,              -- P_IdCliente
-    'F778899-24',  -- P_IdSocio
+    '2-F778899-24',  -- P_IdSocio
     9999.88,        -- Monto de la cuota
     @rta
 );

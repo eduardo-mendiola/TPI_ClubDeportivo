@@ -33,7 +33,25 @@ namespace TPI_ClubDeportivo.Entidades
         {
             string ultimosDosDigitos = DateTime.Now.ToString("yy");
             string sufijo = "-" + ultimosDosDigitos;
-            IdSocio = cliente.Doc + sufijo;
+            string prefijo;
+
+            switch (cliente.TipoDoc)
+            {
+                case "DNI":
+                    prefijo = "1-";
+                    break;
+                case "PASAPORTE":
+                    prefijo = "2-";
+                    break;
+                case "EXTRANJERO":
+                    prefijo = "3-";
+                    break;
+                default:
+                    prefijo = "0-";
+                    break;
+            }
+
+            IdSocio = prefijo + cliente.Doc + sufijo;
         }
 
         public string GetIdSocio()
