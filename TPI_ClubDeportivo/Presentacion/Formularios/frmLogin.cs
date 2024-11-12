@@ -21,6 +21,7 @@ namespace TPI_ClubDeportivo
             InitializeComponent();
         }
 
+        // Botón de Ingreso al Sistema
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             DataTable tablaLogin = new DataTable(); // es la que recibe los datos desde el formulario.

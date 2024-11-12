@@ -35,7 +35,7 @@
             txtNombre = new TextBox();
             txtApellido = new TextBox();
             txtDocumento = new TextBox();
-            btnIngresar = new Button();
+            btnRegistrar = new Button();
             btnLimpiar = new Button();
             lblTipo = new Label();
             cboTipo = new ComboBox();
@@ -122,18 +122,18 @@
             txtDocumento.Size = new Size(400, 40);
             txtDocumento.TabIndex = 5;
             // 
-            // btnIngresar
+            // btnRegistrar
             // 
-            btnIngresar.BackColor = Color.DodgerBlue;
-            btnIngresar.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            btnIngresar.ForeColor = Color.White;
-            btnIngresar.Location = new Point(495, 741);
-            btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(320, 70);
-            btnIngresar.TabIndex = 11;
-            btnIngresar.Text = "INGRESAR";
-            btnIngresar.UseVisualStyleBackColor = false;
-            btnIngresar.Click += btnIngresar_Click;
+            btnRegistrar.BackColor = Color.DodgerBlue;
+            btnRegistrar.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            btnRegistrar.ForeColor = Color.White;
+            btnRegistrar.Location = new Point(495, 741);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(320, 70);
+            btnRegistrar.TabIndex = 11;
+            btnRegistrar.Text = "REGISTRAR";
+            btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // btnLimpiar
             // 
@@ -456,7 +456,7 @@
             Controls.Add(cboTipo);
             Controls.Add(lblTipo);
             Controls.Add(btnLimpiar);
-            Controls.Add(btnIngresar);
+            Controls.Add(btnRegistrar);
             Controls.Add(txtDocumento);
             Controls.Add(txtApellido);
             Controls.Add(txtNombre);
@@ -483,7 +483,7 @@
         private TextBox txtNombre;
         private TextBox txtApellido;
         private TextBox txtDocumento;
-        private Button btnIngresar;
+        private Button btnRegistrar;
         private Button btnLimpiar;
         private Label lblTipo;
         private ComboBox cboTipo;

@@ -24,6 +24,7 @@ namespace TPI_ClubDeportivo.Entidades
             cliente = new E_Cliente();
         }
 
+        // Setters y Getters
         public void SetIdActividad(int idActividad)
         {
             IdActividad = idActividad;
@@ -39,6 +40,7 @@ namespace TPI_ClubDeportivo.Entidades
             this.TipoDoc = TipoDoc;
         }
 
+        // Verificar si hay cupos disponibles para inscribir en la actividad
         public bool VerificarDisponibilidad(int CodAct)
         {
             bool Respuesta = false;
@@ -80,6 +82,7 @@ namespace TPI_ClubDeportivo.Entidades
             return Respuesta;
         }
 
+        // Inscribe en actividad, si es socio se registra como paga la actividad, si es no socio debe pagar
         public bool InscribirEnActividad(string TipoDoc, string Doc, string IdActividad)
         {
             if (string.IsNullOrEmpty(TipoDoc) || string.IsNullOrEmpty(Doc) || string.IsNullOrEmpty(IdActividad))
@@ -141,7 +144,7 @@ namespace TPI_ClubDeportivo.Entidades
             }
         }
 
-
+        // Obtiene los datos de las actividades registradas y los carga en la grilla
         public void ListarActividadesRegistradas(DataGridView dataGridView)
         {
             MySqlConnection sqlCon = new MySqlConnection();
@@ -179,7 +182,7 @@ namespace TPI_ClubDeportivo.Entidades
                         dataGridView.Rows[renglon].Cells[1].Value = reader.GetString(1);  // NombreActividad
                         dataGridView.Rows[renglon].Cells[2].Value = reader.GetInt32(2);  // DuracionMinutos
                         dataGridView.Rows[renglon].Cells[3].Value = reader.GetInt32(3);  // MaxParticipantes
-                        // Si la cantidad de inscritos es igual al máximo
+                        // Si la cantidad de inscritos es igual al máximo carga "COMP."
                         if (reader.GetInt32(4) == reader.GetInt32(3))
                         {
                             dataGridView.Rows[renglon].Cells[4].Value = "COMP.";

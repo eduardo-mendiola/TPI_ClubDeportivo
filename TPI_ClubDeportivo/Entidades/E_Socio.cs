@@ -23,6 +23,7 @@ namespace TPI_ClubDeportivo.Entidades
             cliente = new E_Cliente();
         }
 
+        // Setters y Getters
         public double GetValorCuota()
         {
             return this.Cuota.ValorCuota;
@@ -40,7 +41,7 @@ namespace TPI_ClubDeportivo.Entidades
             return this.IdSocio;
         }
 
-        
+        // Realiza el pago y registra el pago en la base de datos
         public void RealizarPago(string IdPago)
         {
             MySqlConnection sqlCon = new MySqlConnection();
@@ -76,6 +77,7 @@ namespace TPI_ClubDeportivo.Entidades
             }
         }
 
+        // Trae los datos de la bd del cliente, verifica si tiene deudas y carga los datos en una grilla
         public void ObtenerDeuda(DataGridView dataGridView, string TipoDocPago, string Documento)
         {
             // Verificar si el cliente existe

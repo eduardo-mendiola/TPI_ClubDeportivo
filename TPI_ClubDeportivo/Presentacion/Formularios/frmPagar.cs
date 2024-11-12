@@ -18,6 +18,11 @@ namespace TPI_ClubDeportivo
 {
     public partial class frmPagar : Form
     {
+        public frmPagar()
+        {
+            InitializeComponent();
+        }
+
 
         public frmFactura doc = new frmFactura();
 
@@ -25,15 +30,11 @@ namespace TPI_ClubDeportivo
         {
             cboCuotasTarjeta.SelectedIndex = 0;
             //cboTipoDocCPagos.SelectedIndex = 0;
-
         }
 
-        public frmPagar()
-        {
-            InitializeComponent();
-        }
-               
-        private void btnVolverInsAct_Click(object sender, EventArgs e)
+
+        // Salir de frmPagar a frmPrincipal     
+        private void btnbtnVolverPagar_Click(object sender, EventArgs e)
         {
             if (this.Owner != null)
             {
@@ -43,7 +44,7 @@ namespace TPI_ClubDeportivo
             else
             {
                 // Redirige al formulario principal
-                Form principalForm = Application.OpenForms["frmPrincipal"]; // Asegúrate de usar el nombre correcto de tu formulario principal
+                Form principalForm = Application.OpenForms["frmPrincipal"];
                 if (principalForm != null)
                 {
                     principalForm.Show(); // Muestra el formulario principal
@@ -52,6 +53,7 @@ namespace TPI_ClubDeportivo
             }
         }
 
+        // Abre el frmFactura
         private void btnComprobante_Click(object sender, EventArgs e)
         {
             doc.Owner = this;  // Asigna el Owner del formulario actual
@@ -59,7 +61,7 @@ namespace TPI_ClubDeportivo
             this.Hide();
         }
 
-
+        // Intercambia la seleción de los checks
         private void optTarjeta_CheckedChanged(object sender, EventArgs e)
         {
             cboCuotasTarjeta.Enabled = true;
@@ -69,8 +71,8 @@ namespace TPI_ClubDeportivo
         {
             cboCuotasTarjeta.Enabled = false;
         }
-            
 
+        // Realizar el pago registrando en la BD según sea socio o no socio
         private void btnPagar_Click(object sender, EventArgs e)
         {
             MySqlConnection sqlCon = new MySqlConnection();
@@ -81,30 +83,33 @@ namespace TPI_ClubDeportivo
                 string query;
                 sqlCon = ConexionDB.getInstancia().CrearConexion();
 
+                // Verifica si el cliente es socio o no socio
                 E_Cliente NuevoCliente = new E_Cliente();
                 MembresiaCliente = NuevoCliente.VerificarEsSocio(cboTipoDocCPagos.Text, txtDocumento.Text);
-                
+
                 if (MembresiaCliente)
                 {
+                    // Query para Socio
                     query = "SELECT cm.IdPago, cm.IdSocio, CONCAT(c.NombreC, ' ', c.ApellidoC), c.EsSocio, " +
                             "cm.Monto, cm.EstadoPago " +
                             "FROM CuotaMensual cm " +
                             "INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio " +
                             "INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente " +
-                            "WHERE cm.IdPago = @IdReg"; 
+                            "WHERE cm.IdPago = @IdReg";
 
                 }
                 else
                 {
+                    // Query para No Socio
                     query = "SELECT i.IdInscripcionAct, a.NombreActividad, CONCAT(c.NombreC, ' ', c.ApellidoC), c.EsSocio, " +
                             "a.CostoDiario, i.Pagado " +
                             "FROM InscripcionAct AS i " +
                             "INNER JOIN Edicion AS e ON i.IdEdicion = e.IdEdicion " +
                             "INNER JOIN Actividad  AS a ON a.Nactividad = e.Nactividad " +
                             "INNER JOIN Cliente AS c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
-                            "WHERE i.IdInscripcionAct = @IdReg"; 
+                            "WHERE i.IdInscripcionAct = @IdReg";
                 }
-               
+
 
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
                 comando.Parameters.AddWithValue("@IdReg", txtIdPago.Text); // Definimos el parámetro.
@@ -187,7 +192,7 @@ namespace TPI_ClubDeportivo
             }
         }
 
-       
+        // Buscar deuda de socios y no socios
         private void btnBuscarDeudas_Click(object sender, EventArgs e)
         {
             E_Cliente NuevoCliente = new E_Cliente();
@@ -205,7 +210,8 @@ namespace TPI_ClubDeportivo
             clienteDeuda.ObtenerDeuda(dtgvDeudas, cboTipoDocCPagos.Text, txtDocumento.Text);
         }
 
-
+        // Carga los datos de pago desde el frmRegistro segun se haya registrado como socio o no socio.
+        // Si es socio carga el frmPagar y si es no socio abre un frmInscripcionActividad.
         public void cargarDatosDePago(E_Cliente cliente)
         {
             // Cargar los datos del cliente en el formulario de pago
@@ -242,5 +248,6 @@ namespace TPI_ClubDeportivo
             }
         }
 
+        
     }
 }

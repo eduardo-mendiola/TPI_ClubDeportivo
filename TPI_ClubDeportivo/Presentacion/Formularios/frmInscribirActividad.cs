@@ -17,6 +17,10 @@ namespace TPI_ClubDeportivo
 {
     public partial class frmInscribirActividad : Form
     {
+        public frmInscribirActividad()
+        {
+            InitializeComponent();
+        }
 
         private E_Cliente cliente;
         public bool AbiertoDesdePrincipal { get; set; } = false;
@@ -30,19 +34,22 @@ namespace TPI_ClubDeportivo
             cboTipoDocCliente.Text = cliente.GetTipoDoc();
             txtDocCliente.Text = cliente.GetDoc();
         }
-
-
-        public frmInscribirActividad()
-        {
-            InitializeComponent();
-        }
-
-        private void frmAsignar_Load(object sender, EventArgs e)
+      
+        
+        private void frmInscribirActividad_Load(object sender, EventArgs e)
         {
             CargarGrilla(); // Llamada al procedimiento
             //cboTipoDocCliente.SelectedIndex = 0; // Para que al iniciar el form de registro muestre DNI en el tipo por defecto.
         }
 
+        // Salir de frmInscribirActividad a frmPrincipal
+        private void btnVolverInsAct_Click(object sender, EventArgs e)
+        {
+            this.Owner.Show();  // Mostrá el formulario principal (dueño)
+            this.Close();       // Cerrá el formulario actual
+        }
+
+        // Carga los datos en la grilla 
         public void CargarGrilla()
         {
             MySqlConnection sqlCon = new MySqlConnection();
@@ -97,14 +104,7 @@ namespace TPI_ClubDeportivo
             }
         }
 
-        private void btnVolverInsAct_Click(object sender, EventArgs e)
-        {
-            this.Owner.Show();  // Mostrá el formulario principal (dueño)
-            this.Close();       // Cerrá el formulario actual
-        }
-
-
-  
+        // Inscribir a un cliente en una actividad 
         private void btnInscribirCliente_Click(object sender, EventArgs e)
         {
             E_Actividad NuevaInscripcion = new E_Actividad();
@@ -123,8 +123,7 @@ namespace TPI_ClubDeportivo
             }
         }
 
-
-
+        // Limpiar los campos de tipo de documento y número
         private void btnLimpiarInscripcion_Click(object sender, EventArgs e)
         {
             txtDocCliente.Text = "";

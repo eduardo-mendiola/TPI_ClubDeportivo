@@ -21,7 +21,7 @@ namespace TPI_ClubDeportivo
 
         /*---------------------------------------------------
              Variables para traer LOS DATOS del formulario
-              donde se ejecuta la lógica
+                    donde se ejecuta la lógica
         ------------------------------------------------------*/
 
         public string? Alumno_f;
@@ -44,71 +44,7 @@ namespace TPI_ClubDeportivo
             this.ValorCuota = cuota.ValorCuota;
         }
 
-        private void btnSalirFact_Click(object sender, EventArgs e)
-        {
-            // Mostrar frmPagar y ocultar frmFactura
-            if (this.Owner != null)
-            {
-                this.Owner.Show();  // Mostramos frmPagar
-            }
-            this.Hide();  // Ocultamos frmFactura No cerrarlo
-        }
-
-        private void btnImprimir_Click(object sender, EventArgs e)
-        {
-            /* ---------------------------------------------------
-             *   Ocultamos los botones que no pertenecen al diseño
-             *   pero si para la funcionalidad.
-             *   Usamos la propiedad VISIBLE y los posibles valores
-             *   son True o False.
-             -----------------------------------------------------*/
-
-            btnImprimir.Visible = false;
-
-            /*------------------------------------------------------
-             *  Creamos los objetos para la impresión.
-             *----------------------------------------------------*/
-
-            PrintDocument pd = new PrintDocument();
-            pd.PrintPage += new PrintPageEventHandler(ImprimirForm1);
-            pd.Print();
-
-            btnImprimir.Visible = true; // Visualizamos nuevamente el objeto
-
-            /*------------------------------------------------------
-             *   Regreso al formulario principal
-             *   después del dar aviso
-             *-----------------------------------------------------*/
-
-            MessageBox.Show("Operación exiatosa", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-
-            // Mostrar frmPagar y ocultar frmFactura
-            if (this.Owner != null)
-            {
-                this.Owner.Show();  // Mostramos frmPagar
-            }
-            this.Hide();  // Ocultamos frmFactura No cerrarlo
-        }
-
-        /*----------------------------------------------------------
-         *   Conjunto de sentencias necesarias para el objeto Print
-         ----------------------------------------------------------*/
-
-        private void ImprimirForm1(object o, PrintPageEventArgs e)
-        {
-            int x = SystemInformation.WorkingArea.X;
-            int y = SystemInformation.WorkingArea.Y;
-            int ancho = this.Width;
-            int alto = this.Height;
-            Rectangle bounds = new Rectangle(x, y, ancho, alto);
-            Bitmap img = new Bitmap(ancho, alto);
-            this.DrawToBitmap(img, bounds);
-            Point p = new Point(100, 100);
-            e.Graphics.DrawImage(img, p);
-        }
-
+        // Carga los valores al abrir el formulario
         private void frmFactura_Load(object sender, EventArgs e)
         {
             /*---------------------------------------------------
@@ -146,6 +82,7 @@ namespace TPI_ClubDeportivo
             lblDFecha.Text = DateTime.UtcNow.ToShortDateString();
         }
 
+        // Agrega 0s adelante del número de la factura
         private void GenerarNumeroComprobante(Label label)
         {
             string numeroComprobante = contadorComprobante.ToString("D7"); // "D7" asegura que haya 7 dígitos
@@ -155,6 +92,73 @@ namespace TPI_ClubDeportivo
             contadorComprobante++;
         }
 
-        
+
+        // Salir del frmFactura al frmPagar
+        private void btnSalirFact_Click(object sender, EventArgs e)
+        {
+            // Mostrar frmPagar y ocultar frmFactura
+            if (this.Owner != null)
+            {
+                this.Owner.Show();  // Mostramos frmPagar
+            }
+            this.Hide();  // Ocultamos frmFactura No cerrarlo
+        }
+
+        // Genera el archivo pdf para descargar
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            /* ---------------------------------------------------
+             *   Ocultamos los botones que no pertenecen al diseño
+             *   pero si para la funcionalidad.
+             *   Usamos la propiedad VISIBLE y los posibles valores
+             *   son True o False.
+             -----------------------------------------------------*/
+
+            btnImprimir.Visible = false;
+
+            /*------------------------------------------------------
+             *  Creamos los objetos para la impresión.
+             *----------------------------------------------------*/
+
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += new PrintPageEventHandler(ImprimirForm1);
+            pd.Print();
+
+            btnImprimir.Visible = true; // Visualizamos nuevamente el objeto
+
+            /*------------------------------------------------------
+             *   Regreso al formulario principal
+             *   después del dar aviso
+             *-----------------------------------------------------*/
+
+            MessageBox.Show("Operación exiatosa", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            // Mostrar frmPagar y ocultar frmFactura
+            if (this.Owner != null)
+            {
+                this.Owner.Show();  // Mostramos frmPagar
+            }
+            this.Hide();  // Ocultamos frmFactura No cerrarlo
+        }
+
+
+        /*----------------------------------------------------------
+         *   Conjunto de sentencias necesarias para el objeto Print
+         ----------------------------------------------------------*/
+        private void ImprimirForm1(object o, PrintPageEventArgs e)
+        {
+            int x = SystemInformation.WorkingArea.X;
+            int y = SystemInformation.WorkingArea.Y;
+            int ancho = this.Width;
+            int alto = this.Height;
+            Rectangle bounds = new Rectangle(x, y, ancho, alto);
+            Bitmap img = new Bitmap(ancho, alto);
+            this.DrawToBitmap(img, bounds);
+            Point p = new Point(100, 100);
+            e.Graphics.DrawImage(img, p);
+        }
+
+                      
     }
 }

@@ -24,15 +24,17 @@ namespace TPI_ClubDeportivo
             cboTipo.SelectedIndex = 0; // Para que al iniciar el form de registro muestre DNI en el tipo por defecto.
         }
 
+        // Salir de frmRegistro a frmPrincipal
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Owner.Show();  // Mostrá el formulario principal (dueño).
             this.Close();       // Cerrá el formulario actual.
         }
 
-
-
-        private void btnIngresar_Click(object sender, EventArgs e)
+        // Registra en la base de datos al cliente 
+        // Si es socio registra en la base de datos 
+        // Carga los datos en pagar para realizar el pago
+        private void btnRegistrar_Click(object sender, EventArgs e)
         {
             if (txtNombre.Text == "" || txtApellido.Text == "" || cboTipo.Text == "" || txtDocumento.Text == "" || txtTelefono.Text == "" || txtEmail.Text == "")
             {
@@ -103,18 +105,14 @@ namespace TPI_ClubDeportivo
                 }
             }
         }
-
-
-
-        /* =============================================
-         * Limpiamos los objetos para un nuevo ingreso
-         * =============================================
-         */
+                 
+        // Limpiamos los campos para un nuevo ingreso        
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
         }
 
+        // Método para limpiar campos 
         private void LimpiarCampos()
         {
             txtNombre.Text = "";

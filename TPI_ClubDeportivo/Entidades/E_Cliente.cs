@@ -33,7 +33,7 @@ namespace TPI_ClubDeportivo.Entidades
             SetFechaRegistro();
         }
 
-
+        // Setters y Getters
         public void SetIdCliente(int idCliente)
         {
             IdCliente = idCliente;
@@ -145,6 +145,7 @@ namespace TPI_ClubDeportivo.Entidades
         public DateTime GetFechaRegistro() { return this.FechaRegistro; }
 
 
+        // Verifica en la bd si el cliente es socio del club
         public bool VerificarEsSocio(string TipoDocPago, string Documento)
         {
             MySqlConnection sqlCon = new MySqlConnection();
@@ -187,7 +188,7 @@ namespace TPI_ClubDeportivo.Entidades
             return esSocio;
         }
 
-
+        // Verifica si el cliente existe en la bd según tipo de documento y número
         public bool ClienteExiste(string tipoDoc, string documento)
         {
             MySqlConnection sqlCon = ConexionDB.getInstancia().CrearConexion();

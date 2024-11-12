@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             lblUsuario = new Label();
             btnSalir = new Button();
-            btnInscribir = new Button();
+            btnRegistrarCliente = new Button();
             btnIscribirActividad = new Button();
             btnListarActividades = new Button();
             btnEmitirCarnet = new Button();
@@ -69,18 +69,18 @@
             btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
             // 
-            // btnInscribir
+            // btnRegistrarCliente
             // 
-            btnInscribir.BackColor = Color.DarkGoldenrod;
-            btnInscribir.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            btnInscribir.ForeColor = Color.White;
-            btnInscribir.Location = new Point(56, 247);
-            btnInscribir.Name = "btnInscribir";
-            btnInscribir.Size = new Size(350, 100);
-            btnInscribir.TabIndex = 0;
-            btnInscribir.Text = "Registrar Cliente";
-            btnInscribir.UseVisualStyleBackColor = false;
-            btnInscribir.Click += btnInscribir_Click;
+            btnRegistrarCliente.BackColor = Color.DarkGoldenrod;
+            btnRegistrarCliente.Font = new Font("Futura Md BT", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            btnRegistrarCliente.ForeColor = Color.White;
+            btnRegistrarCliente.Location = new Point(56, 247);
+            btnRegistrarCliente.Name = "btnRegistrarCliente";
+            btnRegistrarCliente.Size = new Size(350, 100);
+            btnRegistrarCliente.TabIndex = 0;
+            btnRegistrarCliente.Text = "Registrar Cliente";
+            btnRegistrarCliente.UseVisualStyleBackColor = false;
+            btnRegistrarCliente.Click += btnRegistrarCliente_Click;
             // 
             // btnIscribirActividad
             // 
@@ -206,7 +206,7 @@
             Controls.Add(btnEmitirCarnet);
             Controls.Add(btnListarActividades);
             Controls.Add(btnIscribirActividad);
-            Controls.Add(btnInscribir);
+            Controls.Add(btnRegistrarCliente);
             Name = "FrmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "VENTANA PRINCIPAL";
@@ -222,7 +222,7 @@
 
         private Label lblUsuario;
         private Button btnSalir;
-        private Button btnInscribir;
+        private Button btnRegistrarCliente;
         private Button btnIscribirActividad;
         private Button btnListarActividades;
         private Button btnEmitirCarnet;

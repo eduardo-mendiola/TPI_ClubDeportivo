@@ -41,7 +41,7 @@
             picLogo = new PictureBox();
             lblPagar = new Label();
             panel1 = new Panel();
-            btnVolverInsAct = new Button();
+            btnVolverPagar = new Button();
             txtIdPago = new TextBox();
             label2 = new Label();
             dtgvDeudas = new DataGridView();
@@ -190,24 +190,24 @@
             // 
             panel1.BackColor = Color.LightSkyBlue;
             panel1.Controls.Add(lblPagar);
-            panel1.Controls.Add(btnVolverInsAct);
+            panel1.Controls.Add(btnVolverPagar);
             panel1.Location = new Point(1, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1054, 110);
             panel1.TabIndex = 33;
             // 
-            // btnVolverInsAct
+            // btnVolverPagar
             // 
-            btnVolverInsAct.BackColor = Color.Gainsboro;
-            btnVolverInsAct.Font = new Font("Futura Md BT", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            btnVolverInsAct.ForeColor = Color.DimGray;
-            btnVolverInsAct.Location = new Point(873, 29);
-            btnVolverInsAct.Name = "btnVolverInsAct";
-            btnVolverInsAct.Size = new Size(140, 50);
-            btnVolverInsAct.TabIndex = 1;
-            btnVolverInsAct.Text = "Volver";
-            btnVolverInsAct.UseVisualStyleBackColor = false;
-            btnVolverInsAct.Click += btnVolverInsAct_Click;
+            btnVolverPagar.BackColor = Color.Gainsboro;
+            btnVolverPagar.Font = new Font("Futura Md BT", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            btnVolverPagar.ForeColor = Color.DimGray;
+            btnVolverPagar.Location = new Point(873, 29);
+            btnVolverPagar.Name = "btnVolverPagar";
+            btnVolverPagar.Size = new Size(140, 50);
+            btnVolverPagar.TabIndex = 1;
+            btnVolverPagar.Text = "Volver";
+            btnVolverPagar.UseVisualStyleBackColor = false;
+            btnVolverPagar.Click += btnbtnVolverPagar_Click;
             // 
             // txtIdPago
             // 
@@ -341,7 +341,7 @@
         private PictureBox picLogo;
         private Label lblPagar;
         private Panel panel1;
-        private Button btnVolverInsAct;
+        private Button btnVolverPagar;
         private ComboBox cboCuotasTarjeta;
         private Label label1;
         private TextBox txtIdPago;

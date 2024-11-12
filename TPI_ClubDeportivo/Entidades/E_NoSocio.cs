@@ -20,8 +20,7 @@ namespace TPI_ClubDeportivo.Entidades
             cliente = new E_Cliente();
         }
 
-
-
+        // Realiza el pago y registra el pago en la base de datos
         public void RealizarPago(string IdPago)
         {
             MySqlConnection sqlCon = new MySqlConnection();
@@ -57,66 +56,7 @@ namespace TPI_ClubDeportivo.Entidades
             }
         }
 
-
-        //public void ObtenerDeuda(DataGridView dataGridView, string TipoDocPago, string Documento)
-        //{
-        //    MySqlConnection sqlCon = new MySqlConnection();
-        //    try
-        //    {
-        //        dataGridView.Rows.Clear(); 
-
-        //        sqlCon = ConexionDB.getInstancia().CrearConexion();
-        //        string query = "SELECT i.IdInscripcionAct, a.NombreActividad, i.FechaInscripcion, a.CostoDiario " +
-        //                       "FROM InscripcionAct i " +
-        //                       "INNER JOIN Edicion e ON i.IdEdicion = e.IdEdicion " +
-        //                       "INNER JOIN Actividad a ON a.Nactividad = e.Nactividad " +
-        //                       "INNER JOIN Cliente c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
-        //                       "WHERE c.TDocC = @TipoDoc AND c.DocC = @Documento AND i.Pagado = 0";
-
-        //        MySqlCommand comando = new MySqlCommand(query, sqlCon);
-        //        comando.Parameters.AddWithValue("@TipoDoc", TipoDocPago);
-        //        comando.Parameters.AddWithValue("@Documento", Documento);
-
-        //        sqlCon.Open();
-        //        MySqlDataReader reader = comando.ExecuteReader();
-
-        //        if (dataGridView.Columns.Count > 1)
-        //        {
-        //            dataGridView.Columns[1].HeaderText = "Actividad";
-        //        }
-
-        //        while (reader.Read())
-        //        {
-        //            int renglon = dataGridView.Rows.Add();
-        //            dataGridView.Rows[renglon].Cells[0].Value = reader.GetInt32(0);  // IdInscripcionAct
-        //            dataGridView.Rows[renglon].Cells[1].Value = reader.GetString(1);  // NombreActividad
-        //            dataGridView.Rows[renglon].Cells[2].Value = reader.GetDateTime(2); // FechaInscripcion
-        //            dataGridView.Rows[renglon].Cells[3].Value = reader.GetDecimal(3);  // CostoDiario
-        //        }
-
-        //        // Mensaje si no hay filas en la consulta
-        //        if (!reader.HasRows)
-        //        {
-        //            MessageBox.Show("EL CLIENTE NO REGISTRA DEUDAS");
-        //        }
-
-        //        reader.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        if (sqlCon.State == ConnectionState.Open)
-        //        {
-        //            sqlCon.Close();
-        //        }
-        //    }
-        //}
-
-
-
+        // Trae los datos de la bd del cliente, verifica si tiene deudas y carga los datos en una grilla
         public void ObtenerDeuda(DataGridView dataGridView, string TipoDocPago, string Documento)
         {
             // Verificar si el cliente existe

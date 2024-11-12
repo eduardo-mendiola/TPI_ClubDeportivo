@@ -18,13 +18,14 @@ namespace TPI_ClubDeportivo.Presentacion.Formularios
             InitializeComponent();
         }
 
-        
+        // Carga los datos en la grilla de las cuotas que vencen hoy
         private void frmVisualizarVencimientos_Load(object sender, EventArgs e)
         {
             E_Cuota CuentasVencen = new E_Cuota();
             CuentasVencen.ListarCuotasVencenHoy(dtgvVencen);
         }
 
+        // Sale de frmVisualizarVencimientos a frmPrincipal
         private void btnVolverVence_Click(object sender, EventArgs e)
         {
             this.Owner.Show();

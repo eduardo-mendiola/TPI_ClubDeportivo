@@ -13,13 +13,13 @@ namespace TPI_ClubDeportivo
 {
     public partial class FrmPrincipal : Form
     {
-        // TODO: Crear el formulario con las cuotas que vencen hoy.
         public FrmPrincipal()
         {
             InitializeComponent();
         }
 
-        /* __________________ VARIABLES tipo INTERNAL ______________________
+        /* 
+        _____________________ VARIABLES tipo INTERNAL ______________________
          Serán accesibles desde el ensamblado en el cual están declarados
          y tampoco se pueden utilizar en el interior de una función.
         ____________________________________________________________________ 
@@ -29,7 +29,6 @@ namespace TPI_ClubDeportivo
         internal String? usuario;
 
         // Función para centar un label en el formulario
-
         private void CenterLabelInForm(Label label)
         {
             label.Left = (this.ClientSize.Width - label.Width) / 2;
@@ -44,19 +43,21 @@ namespace TPI_ClubDeportivo
             CenterLabelInForm(lblUsuario);
         }
 
-
+        // Sale del sistema
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            /* Notifica a todos los surtidores de mensajes que deben terminar
-               y a continuación, cierra todas las ventanas de la aplicación.
+            /* 
+            ------------------------------------------------------------------
+             Notifica a todos los surtidores de mensajes que deben terminar
+             y a continuación, cierra todas las ventanas de la aplicación.
             ------------------------------------------------------------------
             */
 
             Application.Exit();
         }
 
-        // Abre el formulario de inscripción
-        private void btnInscribir_Click(Object sender, EventArgs e)
+        // Abre el formulario para registrar clientes socios y no socios
+        private void btnRegistrarCliente_Click(Object sender, EventArgs e)
         {
             FrmRegistro inscripcionPrincipal = new FrmRegistro();
             inscripcionPrincipal.Owner = this;  // Establecer frmPrincipal como dueño
@@ -64,6 +65,7 @@ namespace TPI_ClubDeportivo
             this.Hide();
         }
 
+        // Abre el formulario de inscripción a actividades para cliente socio y no socios
         private void btnIscribirActividad_Click(object sender, EventArgs e)
         {
             frmInscribirActividad inscripcionPrincipal = new frmInscribirActividad();
@@ -72,8 +74,8 @@ namespace TPI_ClubDeportivo
             inscripcionPrincipal.Show();
             this.Hide();
         }
-    
 
+        // Abre el formulario de pago de cuotas y actividades para cliente socio y no socios
         private void btnPagar_Click(object sender, EventArgs e)
         {
             frmPagar pagar = new frmPagar();
@@ -82,7 +84,7 @@ namespace TPI_ClubDeportivo
             this.Hide();
         }
 
-
+        // Abre el formulario de para ver las cuotas que vencen en el día de hoy
         private void bntVisualizarVencimientos_Click(object sender, EventArgs e)
         {
             frmVisualizarVencimientos listarVencimientos = new frmVisualizarVencimientos();
@@ -91,6 +93,7 @@ namespace TPI_ClubDeportivo
             this.Hide();
         }
 
+        // Abre el formulario de para ver las actividades registradas en la base de datos
         private void btnListarActividades_Click(object sender, EventArgs e)
         {
             frmListarActividades listarActividades = new frmListarActividades();

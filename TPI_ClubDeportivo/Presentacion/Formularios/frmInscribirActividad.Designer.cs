@@ -297,7 +297,7 @@
             Name = "frmInscribirActividad";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmAsignar";
-            Load += frmAsignar_Load;
+            Load += frmInscribirActividad_Load;
             ((System.ComponentModel.ISupportInitialize)dtgvActividades).EndInit();
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             panel1.ResumeLayout(false);

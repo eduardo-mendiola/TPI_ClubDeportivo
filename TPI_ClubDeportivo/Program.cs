@@ -19,7 +19,8 @@ namespace TPI_ClubDeportivo
             //ApplicationConfiguration.Initialize();
             //Application.Run(new FrmLogin());
 
-           ApplicationConfiguration.Initialize();
+            // Inicio de la aplicación con la configuración de la base de datos 
+            ApplicationConfiguration.Initialize();
 
             try
             {

@@ -26,6 +26,7 @@ namespace TPI_ClubDeportivo.Entidades
             SetValorCuota(); 
         }
 
+        // Setters y Getters
         private double SetValorCuota()
         {
             return ValorCuota = 9999.88;
@@ -33,6 +34,8 @@ namespace TPI_ClubDeportivo.Entidades
 
         public double GetValorCuota() { return ValorCuota; }
 
+
+        // Trae los datos de la bd de las cuotas que vencen el día de hoy y los carga en una grilla
         public void ListarCuotasVencenHoy(DataGridView dataGridView)
         {
             MySqlConnection sqlCon = new MySqlConnection();
