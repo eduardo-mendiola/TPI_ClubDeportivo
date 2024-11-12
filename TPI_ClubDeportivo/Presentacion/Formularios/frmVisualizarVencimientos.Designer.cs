@@ -91,7 +91,7 @@
             btnVolverVence.Location = new Point(1261, 29);
             btnVolverVence.Name = "btnVolverVence";
             btnVolverVence.Size = new Size(140, 50);
-            btnVolverVence.TabIndex = 1;
+            btnVolverVence.TabIndex = 0;
             btnVolverVence.Text = "Volver";
             btnVolverVence.UseVisualStyleBackColor = false;
             btnVolverVence.Click += btnVolverVence_Click;
@@ -106,7 +106,7 @@
             dtgvVencen.RowHeadersWidth = 50;
             dtgvVencen.RowTemplate.Height = 33;
             dtgvVencen.Size = new Size(1365, 324);
-            dtgvVencen.TabIndex = 44;
+            dtgvVencen.TabIndex = 1;
             // 
             // ID_Pago
             // 

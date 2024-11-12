@@ -68,7 +68,7 @@
             dtgvActividades.RowHeadersWidth = 50;
             dtgvActividades.RowTemplate.Height = 33;
             dtgvActividades.Size = new Size(1124, 211);
-            dtgvActividades.TabIndex = 0;
+            dtgvActividades.TabIndex = 10;
             // 
             // ID
             // 
@@ -144,7 +144,7 @@
             txtDocCliente.Location = new Point(508, 587);
             txtDocCliente.Name = "txtDocCliente";
             txtDocCliente.Size = new Size(182, 40);
-            txtDocCliente.TabIndex = 5;
+            txtDocCliente.TabIndex = 1;
             // 
             // lblIdActividad
             // 
@@ -162,7 +162,7 @@
             txtIdActividad.Location = new Point(736, 587);
             txtIdActividad.Name = "txtIdActividad";
             txtIdActividad.Size = new Size(182, 40);
-            txtIdActividad.TabIndex = 7;
+            txtIdActividad.TabIndex = 2;
             // 
             // lblInsCliente
             // 
@@ -216,7 +216,7 @@
             btnVolverInsAct.Location = new Point(1028, 29);
             btnVolverInsAct.Name = "btnVolverInsAct";
             btnVolverInsAct.Size = new Size(140, 50);
-            btnVolverInsAct.TabIndex = 1;
+            btnVolverInsAct.TabIndex = 5;
             btnVolverInsAct.Text = "Volver";
             btnVolverInsAct.UseVisualStyleBackColor = false;
             btnVolverInsAct.Click += btnVolverInsAct_Click;
@@ -229,7 +229,7 @@
             btnLimpiarInscripcion.Location = new Point(222, 676);
             btnLimpiarInscripcion.Name = "btnLimpiarInscripcion";
             btnLimpiarInscripcion.Size = new Size(320, 70);
-            btnLimpiarInscripcion.TabIndex = 34;
+            btnLimpiarInscripcion.TabIndex = 4;
             btnLimpiarInscripcion.Text = "LIMPIAR";
             btnLimpiarInscripcion.UseVisualStyleBackColor = false;
             btnLimpiarInscripcion.Click += btnLimpiarInscripcion_Click;
@@ -242,7 +242,7 @@
             btnInscribirCliente.Location = new Point(649, 676);
             btnInscribirCliente.Name = "btnInscribirCliente";
             btnInscribirCliente.Size = new Size(320, 70);
-            btnInscribirCliente.TabIndex = 33;
+            btnInscribirCliente.TabIndex = 3;
             btnInscribirCliente.Text = "INGRESAR";
             btnInscribirCliente.UseVisualStyleBackColor = false;
             btnInscribirCliente.Click += btnInscribirCliente_Click;
@@ -273,7 +273,7 @@
             cboTipoDocCliente.Location = new Point(275, 587);
             cboTipoDocCliente.Name = "cboTipoDocCliente";
             cboTipoDocCliente.Size = new Size(189, 40);
-            cboTipoDocCliente.TabIndex = 38;
+            cboTipoDocCliente.TabIndex = 0;
             // 
             // frmInscribirActividad
             // 

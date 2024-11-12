@@ -352,7 +352,7 @@
             btnVolver.Location = new Point(732, 29);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(140, 50);
-            btnVolver.TabIndex = 1;
+            btnVolver.TabIndex = 13;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = false;
             btnVolver.Click += btnVolver_Click;

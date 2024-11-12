@@ -124,7 +124,7 @@ namespace TPI_ClubDeportivo
             btnImprimir.Location = new Point(478, 705);
             btnImprimir.Name = "btnImprimir";
             btnImprimir.Size = new Size(234, 70);
-            btnImprimir.TabIndex = 1;
+            btnImprimir.TabIndex = 0;
             btnImprimir.Text = "IMPRIMIR";
             btnImprimir.UseVisualStyleBackColor = false;
             btnImprimir.Click += btnImprimir_Click;
@@ -422,7 +422,7 @@ namespace TPI_ClubDeportivo
             btnSalirFact.Location = new Point(94, 705);
             btnSalirFact.Name = "btnSalirFact";
             btnSalirFact.Size = new Size(234, 70);
-            btnSalirFact.TabIndex = 3;
+            btnSalirFact.TabIndex = 1;
             btnSalirFact.Text = "SALIR";
             btnSalirFact.UseVisualStyleBackColor = false;
             btnSalirFact.Click += btnSalirFact_Click;

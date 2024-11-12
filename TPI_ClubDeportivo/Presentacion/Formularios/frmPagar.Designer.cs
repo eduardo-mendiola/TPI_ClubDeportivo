@@ -101,7 +101,7 @@
             cboCuotasTarjeta.Location = new Point(168, 126);
             cboCuotasTarjeta.Name = "cboCuotasTarjeta";
             cboCuotasTarjeta.Size = new Size(103, 36);
-            cboCuotasTarjeta.TabIndex = 35;
+            cboCuotasTarjeta.TabIndex = 5;
             // 
             // optTarjeta
             // 
@@ -109,7 +109,7 @@
             optTarjeta.Location = new Point(38, 90);
             optTarjeta.Name = "optTarjeta";
             optTarjeta.Size = new Size(90, 32);
-            optTarjeta.TabIndex = 1;
+            optTarjeta.TabIndex = 4;
             optTarjeta.TabStop = true;
             optTarjeta.Text = "Tarjeta";
             optTarjeta.UseVisualStyleBackColor = true;
@@ -121,7 +121,7 @@
             optEfvo.Location = new Point(38, 54);
             optEfvo.Name = "optEfvo";
             optEfvo.Size = new Size(102, 32);
-            optEfvo.TabIndex = 0;
+            optEfvo.TabIndex = 3;
             optEfvo.TabStop = true;
             optEfvo.Text = "Efectivo";
             optEfvo.UseVisualStyleBackColor = true;
@@ -133,7 +133,7 @@
             txtDocumento.Location = new Point(426, 199);
             txtDocumento.Name = "txtDocumento";
             txtDocumento.Size = new Size(251, 41);
-            txtDocumento.TabIndex = 2;
+            txtDocumento.TabIndex = 1;
             // 
             // btnPagar
             // 
@@ -143,7 +143,7 @@
             btnPagar.Location = new Point(613, 517);
             btnPagar.Name = "btnPagar";
             btnPagar.Size = new Size(234, 70);
-            btnPagar.TabIndex = 3;
+            btnPagar.TabIndex = 6;
             btnPagar.Text = "PAGAR";
             btnPagar.UseVisualStyleBackColor = false;
             btnPagar.Click += btnPagar_Click;
@@ -157,7 +157,7 @@
             btnComprobante.Location = new Point(613, 635);
             btnComprobante.Name = "btnComprobante";
             btnComprobante.Size = new Size(234, 70);
-            btnComprobante.TabIndex = 4;
+            btnComprobante.TabIndex = 7;
             btnComprobante.Text = "COMPROBANTE";
             btnComprobante.UseVisualStyleBackColor = false;
             btnComprobante.Click += btnComprobante_Click;
@@ -204,7 +204,7 @@
             btnVolverPagar.Location = new Point(873, 29);
             btnVolverPagar.Name = "btnVolverPagar";
             btnVolverPagar.Size = new Size(140, 50);
-            btnVolverPagar.TabIndex = 1;
+            btnVolverPagar.TabIndex = 8;
             btnVolverPagar.Text = "Volver";
             btnVolverPagar.UseVisualStyleBackColor = false;
             btnVolverPagar.Click += btnbtnVolverPagar_Click;
@@ -215,7 +215,7 @@
             txtIdPago.Location = new Point(174, 453);
             txtIdPago.Name = "txtIdPago";
             txtIdPago.Size = new Size(251, 41);
-            txtIdPago.TabIndex = 35;
+            txtIdPago.TabIndex = 3;
             // 
             // label2
             // 
@@ -271,7 +271,7 @@
             btnBuscarDeudas.Location = new Point(752, 180);
             btnBuscarDeudas.Name = "btnBuscarDeudas";
             btnBuscarDeudas.Size = new Size(200, 60);
-            btnBuscarDeudas.TabIndex = 38;
+            btnBuscarDeudas.TabIndex = 2;
             btnBuscarDeudas.Text = "BUSCAR";
             btnBuscarDeudas.UseVisualStyleBackColor = false;
             btnBuscarDeudas.Click += btnBuscarDeudas_Click;
@@ -284,7 +284,7 @@
             cboTipoDocCPagos.Location = new Point(193, 200);
             cboTipoDocCPagos.Name = "cboTipoDocCPagos";
             cboTipoDocCPagos.Size = new Size(189, 40);
-            cboTipoDocCPagos.TabIndex = 39;
+            cboTipoDocCPagos.TabIndex = 0;
             // 
             // label3
             // 

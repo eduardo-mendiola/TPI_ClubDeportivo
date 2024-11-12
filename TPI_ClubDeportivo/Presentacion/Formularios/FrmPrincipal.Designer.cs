@@ -119,6 +119,7 @@
             btnEmitirCarnet.TabIndex = 3;
             btnEmitirCarnet.Text = "Emitir Carnet";
             btnEmitirCarnet.UseVisualStyleBackColor = false;
+            btnEmitirCarnet.Click += btnEmitirCarnet_Click;
             // 
             // btnPagar
             // 

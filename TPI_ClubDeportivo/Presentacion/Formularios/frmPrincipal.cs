@@ -102,6 +102,12 @@ namespace TPI_ClubDeportivo
             this.Hide();
         }
 
-        
+        private void btnEmitirCarnet_Click(object sender, EventArgs e)
+        {
+            frmCarnet carnet = new frmCarnet();
+            carnet.Owner = this;
+            carnet.Show();
+            this.Hide();
+        }
     }
 }

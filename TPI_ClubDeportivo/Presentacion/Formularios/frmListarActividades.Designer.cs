@@ -91,7 +91,7 @@
             btnVolverListAct.Location = new Point(1261, 28);
             btnVolverListAct.Name = "btnVolverListAct";
             btnVolverListAct.Size = new Size(140, 50);
-            btnVolverListAct.TabIndex = 1;
+            btnVolverListAct.TabIndex = 0;
             btnVolverListAct.Text = "Volver";
             btnVolverListAct.UseVisualStyleBackColor = false;
             btnVolverListAct.Click += btnVolverListAct_Click;
@@ -106,7 +106,7 @@
             dtgvActReg.RowHeadersWidth = 50;
             dtgvActReg.RowTemplate.Height = 33;
             dtgvActReg.Size = new Size(1365, 324);
-            dtgvActReg.TabIndex = 41;
+            dtgvActReg.TabIndex = 1;
             // 
             // ID
             // 
