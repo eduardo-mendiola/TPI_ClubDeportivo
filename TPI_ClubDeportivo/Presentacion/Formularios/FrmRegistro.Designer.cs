@@ -63,8 +63,11 @@
             radNoSocio = new RadioButton();
             label5 = new Label();
             chkAptoFisico = new CheckBox();
+            pnlAutor = new Panel();
+            label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panel1.SuspendLayout();
+            pnlAutor.SuspendLayout();
             SuspendLayout();
             // 
             // lblNombre
@@ -425,12 +428,33 @@
             chkAptoFisico.Text = "Entregado";
             chkAptoFisico.UseVisualStyleBackColor = true;
             // 
+            // pnlAutor
+            // 
+            pnlAutor.BackColor = Color.LightSkyBlue;
+            pnlAutor.Controls.Add(label10);
+            pnlAutor.Location = new Point(-3, 854);
+            pnlAutor.Name = "pnlAutor";
+            pnlAutor.Size = new Size(896, 33);
+            pnlAutor.TabIndex = 37;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Futura Md BT", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.ForeColor = Color.FromArgb(64, 64, 64);
+            label10.Location = new Point(8, 6);
+            label10.Name = "label10";
+            label10.Size = new Size(301, 22);
+            label10.TabIndex = 10;
+            label10.Text = "ComC_G7  Mendiola - Rodrigues";
+            // 
             // FrmRegistro
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(892, 852);
+            ClientSize = new Size(892, 886);
+            Controls.Add(pnlAutor);
             Controls.Add(chkAptoFisico);
             Controls.Add(label5);
             Controls.Add(radNoSocio);
@@ -470,6 +494,8 @@
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            pnlAutor.ResumeLayout(false);
+            pnlAutor.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -511,5 +537,7 @@
         private RadioButton radNoSocio;
         private Label label5;
         private CheckBox chkAptoFisico;
+        private Panel pnlAutor;
+        private Label label10;
     }
 }

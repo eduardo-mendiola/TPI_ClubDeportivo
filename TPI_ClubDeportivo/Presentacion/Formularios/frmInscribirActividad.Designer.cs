@@ -53,9 +53,12 @@
             panel2 = new Panel();
             label1 = new Label();
             cboTipoDocCliente = new ComboBox();
+            pnlAutor = new Panel();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dtgvActividades).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panel1.SuspendLayout();
+            pnlAutor.SuspendLayout();
             SuspendLayout();
             // 
             // dtgvActividades
@@ -275,11 +278,32 @@
             cboTipoDocCliente.Size = new Size(189, 40);
             cboTipoDocCliente.TabIndex = 0;
             // 
+            // pnlAutor
+            // 
+            pnlAutor.BackColor = Color.LightSkyBlue;
+            pnlAutor.Controls.Add(label2);
+            pnlAutor.Location = new Point(-1, 781);
+            pnlAutor.Name = "pnlAutor";
+            pnlAutor.Size = new Size(1196, 33);
+            pnlAutor.TabIndex = 37;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Futura Md BT", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
+            label2.Location = new Point(8, 6);
+            label2.Name = "label2";
+            label2.Size = new Size(301, 22);
+            label2.TabIndex = 10;
+            label2.Text = "ComC_G7  Mendiola - Rodrigues";
+            // 
             // frmInscribirActividad
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1195, 784);
+            ClientSize = new Size(1195, 811);
+            Controls.Add(pnlAutor);
             Controls.Add(cboTipoDocCliente);
             Controls.Add(label1);
             Controls.Add(panel2);
@@ -302,6 +326,8 @@
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            pnlAutor.ResumeLayout(false);
+            pnlAutor.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -334,5 +360,7 @@
         private DataGridViewTextBoxColumn Cupos_Disp;
         private DataGridViewTextBoxColumn Instructor;
         private DataGridViewTextBoxColumn Precio;
+        private Panel pnlAutor;
+        private Label label2;
     }    
 }

@@ -93,7 +93,7 @@ namespace TPI_ClubDeportivo
         }
 
 
-        // Salir del frmFactura al frmPagar
+        // Salir del frmFactura al formulario propietario, si no tiene oculta frmFactura
         private void btnSalirFact_Click(object sender, EventArgs e)
         {
             // Mostrar frmPagar y ocultar frmFactura

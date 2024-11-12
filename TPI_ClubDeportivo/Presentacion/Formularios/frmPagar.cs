@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using TPI_ClubDeportivo.Datos.Infrastructure;
 using TPI_ClubDeportivo.Entidades;
 using TPI_ClubDeportivo.Interfaces;
+using TPI_ClubDeportivo.Presentacion.Formularios;
 
 namespace TPI_ClubDeportivo
 {
@@ -30,6 +31,7 @@ namespace TPI_ClubDeportivo
         {
             cboCuotasTarjeta.SelectedIndex = 0;
             //cboTipoDocCPagos.SelectedIndex = 0;
+
         }
 
 
@@ -146,6 +148,7 @@ namespace TPI_ClubDeportivo
                     }
 
                     btnComprobante.Enabled = true;
+                    btnImprimirCarnet.Enabled = true;
 
                     if (Pagado_f == 1)
                     {
@@ -246,8 +249,22 @@ namespace TPI_ClubDeportivo
                 IPago clienteDeuda = new E_Socio();
                 clienteDeuda.ObtenerDeuda(dtgvDeudas, cliente.GetTipoDoc(), cliente.GetDoc());
             }
+
+            btnImprimirCarnet.Visible = true;
         }
 
-        
+        // Carga los datos en el formulario frmCarnet y ejecuta el metodo buscar cliente de carnet
+        private void btnImprimirCarnet_Click(object sender, EventArgs e)
+        {
+            // Pasar los datos del cliente al form Carnet
+            frmCarnet carnetForm = new frmCarnet();
+            carnetForm.cboTipoDoc.Text = cboTipoDocCPagos.Text;
+            carnetForm.txtDocumento.Text = txtDocumento.Text;
+            // Ejecutar el método btnBuscarCliente_Click como si el botón fuera presionado
+            carnetForm.btnBuscarCliente_Click(this, EventArgs.Empty);
+            this.Hide();  // Oculta el formulario actual (frmPagar) para mostrar solo el de carnet
+            DialogResult resultado = carnetForm.ShowDialog();  // Abre frmCarnet y espera hasta que se cierre
+            this.Show();  // Vuelve a mostrar frmPagar cuando se cierra el formulario de carnet
+        }
     }
 }

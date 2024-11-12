@@ -41,8 +41,11 @@
             lblIFTS29 = new Label();
             picLogo = new PictureBox();
             lblRol = new Label();
+            pnlAutor = new Panel();
+            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
+            pnlAutor.SuspendLayout();
             SuspendLayout();
             // 
             // lblUsuario
@@ -192,12 +195,33 @@
             lblRol.Text = "* Administrador *";
             lblRol.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // pnlAutor
+            // 
+            pnlAutor.BackColor = Color.LightSkyBlue;
+            pnlAutor.Controls.Add(label2);
+            pnlAutor.Location = new Point(-4, 676);
+            pnlAutor.Name = "pnlAutor";
+            pnlAutor.Size = new Size(900, 33);
+            pnlAutor.TabIndex = 37;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Futura Md BT", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
+            label2.Location = new Point(8, 6);
+            label2.Name = "label2";
+            label2.Size = new Size(301, 22);
+            label2.TabIndex = 10;
+            label2.Text = "ComC_G7  Mendiola - Rodrigues";
+            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(892, 673);
+            ClientSize = new Size(892, 708);
+            Controls.Add(pnlAutor);
             Controls.Add(lblRol);
             Controls.Add(picLogo);
             Controls.Add(panel1);
@@ -215,6 +239,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
+            pnlAutor.ResumeLayout(false);
+            pnlAutor.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -233,5 +259,7 @@
         private PictureBox picLogo;
         private Label lblRol;
         private Label lblIFTS29;
+        private Panel pnlAutor;
+        private Label label2;
     }
 }

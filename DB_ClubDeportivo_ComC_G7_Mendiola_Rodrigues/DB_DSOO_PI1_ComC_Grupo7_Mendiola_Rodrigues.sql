@@ -1,4 +1,4 @@
-/* DB_DSOO_PI1_ComC_Grupo7_Rodrigues_Mendiola */
+/* DB_DSOO_PI1_ComC_Grupo7_Mendiola_Rodrigues */
 
 DROP DATABASE IF EXISTS ClubDeportivo;
 CREATE DATABASE ClubDeportivo;

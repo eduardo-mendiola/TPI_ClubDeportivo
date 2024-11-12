@@ -37,7 +37,10 @@
             lblPass = new Label();
             lblIFTS29 = new Label();
             panel1 = new Panel();
+            pnlAutor = new Panel();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
+            pnlAutor.SuspendLayout();
             SuspendLayout();
             // 
             // picLogo
@@ -124,11 +127,32 @@
             panel1.Size = new Size(395, 90);
             panel1.TabIndex = 8;
             // 
+            // pnlAutor
+            // 
+            pnlAutor.BackColor = Color.LightSkyBlue;
+            pnlAutor.Controls.Add(label1);
+            pnlAutor.Location = new Point(0, 603);
+            pnlAutor.Name = "pnlAutor";
+            pnlAutor.Size = new Size(395, 33);
+            pnlAutor.TabIndex = 9;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Futura Md BT", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
+            label1.Location = new Point(8, 6);
+            label1.Name = "label1";
+            label1.Size = new Size(301, 22);
+            label1.TabIndex = 10;
+            label1.Text = "ComC_G7  Mendiola - Rodrigues";
+            // 
             // FrmLogin
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(392, 573);
+            ClientSize = new Size(392, 635);
+            Controls.Add(pnlAutor);
             Controls.Add(picLogo);
             Controls.Add(panel1);
             Controls.Add(lblIFTS29);
@@ -141,6 +165,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
+            pnlAutor.ResumeLayout(false);
+            pnlAutor.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -155,5 +181,7 @@
         private Label lblPass;
         private Label lblIFTS29;
         private Panel panel1;
+        private Panel pnlAutor;
+        private Label label1;
     }
 }

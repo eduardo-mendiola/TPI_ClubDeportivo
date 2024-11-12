@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TPI_ClubDeportivo.Properties {
+namespace TPI_ClubDeportivo_ComC_G7_Mendiola_Rodrigues.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TPI_ClubDeportivo.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TPI_ClubDeportivo.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TPI_ClubDeportivo_ComC_G7_Mendiola_Rodrigues.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -44,9 +44,12 @@
             Doc = new DataGridViewTextBoxColumn();
             Monto = new DataGridViewTextBoxColumn();
             Estado = new DataGridViewTextBoxColumn();
+            pnlAutor = new Panel();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvVencen).BeginInit();
+            pnlAutor.SuspendLayout();
             SuspendLayout();
             // 
             // picLogo
@@ -168,11 +171,32 @@
             Estado.MinimumWidth = 6;
             Estado.Name = "Estado";
             // 
+            // pnlAutor
+            // 
+            pnlAutor.BackColor = Color.LightSkyBlue;
+            pnlAutor.Controls.Add(label2);
+            pnlAutor.Location = new Point(-1, 649);
+            pnlAutor.Name = "pnlAutor";
+            pnlAutor.Size = new Size(1430, 33);
+            pnlAutor.TabIndex = 40;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Futura Md BT", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
+            label2.Location = new Point(8, 6);
+            label2.Name = "label2";
+            label2.Size = new Size(301, 22);
+            label2.TabIndex = 10;
+            label2.Text = "ComC_G7  Mendiola - Rodrigues";
+            // 
             // frmVisualizarVencimientos
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1430, 681);
+            Controls.Add(pnlAutor);
             Controls.Add(dtgvVencen);
             Controls.Add(picLogo);
             Controls.Add(panel1);
@@ -184,6 +208,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvVencen).EndInit();
+            pnlAutor.ResumeLayout(false);
+            pnlAutor.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -204,5 +230,7 @@
         private DataGridViewTextBoxColumn Doc;
         private DataGridViewTextBoxColumn Monto;
         private DataGridViewTextBoxColumn Estado;
+        private Panel pnlAutor;
+        private Label label2;
     }
 }

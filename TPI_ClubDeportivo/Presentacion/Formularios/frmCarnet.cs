@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TPI_ClubDeportivo.Datos.Infrastructure;
+using TPI_ClubDeportivo.Entidades;
+using TPI_ClubDeportivo.Interfaces;
 
 namespace TPI_ClubDeportivo.Presentacion.Formularios
 {
@@ -23,14 +25,20 @@ namespace TPI_ClubDeportivo.Presentacion.Formularios
 
         }
 
+        // Salir del frmCarnet al formulario propietario, si no tiene oculta frmCarnet
         private void btnSalirCarnet_Click(object sender, EventArgs e)
         {
-            this.Owner.Show();
-            this.Close();
+            
+            if (this.Owner != null)
+            {
+                this.Owner.Show();  // Mostramos frmPrincipal
+            }
+            this.Hide();  // Ocultamos frmCarnet No cerrarlo
         }
 
      
-        private void btnBuscarCliente_Click(object sender, EventArgs e)
+        // Buscar cliente y cargar datos en el formulario
+        public void btnBuscarCliente_Click(object sender, EventArgs e)
         {
 
             MySqlConnection sqlCon = new MySqlConnection();
@@ -44,7 +52,7 @@ namespace TPI_ClubDeportivo.Presentacion.Formularios
                 sqlCon.Open();
 
                 comando.Parameters.AddWithValue("@TipoDocumento", cboTipoDoc.SelectedItem.ToString());
-                comando.Parameters.AddWithValue("@DNI", txtDni.Text);
+                comando.Parameters.AddWithValue("@DNI", txtDocumento.Text);
 
                 MySqlDataReader reader = comando.ExecuteReader();
 
@@ -85,6 +93,7 @@ namespace TPI_ClubDeportivo.Presentacion.Formularios
             }
         }
 
+        // Imprimir en un pdf el carnet
         private void btnImprimirCarnet_Click(object sender, EventArgs e)
         {
             /* ---------------------------------------------------
@@ -124,45 +133,7 @@ namespace TPI_ClubDeportivo.Presentacion.Formularios
             this.Hide();  // Ocultamos frmFactura No cerrarlo
         }
 
-        /*----------------------------------------------------------
-         *   Conjunto de sentencias necesarias para el objeto Print
-         ----------------------------------------------------------*/
-        //private void ImprimirFormCarnet(object o, PrintPageEventArgs e)
-        //{
-        //    int x = SystemInformation.WorkingArea.X;
-        //    int y = SystemInformation.WorkingArea.Y;
-        //    int ancho = this.Width;
-        //    int alto = this.Height;
-        //    Rectangle bounds = new Rectangle(x, y, ancho, alto);
-        //    Bitmap img = new Bitmap(ancho, alto);
-        //    this.DrawToBitmap(img, bounds);
-        //    Point p = new Point(100, 100);
-        //    e.Graphics.DrawImage(img, p);
-        //}
-
-
-        //private void ImprimirFormCarnet(object o, PrintPageEventArgs e)
-        //{
-        //    int anchoOriginal = this.Width;
-        //    int altoOriginal = this.Height;
-
-        //    // Crear una captura del formulario con el tamaño original
-        //    Bitmap img = new Bitmap(anchoOriginal, altoOriginal);
-        //    Rectangle bounds = new Rectangle(0, 0, anchoOriginal, altoOriginal);
-        //    this.DrawToBitmap(img, bounds);
-
-        //    // Definir el tamaño de la tarjeta en píxeles para una escala aproximada
-        //    int tarjetaAnchoPx = 270;  // Ancho en píxeles aproximado para una tarjeta de crédito (85.6 mm)
-        //    int tarjetaAltoPx = 170;   // Alto en píxeles aproximado para una tarjeta de crédito (54 mm)
-
-        //    // Escalar la imagen al tamaño deseado de una tarjeta de crédito
-        //    Bitmap imgRedimensionada = new Bitmap(img, new Size(tarjetaAnchoPx, tarjetaAltoPx));
-
-        //    // Dibuja la imagen redimensionada en la posición deseada
-        //    Point posicion = new Point(100, 100); // Ajusta según donde quieras colocar la tarjeta en la hoja
-        //    e.Graphics.DrawImage(imgRedimensionada, posicion);
-        //}
-
+       // Captura imagen del formulario y ajusta la escala
         private void ImprimirFormCarnet(object o, PrintPageEventArgs e)
         {
             // Factor de escala 
@@ -189,7 +160,5 @@ namespace TPI_ClubDeportivo.Presentacion.Formularios
             e.Graphics.DrawImage(imgRedimensionada, posicion);
         }
 
-        
     }
-
 }

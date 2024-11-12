@@ -52,10 +52,14 @@
             btnBuscarDeudas = new Button();
             cboTipoDocCPagos = new ComboBox();
             label3 = new Label();
+            pnlAutor = new Panel();
+            label4 = new Label();
+            btnImprimirCarnet = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvDeudas).BeginInit();
+            pnlAutor.SuspendLayout();
             SuspendLayout();
             // 
             // lblIngreseNumero
@@ -110,7 +114,6 @@
             optTarjeta.Name = "optTarjeta";
             optTarjeta.Size = new Size(90, 32);
             optTarjeta.TabIndex = 4;
-            optTarjeta.TabStop = true;
             optTarjeta.Text = "Tarjeta";
             optTarjeta.UseVisualStyleBackColor = true;
             optTarjeta.CheckedChanged += optTarjeta_CheckedChanged;
@@ -118,6 +121,7 @@
             // optEfvo
             // 
             optEfvo.AutoSize = true;
+            optEfvo.Checked = true;
             optEfvo.Location = new Point(38, 54);
             optEfvo.Name = "optEfvo";
             optEfvo.Size = new Size(102, 32);
@@ -140,7 +144,7 @@
             btnPagar.BackColor = Color.DodgerBlue;
             btnPagar.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnPagar.ForeColor = Color.White;
-            btnPagar.Location = new Point(613, 517);
+            btnPagar.Location = new Point(613, 475);
             btnPagar.Name = "btnPagar";
             btnPagar.Size = new Size(234, 70);
             btnPagar.TabIndex = 6;
@@ -154,7 +158,7 @@
             btnComprobante.Enabled = false;
             btnComprobante.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnComprobante.ForeColor = Color.White;
-            btnComprobante.Location = new Point(613, 635);
+            btnComprobante.Location = new Point(613, 568);
             btnComprobante.Name = "btnComprobante";
             btnComprobante.Size = new Size(234, 70);
             btnComprobante.TabIndex = 7;
@@ -296,11 +300,48 @@
             label3.TabIndex = 40;
             label3.Text = "Tipo Doc.";
             // 
+            // pnlAutor
+            // 
+            pnlAutor.BackColor = Color.LightSkyBlue;
+            pnlAutor.Controls.Add(label4);
+            pnlAutor.Location = new Point(0, 755);
+            pnlAutor.Name = "pnlAutor";
+            pnlAutor.Size = new Size(1055, 33);
+            pnlAutor.TabIndex = 41;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Futura Md BT", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.ForeColor = Color.FromArgb(64, 64, 64);
+            label4.Location = new Point(8, 6);
+            label4.Name = "label4";
+            label4.Size = new Size(301, 22);
+            label4.TabIndex = 10;
+            label4.Text = "ComC_G7  Mendiola - Rodrigues";
+            // 
+            // btnImprimirCarnet
+            // 
+            btnImprimirCarnet.BackColor = Color.DarkGray;
+            btnImprimirCarnet.Enabled = false;
+            btnImprimirCarnet.Font = new Font("Futura Md BT", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            btnImprimirCarnet.ForeColor = Color.White;
+            btnImprimirCarnet.Location = new Point(613, 662);
+            btnImprimirCarnet.Name = "btnImprimirCarnet";
+            btnImprimirCarnet.Size = new Size(234, 70);
+            btnImprimirCarnet.TabIndex = 42;
+            btnImprimirCarnet.Text = "CARNET";
+            btnImprimirCarnet.UseVisualStyleBackColor = false;
+            btnImprimirCarnet.Visible = false;
+            btnImprimirCarnet.Click += btnImprimirCarnet_Click;
+            // 
             // frmPagar
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1054, 734);
+            ClientSize = new Size(1054, 786);
+            Controls.Add(btnImprimirCarnet);
+            Controls.Add(pnlAutor);
             Controls.Add(label3);
             Controls.Add(cboTipoDocCPagos);
             Controls.Add(btnBuscarDeudas);
@@ -324,6 +365,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvDeudas).EndInit();
+            pnlAutor.ResumeLayout(false);
+            pnlAutor.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -354,5 +397,8 @@
         private Button btnBuscarDeudas;
         private ComboBox cboTipoDocCPagos;
         private Label label3;
+        private Panel pnlAutor;
+        private Label label4;
+        private Button btnImprimirCarnet;
     }
 }

@@ -64,12 +64,15 @@ namespace TPI_ClubDeportivo
             lblTipoPago = new Label();
             label11 = new Label();
             btnSalirFact = new Button();
+            pnlAutor = new Panel();
+            label7 = new Label();
             pnlTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             pnlDatosInstituto.SuspendLayout();
             pnlDatos.SuspendLayout();
             pnlCuotaMensual.SuspendLayout();
             pnlActividad.SuspendLayout();
+            pnlAutor.SuspendLayout();
             SuspendLayout();
             // 
             // pnlTitulo
@@ -427,11 +430,32 @@ namespace TPI_ClubDeportivo
             btnSalirFact.UseVisualStyleBackColor = false;
             btnSalirFact.Click += btnSalirFact_Click;
             // 
+            // pnlAutor
+            // 
+            pnlAutor.BackColor = Color.LightSkyBlue;
+            pnlAutor.Controls.Add(label7);
+            pnlAutor.Location = new Point(-1, 811);
+            pnlAutor.Name = "pnlAutor";
+            pnlAutor.Size = new Size(801, 33);
+            pnlAutor.TabIndex = 37;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Futura Md BT", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.ForeColor = Color.FromArgb(64, 64, 64);
+            label7.Location = new Point(8, 6);
+            label7.Name = "label7";
+            label7.Size = new Size(301, 22);
+            label7.TabIndex = 10;
+            label7.Text = "ComC_G7  Mendiola - Rodrigues";
+            // 
             // frmFactura
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(799, 787);
+            ClientSize = new Size(799, 843);
+            Controls.Add(pnlAutor);
             Controls.Add(btnSalirFact);
             Controls.Add(pnlDatos);
             Controls.Add(pnlDatosInstituto);
@@ -452,6 +476,8 @@ namespace TPI_ClubDeportivo
             pnlCuotaMensual.PerformLayout();
             pnlActividad.ResumeLayout(false);
             pnlActividad.PerformLayout();
+            pnlAutor.ResumeLayout(false);
+            pnlAutor.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -492,5 +518,7 @@ namespace TPI_ClubDeportivo
         private Label lblMontoPago;
         private Label label5;
         private Button btnSalirFact;
+        private Panel pnlAutor;
+        private Label label7;
     }
 }

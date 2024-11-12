@@ -94,7 +94,7 @@ namespace TPI_ClubDeportivo.Entidades
             // Verificar si el cliente existe
             if (!cliente.ClienteExiste(TipoDoc, Doc))
             {
-                MessageBox.Show("El cliente no existe en el sistema.");
+                MessageBox.Show("El cliente no existe en el sistema.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false; // Salir del método si el cliente no existe
             }
 

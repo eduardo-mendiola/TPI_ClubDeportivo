@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TPI_ClubDeportivo.Datos;
 using TPI_ClubDeportivo.Entidades;
+using TPI_ClubDeportivo.Presentacion.Formularios;
 
 namespace TPI_ClubDeportivo
 {
@@ -89,18 +90,23 @@ namespace TPI_ClubDeportivo
                                 MessageBox.Show("Error al registrar socio: " + respuestaSocio, "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
+
+                        
                         // Abre el formulario de pago y pasa los datos automáticamente
                         frmPagar pagoForm = new frmPagar();
                         pagoForm.cargarDatosDePago(cliente); // Pasar los datos del cliente y el código
+                        
 
                         this.Hide();
                         
                         pagoForm.Show(); // Muestra el formulario de pago
 
-                        // Asegúrate de que el formulario de pago esté por delante del formulario de inscripción
+                        // Asegura que el formulario de pago esté por delante del formulario de registro
                         pagoForm.BringToFront();
 
                         LimpiarCampos();
+
+                        
                     }
                 }
             }
