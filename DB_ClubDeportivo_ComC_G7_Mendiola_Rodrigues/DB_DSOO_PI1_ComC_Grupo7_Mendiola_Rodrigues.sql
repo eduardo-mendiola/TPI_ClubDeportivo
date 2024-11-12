@@ -496,6 +496,6 @@ UPDATE CuotaMensual
 	SET 
 		FechaGeneracion = DATE_SUB(CURDATE(), INTERVAL 1 MONTH),  -- Establece la fecha de inscripción como hace un mes
 		FechaVencimiento = CURDATE()  -- Establece la fecha de vencimiento al día de hoy
-  WHERE IdSocio IN ('12345678-24', '20304050-24', '33445566-24');  -- Usa los IdSocio con formato VARCHAR
+  WHERE IdSocio IN ('1-12345678-24', '3-20304050-24', '1-33445566-24');  -- Usa los IdSocio con formato VARCHAR
 
 
