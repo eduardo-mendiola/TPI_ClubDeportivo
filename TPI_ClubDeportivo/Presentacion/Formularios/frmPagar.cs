@@ -209,7 +209,7 @@ namespace TPI_ClubDeportivo
             }
             else
             {
-                MessageBox.Show("No hay deudas cargadas", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No hay deudas cargadas", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

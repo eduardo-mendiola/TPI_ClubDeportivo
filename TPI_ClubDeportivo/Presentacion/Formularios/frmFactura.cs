@@ -131,7 +131,7 @@ namespace TPI_ClubDeportivo
              *   después del dar aviso
              *-----------------------------------------------------*/
 
-            MessageBox.Show("Operación exiatosa", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Operación exitosa", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
             // Mostrar frmPagar y ocultar frmFactura

@@ -88,7 +88,7 @@ namespace TPI_ClubDeportivo
                 }
                 else
                 {
-                    MessageBox.Show("NO HAY DATOS PARA LA CARGA DE LA GRILLA");
+                    MessageBox.Show("NO HAY DATOS PARA LA CARGA DE LA GRILLA", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -116,7 +116,7 @@ namespace TPI_ClubDeportivo
                 
                 if (!AbiertoDesdePrincipal)  // Ejecuta esta lógica solo si no fue abierto desde frmPrincipal
                 {
-                    MessageBox.Show("Inscripción completada correctamente.");
+                    MessageBox.Show("Inscripción completada correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;  // Retornar OK
                     this.Close();
                 }

@@ -70,7 +70,7 @@ namespace TPI_ClubDeportivo.Entidades
                         }
                         else
                         {
-                            MessageBox.Show("No se pudo obtener el cupo disponible de la actividad.", "Error");
+                            MessageBox.Show("No se pudo obtener el cupo disponible de la actividad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -201,7 +201,7 @@ namespace TPI_ClubDeportivo.Entidades
                 }
                 else
                 {
-                    MessageBox.Show("No hay ACTIVIDADES registradas.");
+                    MessageBox.Show("No hay ACTIVIDADES registradas.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
