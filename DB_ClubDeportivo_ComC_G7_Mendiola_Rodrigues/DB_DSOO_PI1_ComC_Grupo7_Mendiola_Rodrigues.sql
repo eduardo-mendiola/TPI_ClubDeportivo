@@ -25,6 +25,7 @@ CONSTRAINT fk_usuario FOREIGN KEY(RolUsu) REFERENCES Roles(RolUsu)
 );
 
 INSERT INTO usuario(NombreUsu,PassUsu,RolUsu) VALUES
+('admin', 'admin', 120),
 ('a', 'a', 120),
 ('Cari', '1234',120),
 ('Edu', '1234', 120),
