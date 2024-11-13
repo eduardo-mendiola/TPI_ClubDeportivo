@@ -1,6 +1,6 @@
 ﻿namespace TPI_ClubDeportivo
 {
-    partial class FrmRegistro
+    partial class frmRegistro
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRegistro));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistro));
             lblNombre = new Label();
             lblDocumento = new Label();
             lblApellido = new Label();

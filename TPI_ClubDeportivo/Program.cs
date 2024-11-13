@@ -28,7 +28,7 @@ namespace TPI_ClubDeportivo
                 ConexionDB.getInstancia();
 
                 // Si la conexión es exitosa, procede a abrir el formulario de login.
-                Application.Run(new FrmLogin());
+                Application.Run(new frmLogin());
             }
             catch (InvalidOperationException ex)
             {

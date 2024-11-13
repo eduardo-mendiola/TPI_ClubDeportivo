@@ -1,6 +1,6 @@
 ﻿namespace TPI_ClubDeportivo
 {
-    partial class FrmLogin
+    partial class frmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             picLogo = new PictureBox();
             lblUser = new Label();
             txtUser = new TextBox();

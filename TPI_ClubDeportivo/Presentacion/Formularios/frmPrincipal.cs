@@ -11,9 +11,9 @@ using TPI_ClubDeportivo.Presentacion.Formularios;
 
 namespace TPI_ClubDeportivo
 {
-    public partial class FrmPrincipal : Form
+    public partial class frmPrincipal : Form
     {
-        public FrmPrincipal()
+        public frmPrincipal()
         {
             InitializeComponent();
         }
@@ -59,7 +59,7 @@ namespace TPI_ClubDeportivo
         // Abre el formulario para registrar clientes socios y no socios
         private void btnRegistrarCliente_Click(Object sender, EventArgs e)
         {
-            FrmRegistro inscripcionPrincipal = new FrmRegistro();
+            frmRegistro inscripcionPrincipal = new frmRegistro();
             inscripcionPrincipal.Owner = this;  // Establecer frmPrincipal como dueño
             inscripcionPrincipal.Show();
             this.Hide();

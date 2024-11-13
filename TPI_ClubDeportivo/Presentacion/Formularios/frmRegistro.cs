@@ -13,9 +13,9 @@ using TPI_ClubDeportivo.Presentacion.Formularios;
 
 namespace TPI_ClubDeportivo
 {
-    public partial class FrmRegistro : Form
+    public partial class frmRegistro : Form
     {
-        public FrmRegistro()
+        public frmRegistro()
         {
             InitializeComponent();
         }

@@ -14,9 +14,9 @@ using TPI_ClubDeportivo.Datos.Repositories;
 
 namespace TPI_ClubDeportivo
 {
-    public partial class FrmLogin : Form
+    public partial class frmLogin : Form
     {
-        public FrmLogin()
+        public frmLogin()
         {
             InitializeComponent();
         }
@@ -40,7 +40,7 @@ namespace TPI_ClubDeportivo
                 Se debe "Instanciar" un objeto de la clase formulario principal.
                 ____________________________________________________________________ 
                 */
-                FrmPrincipal Principal = new FrmPrincipal();
+                frmPrincipal Principal = new frmPrincipal();
                 /* 
                 ____________________________________________________________________
                 La siguiente linea permite tomar el dominio de la primera columna 
@@ -54,7 +54,8 @@ namespace TPI_ClubDeportivo
             }
             else
             {
-                MessageBox.Show("Usuario y/o password incorrecto");
+                MessageBox.Show("Usuario y/o password incorrecto", "MENSAJES DEL SISTEMA",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
