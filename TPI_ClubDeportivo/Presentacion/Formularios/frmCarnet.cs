@@ -17,7 +17,6 @@ namespace TPI_ClubDeportivo.Presentacion.Formularios
 {
     public partial class frmCarnet : Form
     {
-        private string numeroCliente;
         public frmCarnet()
 
         {
@@ -46,7 +45,11 @@ namespace TPI_ClubDeportivo.Presentacion.Formularios
             {
                 string query;
                 sqlCon = ConexionDB.getInstancia().CrearConexion();
-                query = "select * from cliente WHERE (TDocC = @TipoDocumento AND DocC = @DNI)";
+                query = "SELECT c.*, s.IdSocio " +
+                        "FROM Cliente c " +
+                        "LEFT JOIN Socio s ON c.IdCliente = s.IdCliente " +
+                        "WHERE c.TDocC = @TipoDocumento AND c.DocC = @DNI";
+
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
                 comando.CommandType = CommandType.Text;
                 sqlCon.Open();
@@ -60,7 +63,22 @@ namespace TPI_ClubDeportivo.Presentacion.Formularios
                 {
                     txtNombreCarnet.Text = reader["NombreC"].ToString();
                     txtApellidoCarnet.Text = reader["ApellidoC"].ToString();
-                    txtCategoria.Text = (reader["EsSocio"].ToString() == "1") ? "Socio" : "No Socio";
+
+                    if (reader["EsSocio"].ToString() == "1")
+                    {
+                        txtCategoria.Text = "Socio";
+                        lblNroSocio.Visible = true;
+                        txtNroSocio.Visible = true;
+                        txtNroSocio.Text = reader["IdSocio"].ToString();
+                    }
+                    else
+                    {
+                        txtCategoria.Text = "No Socio";
+                        lblNroSocio.Visible = false;
+                        txtNroSocio.Visible = false;
+                    }
+
+
                     if (reader["AptoFisico"].ToString() == "1")
                     {
                         txtAptoFisico.Text = "Entregado";

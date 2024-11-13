@@ -56,6 +56,8 @@
             btnSalirCarnet = new Button();
             pnlAutor = new Panel();
             label2 = new Label();
+            txtNroSocio = new TextBox();
+            lblNroSocio = new Label();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panel1.SuspendLayout();
             pnlAutor.SuspendLayout();
@@ -160,7 +162,7 @@
             // 
             lblAptoFisico.AutoSize = true;
             lblAptoFisico.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblAptoFisico.Location = new Point(17, 368);
+            lblAptoFisico.Location = new Point(17, 360);
             lblAptoFisico.Margin = new Padding(4, 0, 4, 0);
             lblAptoFisico.Name = "lblAptoFisico";
             lblAptoFisico.Size = new Size(115, 25);
@@ -262,7 +264,7 @@
             // 
             lblCategoria.AutoSize = true;
             lblCategoria.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCategoria.Location = new Point(17, 435);
+            lblCategoria.Location = new Point(17, 421);
             lblCategoria.Margin = new Padding(4, 0, 4, 0);
             lblCategoria.Name = "lblCategoria";
             lblCategoria.Size = new Size(103, 25);
@@ -273,7 +275,7 @@
             // 
             txtCategoria.BackColor = SystemColors.Control;
             txtCategoria.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCategoria.Location = new Point(174, 430);
+            txtCategoria.Location = new Point(174, 416);
             txtCategoria.Margin = new Padding(4, 5, 4, 5);
             txtCategoria.Name = "txtCategoria";
             txtCategoria.Size = new Size(178, 30);
@@ -358,11 +360,36 @@
             label2.TabIndex = 10;
             label2.Text = "ComC_G7  Mendiola - Rodrigues";
             // 
+            // txtNroSocio
+            // 
+            txtNroSocio.BackColor = SystemColors.Control;
+            txtNroSocio.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNroSocio.Location = new Point(174, 469);
+            txtNroSocio.Margin = new Padding(4, 5, 4, 5);
+            txtNroSocio.Name = "txtNroSocio";
+            txtNroSocio.Size = new Size(178, 30);
+            txtNroSocio.TabIndex = 37;
+            txtNroSocio.Visible = false;
+            // 
+            // lblNroSocio
+            // 
+            lblNroSocio.AutoSize = true;
+            lblNroSocio.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblNroSocio.Location = new Point(69, 474);
+            lblNroSocio.Margin = new Padding(4, 0, 4, 0);
+            lblNroSocio.Name = "lblNroSocio";
+            lblNroSocio.Size = new Size(49, 25);
+            lblNroSocio.TabIndex = 38;
+            lblNroSocio.Text = "Nro:";
+            lblNroSocio.Visible = false;
+            // 
             // frmCarnet
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1009, 549);
+            Controls.Add(txtNroSocio);
+            Controls.Add(lblNroSocio);
             Controls.Add(pnlAutor);
             Controls.Add(btnSalirCarnet);
             Controls.Add(panel1);
@@ -428,5 +455,7 @@
         private Label label1;
         private Panel pnlAutor;
         private Label label2;
+        public TextBox txtNroSocio;
+        private Label lblNroSocio;
     }
 }
