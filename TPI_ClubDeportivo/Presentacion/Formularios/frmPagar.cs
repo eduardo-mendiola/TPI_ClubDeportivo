@@ -77,121 +77,139 @@ namespace TPI_ClubDeportivo
         // Realizar el pago registrando en la BD según sea socio o no socio
         private void btnPagar_Click(object sender, EventArgs e)
         {
-            MySqlConnection sqlCon = new MySqlConnection();
-            try
+
+            // Verifica que la grilla tenga filas y que la celda no esté vacía
+            if (dtgvDeudas.Rows.Count > 0 && dtgvDeudas.Rows[0].Cells[0].Value != null)
             {
-                int Pagado_f;
-                bool MembresiaCliente;
-                string query;
-                sqlCon = ConexionDB.getInstancia().CrearConexion();
-
-                // Verifica si el cliente es socio o no socio
-                E_Cliente NuevoCliente = new E_Cliente();
-                MembresiaCliente = NuevoCliente.VerificarEsSocio(cboTipoDocCPagos.Text, txtDocumento.Text);
-
-                if (MembresiaCliente)
+                // Realiza la comparación de los dos valores como enteros
+                if (Convert.ToInt32(txtIdPago.Text) != (int)dtgvDeudas.Rows[0].Cells[0].Value)
                 {
-                    // Query para Socio
-                    query = "SELECT cm.IdPago, cm.IdSocio, CONCAT(c.NombreC, ' ', c.ApellidoC), c.EsSocio, " +
-                            "cm.Monto, cm.EstadoPago " +
-                            "FROM CuotaMensual cm " +
-                            "INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio " +
-                            "INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente " +
-                            "WHERE cm.IdPago = @IdReg";
-
+                    MessageBox.Show("Id de Pago Incorrecto", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    // Query para No Socio
-                    query = "SELECT i.IdInscripcionAct, a.NombreActividad, CONCAT(c.NombreC, ' ', c.ApellidoC), c.EsSocio, " +
-                            "a.CostoDiario, i.Pagado " +
-                            "FROM InscripcionAct AS i " +
-                            "INNER JOIN Edicion AS e ON i.IdEdicion = e.IdEdicion " +
-                            "INNER JOIN Actividad  AS a ON a.Nactividad = e.Nactividad " +
-                            "INNER JOIN Cliente AS c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
-                            "WHERE i.IdInscripcionAct = @IdReg";
-                }
 
-
-                MySqlCommand comando = new MySqlCommand(query, sqlCon);
-                comando.Parameters.AddWithValue("@IdReg", txtIdPago.Text); // Definimos el parámetro.
-
-                comando.CommandType = CommandType.Text;
-                sqlCon.Open();
-                MySqlDataReader reader = comando.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    reader.Read(); // En este caso sabemos que si tiene datos es UNA SOLA FILA
-
-                    doc.Numero_f = reader.GetInt32(0);
-                    doc.Actividad_f = reader.GetString(1);
-                    doc.Alumno_f = reader.GetString(2);
-                    doc.EsSocio_f = reader.GetInt16(3);
-                    doc.CostoAct_f = reader.GetFloat(4);
-                    doc.Monto_f = reader.GetFloat(4);
-                    doc.CantCuotas_f = int.Parse(cboCuotasTarjeta.Text);
-                    Pagado_f = reader.GetInt16(5);
-
-                    // Evaluamos que opción es la seleccionada
-                    if (optEfvo.Checked)
+                    MySqlConnection sqlCon = new MySqlConnection();
+                    try
                     {
-                        System.Diagnostics.Debug.WriteLine($"Monto después de descuento: {doc.Monto_f}");
-                        doc.Forma_f = "Efectivo";
-                        doc.Monto_f = Math.Round((doc.Monto_f * 0.9), 2);
-                        System.Diagnostics.Debug.WriteLine($"Monto después de descuento: {doc.Monto_f}");
-                    }
-                    else
-                    {
-                        doc.Forma_f = "Tarjeta";
-                        doc.Monto_f = Math.Round(doc.Monto_f, 2);
-                    }
+                        int Pagado_f;
+                        bool MembresiaCliente;
+                        string query;
+                        sqlCon = ConexionDB.getInstancia().CrearConexion();
 
-                    btnComprobante.Enabled = true;
-                    btnImprimirCarnet.Enabled = true;
+                        // Verifica si el cliente es socio o no socio
+                        E_Cliente NuevoCliente = new E_Cliente();
+                        MembresiaCliente = NuevoCliente.VerificarEsSocio(cboTipoDocCPagos.Text, txtDocumento.Text);
 
-                    if (Pagado_f == 1)
-                    {
-                        MessageBox.Show("La factura ya está paga", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        IPago clientePago;
-                        if (doc.EsSocio_f == 1)
+                        if (MembresiaCliente)
                         {
-                            clientePago = new E_Socio();
+                            // Query para Socio
+                            query = "SELECT cm.IdPago, cm.IdSocio, CONCAT(c.NombreC, ' ', c.ApellidoC), c.EsSocio, " +
+                                    "cm.Monto, cm.EstadoPago " +
+                                    "FROM CuotaMensual cm " +
+                                    "INNER JOIN Socio AS s ON s.IdSocio = cm.IdSocio " +
+                                    "INNER JOIN Cliente AS c ON c.IdCliente = s.IdCliente " +
+                                    "WHERE cm.IdPago = @IdReg";
+
                         }
                         else
                         {
-                            clientePago = new E_NoSocio();
+                            // Query para No Socio
+                            query = "SELECT i.IdInscripcionAct, a.NombreActividad, CONCAT(c.NombreC, ' ', c.ApellidoC), c.EsSocio, " +
+                                    "a.CostoDiario, i.Pagado " +
+                                    "FROM InscripcionAct AS i " +
+                                    "INNER JOIN Edicion AS e ON i.IdEdicion = e.IdEdicion " +
+                                    "INNER JOIN Actividad  AS a ON a.Nactividad = e.Nactividad " +
+                                    "INNER JOIN Cliente AS c ON c.TDocC = i.TipoDocCliente AND c.DocC = i.DocCliente " +
+                                    "WHERE i.IdInscripcionAct = @IdReg";
                         }
 
-                        clientePago.RealizarPago(txtIdPago.Text);
 
-                        MessageBox.Show("Pago realizado exitosamente", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MySqlCommand comando = new MySqlCommand(query, sqlCon);
+                        comando.Parameters.AddWithValue("@IdReg", txtIdPago.Text); // Definimos el parámetro.
+
+                        comando.CommandType = CommandType.Text;
+                        sqlCon.Open();
+                        MySqlDataReader reader = comando.ExecuteReader();
+
+                        if (reader.HasRows)
+                        {
+                            reader.Read(); // En este caso sabemos que si tiene datos es UNA SOLA FILA
+
+                            doc.Numero_f = reader.GetInt32(0);
+                            doc.Actividad_f = reader.GetString(1);
+                            doc.Alumno_f = reader.GetString(2);
+                            doc.EsSocio_f = reader.GetInt16(3);
+                            doc.CostoAct_f = reader.GetFloat(4);
+                            doc.Monto_f = reader.GetFloat(4);
+                            doc.CantCuotas_f = int.Parse(cboCuotasTarjeta.Text);
+                            Pagado_f = reader.GetInt16(5);
+
+                            // Evaluamos que opción es la seleccionada
+                            if (optEfvo.Checked)
+                            {
+                                System.Diagnostics.Debug.WriteLine($"Monto después de descuento: {doc.Monto_f}");
+                                doc.Forma_f = "Efectivo";
+                                doc.Monto_f = Math.Round((doc.Monto_f * 0.9), 2);
+                                System.Diagnostics.Debug.WriteLine($"Monto después de descuento: {doc.Monto_f}");
+                            }
+                            else
+                            {
+                                doc.Forma_f = "Tarjeta";
+                                doc.Monto_f = Math.Round(doc.Monto_f, 2);
+                            }
+
+                            btnComprobante.Enabled = true;
+                            btnImprimirCarnet.Enabled = true;
+
+                            if (Pagado_f == 1)
+                            {
+                                MessageBox.Show("La factura ya está paga", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                IPago clientePago;
+                                if (doc.EsSocio_f == 1)
+                                {
+                                    clientePago = new E_Socio();
+                                }
+                                else
+                                {
+                                    clientePago = new E_NoSocio();
+                                }
+
+                                clientePago.RealizarPago(txtIdPago.Text);
+
+                                MessageBox.Show("Pago realizado exitosamente", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+
+                            txtIdPago.Text = "";
+
+                            // Debugging
+                            System.Diagnostics.Debug.WriteLine(query);
+                            System.Diagnostics.Debug.WriteLine($"{doc.Numero_f} | {doc.Actividad_f} | {doc.Alumno_f} | {doc.Monto_f}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Id de Pago Incorrecto", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-
-                    txtIdPago.Text = "";
-
-                    // Debugging
-                    System.Diagnostics.Debug.WriteLine(query);
-                    System.Diagnostics.Debug.WriteLine($"{doc.Numero_f} | {doc.Actividad_f} | {doc.Alumno_f} | {doc.Monto_f}");
-                }
-                else
-                {
-                    MessageBox.Show("Documento de Cliente inexistente", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "MENSAJE DEL CATCH", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        if (sqlCon.State == ConnectionState.Open)
+                        {
+                            sqlCon.Close();
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "MENSAJE DEL CATCH", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (sqlCon.State == ConnectionState.Open)
-                {
-                    sqlCon.Close();
-                }
+                MessageBox.Show("No hay deudas cargadas", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
