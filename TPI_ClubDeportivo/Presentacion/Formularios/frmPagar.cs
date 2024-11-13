@@ -248,7 +248,7 @@ namespace TPI_ClubDeportivo
                 MessageBox.Show("El cliente no es socio. Redirigiendo al formulario de inscripción...", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // **Abrimos el formulario de inscripción en modo modal**
-                frmInscribirActividad inscripcionForm = new frmInscribirActividad(cliente);
+                frmInscribirEnActividad inscripcionForm = new frmInscribirEnActividad(cliente);
                 this.Hide();  // Oculta el formulario actual (frmPagar) para mostrar solo el de inscripción
                 DialogResult resultado = inscripcionForm.ShowDialog();  // Abre frmInscribirActividad y espera hasta que se cierre
                 this.Show();  // Vuelve a mostrar frmPagar cuando se cierra el formulario de inscripción

@@ -68,7 +68,7 @@ namespace TPI_ClubDeportivo
         // Abre el formulario de inscripción a actividades para cliente socio y no socios
         private void btnIscribirActividad_Click(object sender, EventArgs e)
         {
-            frmInscribirActividad inscripcionPrincipal = new frmInscribirActividad();
+            frmInscribirEnActividad inscripcionPrincipal = new frmInscribirEnActividad();
             inscripcionPrincipal.Owner = this;  // Establecer frmPrincipal como dueño
             inscripcionPrincipal.AbiertoDesdePrincipal = true;  // Indicar que se abrió desde frmPrincipal
             inscripcionPrincipal.Show();

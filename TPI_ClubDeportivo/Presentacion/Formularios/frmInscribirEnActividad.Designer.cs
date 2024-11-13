@@ -1,6 +1,6 @@
 ﻿namespace TPI_ClubDeportivo
 {
-    partial class frmInscribirActividad
+    partial class frmInscribirEnActividad
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInscribirActividad));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInscribirEnActividad));
             dtgvActividades = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
             Actividad = new DataGridViewTextBoxColumn();

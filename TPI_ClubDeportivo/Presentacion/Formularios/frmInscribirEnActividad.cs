@@ -15,9 +15,9 @@ using TPI_ClubDeportivo.Interfaces;
 
 namespace TPI_ClubDeportivo
 {
-    public partial class frmInscribirActividad : Form
+    public partial class frmInscribirEnActividad : Form
     {
-        public frmInscribirActividad()
+        public frmInscribirEnActividad()
         {
             InitializeComponent();
         }
@@ -25,7 +25,7 @@ namespace TPI_ClubDeportivo
         private E_Cliente cliente;
         public bool AbiertoDesdePrincipal { get; set; } = false;
 
-        public frmInscribirActividad(E_Cliente cliente)
+        public frmInscribirEnActividad(E_Cliente cliente)
         {
             InitializeComponent();
             this.cliente = cliente;  // Guarda el cliente para usarlo en el formulario
