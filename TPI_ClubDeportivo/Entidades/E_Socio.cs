@@ -145,7 +145,7 @@ namespace TPI_ClubDeportivo.Entidades
                 // Mensaje si no hay filas en la consulta
                 if (!reader.HasRows)
                 {
-                    MessageBox.Show("EL CLIENTE NO REGISTRA DEUDAS");
+                    MessageBox.Show("El cliente no registra deudas.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 reader.Close();

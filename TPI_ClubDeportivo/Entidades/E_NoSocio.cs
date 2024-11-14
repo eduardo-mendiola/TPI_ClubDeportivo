@@ -99,7 +99,7 @@ namespace TPI_ClubDeportivo.Entidades
                 // Mensaje si no hay deudas
                 if (!hayDeudas)
                 {
-                    MessageBox.Show("El cliente no registra deudas.");
+                    MessageBox.Show("El cliente no registra deudas.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 reader.Close();
