@@ -17,7 +17,7 @@ namespace TPI_ClubDeportivo.Entidades
         public TipoDePagoEnum TipoDePago { get; private set; }
         public CantCuotasEnum CantCuotas { get; private set; }
         public double ValorCuota { get; private set; }
-        public DateTime fechaPago { get; private set; }
+        public DateTime FechaPago { get; private set; }
         public DateTime FechaVencimiento {  get; private set; }
 
 
