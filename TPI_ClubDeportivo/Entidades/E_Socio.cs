@@ -15,8 +15,9 @@ namespace TPI_ClubDeportivo.Entidades
         public string IdSocio { get; private set; }
         public E_Cuota Cuota { get; private set; }
        
+        public bool CuotaMensualPagada { get; private set; }
 
-        
+
         public E_Socio() 
         {
             Cuota = new E_Cuota();

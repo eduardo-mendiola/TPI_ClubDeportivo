@@ -13,11 +13,14 @@ namespace TPI_ClubDeportivo.Entidades
     public class E_Actividad
     {
         public int IdActividad { get; private set; }
-        public string? TipoDoc { get; private set; }
-        public string? DocCliente { get; private set; }
-
+        public string NombreActividad { get; private set; }
+        public DateTime HorarioActividad { get; private set; }
+        public DateTime DiasActividad { get; private set; }
+        public int DuracionMinutos { get; private set; }
+        public int MaxParticipantes { get; private set; }
+        public int CantInscriptos { get; private set; }
         public E_Cliente cliente { get; private set; }
-
+        public double CostoDiario { get; private set; }
 
         public E_Actividad()
         {
@@ -30,16 +33,7 @@ namespace TPI_ClubDeportivo.Entidades
             IdActividad = idActividad;
         }
 
-        public void SetDocCliente(string DocCliente)
-        {
-            this.DocCliente = DocCliente;
-        }
-
-        public void SetTipoDoc(string TipoDoc)
-        {
-            this.TipoDoc = TipoDoc;
-        }
-
+     
         // Verificar si hay cupos disponibles para inscribir en la actividad
         public bool VerificarDisponibilidad(int CodAct)
         {
@@ -109,8 +103,8 @@ namespace TPI_ClubDeportivo.Entidades
             string respuesta;
             E_Actividad inscripcion = new E_Actividad();
 
-            inscripcion.SetTipoDoc(TipoDoc);
-            inscripcion.SetDocCliente(Doc);
+            inscripcion.cliente.SetTipoDoc(TipoDoc);
+            inscripcion.cliente.SetDoc(Doc);
             inscripcion.SetIdActividad(idActividad);
 
             if (VerificarDisponibilidad(idActividad))
