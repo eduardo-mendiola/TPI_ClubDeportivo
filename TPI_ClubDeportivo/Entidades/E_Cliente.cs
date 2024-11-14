@@ -221,7 +221,6 @@ namespace TPI_ClubDeportivo.Entidades
         }
 
 
-
     }
 }
 
