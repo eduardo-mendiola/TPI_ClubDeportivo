@@ -14,13 +14,12 @@ namespace TPI_ClubDeportivo.Entidades
     {
         public string IdSocio { get; private set; }
         public E_Cuota Cuota { get; private set; }
-        public E_Cliente cliente {  get; private set; }
+       
 
         
         public E_Socio() 
         {
             Cuota = new E_Cuota();
-            cliente = new E_Cliente();
         }
 
         // Setters y Getters
@@ -99,7 +98,7 @@ namespace TPI_ClubDeportivo.Entidades
         public void ObtenerDeuda(DataGridView dataGridView, string TipoDocPago, string Documento)
         {
             // Verificar si el cliente existe
-            if (!cliente.ClienteExiste(TipoDocPago, Documento))
+            if (!ClienteExiste(TipoDocPago, Documento))
             {
                 MessageBox.Show("El cliente no existe en el sistema.");
                 return; // Salir del método si el cliente no existe
