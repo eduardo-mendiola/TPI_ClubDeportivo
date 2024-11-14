@@ -82,7 +82,7 @@ namespace TPI_ClubDeportivo
             if (dtgvDeudas.Rows.Count > 0 && dtgvDeudas.Rows[0].Cells[0].Value != null)
             {
                 // Realiza la comparación de los dos valores como enteros
-                if (Convert.ToInt32(txtIdPago.Text) != (int)dtgvDeudas.Rows[0].Cells[0].Value)
+                if (string.IsNullOrWhiteSpace(txtIdPago.Text) || Convert.ToInt32(txtIdPago.Text) != (int)dtgvDeudas.Rows[0].Cells[0].Value)
                 {
                     MessageBox.Show("Id de Pago Incorrecto", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
