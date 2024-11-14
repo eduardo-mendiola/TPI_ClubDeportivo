@@ -10,15 +10,9 @@ using TPI_ClubDeportivo.Interfaces;
 
 namespace TPI_ClubDeportivo.Entidades
 {
-    internal class E_NoSocio : IPago
+    internal class E_NoSocio : E_Cliente, IPago
     {
 
-        public E_Cliente cliente { get; private set; }
-
-        public E_NoSocio()
-        {
-            cliente = new E_Cliente();
-        }
 
         // Realiza el pago y registra el pago en la base de datos
         public void RealizarPago(string IdPago)
@@ -60,7 +54,7 @@ namespace TPI_ClubDeportivo.Entidades
         public void ObtenerDeuda(DataGridView dataGridView, string TipoDocPago, string Documento)
         {
             // Verificar si el cliente existe
-            if (!cliente.ClienteExiste(TipoDocPago, Documento))
+            if (!ClienteExiste(TipoDocPago, Documento))
             {
                 MessageBox.Show("El cliente no existe en el sistema.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Salir del método si el cliente no existe
