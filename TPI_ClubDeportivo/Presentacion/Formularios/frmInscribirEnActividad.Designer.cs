@@ -246,7 +246,7 @@
             btnInscribirCliente.Name = "btnInscribirCliente";
             btnInscribirCliente.Size = new Size(320, 70);
             btnInscribirCliente.TabIndex = 3;
-            btnInscribirCliente.Text = "INGRESAR";
+            btnInscribirCliente.Text = "INSCRIBIR";
             btnInscribirCliente.UseVisualStyleBackColor = false;
             btnInscribirCliente.Click += btnInscribirCliente_Click;
             // 
@@ -298,7 +298,7 @@
             label2.TabIndex = 10;
             label2.Text = "ComC_G7  Mendiola - Rodrigues";
             // 
-            // frmInscribirActividad
+            // frmInscribirEnActividad
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -318,7 +318,7 @@
             Controls.Add(lblIdcliente);
             Controls.Add(lblTitleListAct);
             Controls.Add(dtgvActividades);
-            Name = "frmInscribirActividad";
+            Name = "frmInscribirEnActividad";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmAsignar";
             Load += frmInscribirActividad_Load;
