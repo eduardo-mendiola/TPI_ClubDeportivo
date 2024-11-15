@@ -1,5 +1,11 @@
 /* DB_DSOO_PI1_ComC_Grupo7_Mendiola_Rodrigues */
 
+-- Nota: El script fue probado en un entorno con el modo SQL:
+-- 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'
+-- Si no funciona en otro entorno, se recomienda revisar el modo SQL activo y considerar ajustes como:
+-- SET SESSION sql_mode = REPLACE(@@sql_mode, 'STRICT_TRANS_TABLES', '');
+
+
 DROP DATABASE IF EXISTS ClubDeportivo;
 CREATE DATABASE ClubDeportivo;
 USE ClubDeportivo;
