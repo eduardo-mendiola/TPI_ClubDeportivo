@@ -29,7 +29,7 @@ INSERT INTO usuario(NombreUsu,PassUsu,RolUsu) VALUES
 ('a', 'a', 120),
 ('Cari', '1234',120),
 ('Edu', '1234', 120),
-('Jose', '1234', '121');
+('Jose', '1234', 121);
 
 CREATE TABLE Cliente (
     IdCliente INT,
